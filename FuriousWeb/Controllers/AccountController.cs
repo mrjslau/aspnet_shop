@@ -10,6 +10,8 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using FuriousWeb.Models;
 
+//smart comment lol
+
 namespace FuriousWeb.Controllers
 {
     [Authorize]
