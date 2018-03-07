@@ -8,6 +8,7 @@ namespace FuriousWeb
     {
         public void Configuration(IAppBuilder app)
         {
+            ConfigureAuth(app);//Gabrielius redaguoja
             ConfigureAuth(app);
             //testukas
         }
