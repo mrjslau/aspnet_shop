@@ -1,0 +1,32 @@
+﻿@{
+    ViewBag.Title = "Cart";
+}
+<h2>@ViewBag.Title.</h2>
+<h3>@ViewBag.Message</h3>
+<input type="text" id="card-number" />
+<input type="number" id="exp_year" />
+<input type="number" id="exp_month" />
+<input type="text" id="card-holder" />
+<input type="text" id="card-cvv"/>
+
+<script>
+    var amount = 100;
+    paymentObject = {
+        amount: amount,
+        number: $("#card-number").val(),
+        holer: $("#card-holder").val(),
+        exp_year: $("#exp_year").val(),
+        exp_month: $("#exp_month").val(),
+        cvv: $("#card-cvv").val()
+    };
+    $.ajax({
+        type: "POST",
+        url: "/v1/payment",
+        data: paymentObject,
+        contentType: 'application/json; charset=utf-8',
+        dataType: 'json',
+        success: function (result) {
+            alert("Returned: " + result);
+        }
+    });
+</script>
