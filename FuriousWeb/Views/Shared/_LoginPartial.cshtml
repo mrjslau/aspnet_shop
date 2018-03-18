@@ -3,14 +3,32 @@
 {
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
     {
-    @Html.AntiForgeryToken()
+        @Html.AntiForgeryToken()
 
-    <ul class="nav navbar-nav navbar-right">
-        <li>
-            @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
-        </li>
-        <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
-    </ul>
+        <div class="hello">
+            Sveiki, @{User.Identity.GetUserName();}!
+        </div>
+        <div class="profile">
+            <div class="profile-img">
+                <a href="#" class="toggle-menu">
+                    <span>A</span>
+                </a>
+            </div>
+
+            <div class="profile-menu">
+                <ul>
+                    <li>
+                        <a href="#"><i class="fa fa-user"></i>Profilis</a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-wrench"></i>Nustatymai</a>
+                    </li>
+                    <li>
+                        <a href="javascript:document.getElementById('logoutForm').submit()"><i class="fa fa-sign-out"></i>Atsijungti</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
     }
 }
 else
