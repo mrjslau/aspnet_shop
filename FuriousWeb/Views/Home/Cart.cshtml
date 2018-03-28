@@ -1,16 +1,66 @@
 ﻿@{
     ViewBag.Title = "Cart";
+    //var CartProducts = ViewBag.Products as Dictionary<string, string>;
+
 }
 <h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
-<input type="text" id="card-number" />
-<input type="number" id="exp_year" />
-<input type="number" id="exp_month" />
-<input type="text" id="card-holder" />
-<input type="text" id="card-cvv"/>
+
+<table>
+<!--/*/*foreach (var product in CartProducts)*/
+{
+    <tr>
+        <td>/*product.Key*/</td>
+        <td>/*product.Value*/</td>
+    </tr>
+}*/-->
+</table>
+
+
+<div class="panel">
+    <div class="panel-heading text-center">
+        <h3>@ViewBag.Message</h3>
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-4 text-right">
+            </div>
+            <div class="col-md-4">
+                <input class="form-control" type="text" id="card-number" placeholder="Card number"/>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+            </div>
+            <div class="col-md-2 col-xs-6">
+                <input class="form-control" type="number" id="exp-year" placeholder="Expiration year" />
+            </div>
+            <div class="col-md-2 col-xs-6">
+                <input class="form-control" type="number" id="exp-month" placeholder="Expiration month" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+            </div>
+            <div class="col-md-4">
+                <input class="form-control" type="text" id="card-holder" placeholder="Card holder"/>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+            </div>
+            <div class="col-md-4">
+                <input class="form-control" type="text" id="card-cvv" placeholder="Card CVV"/>
+            </div>
+        </div>
+    </div>
+    <div class="panel-footer text-right">
+        <button class="btn btn-md btn-primary">Pay</button>
+    </div>
+</div>
 
 <script>
     var amount = 100;
+    var $ = jQuery;
     paymentObject = {
         amount: amount,
         number: $("#card-number").val(),

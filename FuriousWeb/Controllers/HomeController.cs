@@ -26,5 +26,13 @@ namespace FuriousWeb.Controllers
 
             return View();
         }
+
+        public ActionResult Cart()
+        {
+            ViewBag.Message = "Enter your payment details";
+            //Cart cart = new Cart();
+            //ViewBag.Products = cart.getDictionary();
+            return View();
+        }
     }
 }
