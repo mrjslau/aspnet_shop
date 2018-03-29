@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using FuriousWeb.Models;
 
 namespace FuriousWeb.Controllers
 {
@@ -30,8 +31,11 @@ namespace FuriousWeb.Controllers
         public ActionResult Cart()
         {
             ViewBag.Message = "Enter your payment details";
-            //Cart cart = new Cart();
-            //ViewBag.Products = cart.getDictionary();
+            Cart cart = new Cart();
+            cart.Set("1","2");
+            cart.Set("2","3");
+            cart.Set("1","3");
+            ViewBag.Products = cart.GetDictionary();
             return View();
         }
     }

@@ -1,22 +1,33 @@
 ﻿@{
     ViewBag.Title = "Cart";
-    //var CartProducts = ViewBag.Products as Dictionary<string, string>;
+    var CartProducts = ViewBag.Products as Dictionary<string, string>;
 
 }
 <h2>@ViewBag.Title.</h2>
 
-<table>
-<!--/*/*foreach (var product in CartProducts)*/
-{
-    <tr>
-        <td>/*product.Key*/</td>
-        <td>/*product.Value*/</td>
-    </tr>
-}*/-->
-</table>
-
-
 <div class="panel">
+    <div class="panel-heading">
+        <span>ViewBag.Message</span>
+    </div>
+    <div class="panel-body">
+        <ul class="list-group">
+            <li class="list-group-item">
+                <div class="col-md-6">Product ID</div>
+                <div class="col-md-6">Quantity</div>
+            </li>
+            @foreach (var product in CartProducts)
+            {
+                <li class="list-group-item">
+                    <div class="col-md-6">@product.Key</div>
+                    <div class="col-md-6">@product.Value</div>
+                </li>
+            }
+        </ul>
+    </div>
+</div>
+
+
+<div class="panel" id="payment-panel">
     <div class="panel-heading text-center">
         <h3>@ViewBag.Message</h3>
     </div>
@@ -54,29 +65,10 @@
         </div>
     </div>
     <div class="panel-footer text-right">
-        <button class="btn btn-md btn-primary">Pay</button>
+        <button id="pay-now" class="btn btn-md btn-primary">Pay now</button>
     </div>
 </div>
 
 <script>
-    var amount = 100;
-    var $ = jQuery;
-    paymentObject = {
-        amount: amount,
-        number: $("#card-number").val(),
-        holer: $("#card-holder").val(),
-        exp_year: $("#exp_year").val(),
-        exp_month: $("#exp_month").val(),
-        cvv: $("#card-cvv").val()
-    };
-    $.ajax({
-        type: "POST",
-        url: "/v1/payment",
-        data: paymentObject,
-        contentType: 'application/json; charset=utf-8',
-        dataType: 'json',
-        success: function (result) {
-            alert("Returned: " + result);
-        }
-    });
+    
 </script>

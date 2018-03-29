@@ -5254,6 +5254,7 @@ a.thumbnail:focus {
 }
 
 .list-group-item {
+    overflow:hidden;
   position: relative;
   display: block;
   padding: 10px 15px;

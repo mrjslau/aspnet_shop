@@ -14,6 +14,44 @@ var plugins = '';
         $('div.top-bar .mobile-menu .mobile-menu-toggler i').toggleClass('change');
     });
 
+    $('#payment-panel #pay-now').on('touchstart click', function () {
+        console.log('click!');
+        var amount = 100;
+        paymentObject = {
+            amount: amount,
+            number: $("#card-number").val(),
+            holer: $("#card-holder").val(),
+            exp_year: $("#exp_year").val(),
+            exp_month: $("#exp_month").val(),
+            cvv: $("#card-cvv").val()
+        };
+
+        /*$.ajax({
+            type: "GET",
+            url: "https://mock-payment-processor.appspot.com/",
+            dataType: 'json',
+            async: false,
+            headers: {
+                "Authorization": "Basic " + btoa('technologines:platformos')
+            },
+            success: function () {
+                alert('Thanks for your comment!');
+            }
+        });
+
+
+        $.ajax({
+            type: "POST",
+            url: "https://mock-payment-processor.appspot.com/v1/payment",
+            data: paymentObject,
+            contentType: 'application/json; charset=utf-8',
+            dataType: 'json',
+            success: function (result) {
+                alert("Returned: " + result);
+            }
+        });*/
+    });
+
 
 
     $(function () {
