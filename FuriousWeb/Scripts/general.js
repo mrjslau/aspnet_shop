@@ -26,13 +26,13 @@ var plugins = '';
             cvv: $("#card-cvv").val()
         };
 
-        /*$.ajax({
-            type: "GET",
+        $.ajax({
+            type: "POST",
             url: "https://mock-payment-processor.appspot.com/",
             dataType: 'json',
             async: false,
             headers: {
-                "Authorization": "Basic " + btoa('technologines:platformos')
+                "Authorization" : "Basic " + btoa('technologines:platformos')
             },
             success: function () {
                 alert('Thanks for your comment!');
@@ -40,7 +40,7 @@ var plugins = '';
         });
 
 
-        $.ajax({
+        /*$.ajax({
             type: "POST",
             url: "https://mock-payment-processor.appspot.com/v1/payment",
             data: paymentObject,

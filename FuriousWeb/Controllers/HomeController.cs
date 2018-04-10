@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using FuriousWeb.Models;
+using System.Web.Http.Cors;
 
 namespace FuriousWeb.Controllers
 {
@@ -28,8 +29,10 @@ namespace FuriousWeb.Controllers
             return View();
         }
 
+        [AllowCrossSite]
         public ActionResult Cart()
         {
+            Response.AppendHeader("Access-Control-Allow-Origin", "*");
             ViewBag.Message = "Enter your payment details";
             Cart cart = new Cart();
             cart.Set("1","2");
