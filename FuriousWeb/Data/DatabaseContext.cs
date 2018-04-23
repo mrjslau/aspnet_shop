@@ -21,15 +21,16 @@ namespace FuriousWeb.Data
             base.OnModelCreating(modelBuilder);
 
             //pervadinam default'inius lenteliu pavadinimus
-            modelBuilder.Entity<User>().ToTable("Users");                   //AspNetUsers
-            modelBuilder.Entity<IdentityRole>().ToTable("Roles");           //AspNetRoles
-            modelBuilder.Entity<IdentityUserRole>().ToTable("UserRoles");   //AspNetUserRoles
-            modelBuilder.Entity<IdentityUserClaim>().ToTable("UserClaims"); //AspNetUserClaims
-            modelBuilder.Entity<IdentityUserLogin>().ToTable("UserLogins"); //AspNetUserLogins
+            modelBuilder.Entity<User>().ToTable("Users");                   //default: AspNetUsers
+            modelBuilder.Entity<IdentityRole>().ToTable("Roles");           //default: AspNetRoles
+            modelBuilder.Entity<IdentityUserRole>().ToTable("UserRoles");   //default: AspNetUserRoles
+            modelBuilder.Entity<IdentityUserClaim>().ToTable("UserClaims"); //default: AspNetUserClaims
+            modelBuilder.Entity<IdentityUserLogin>().ToTable("UserLogins"); //default: AspNetUserLogins
         }
 
-        //duombazes lenteles (neiskaitant defaultiniu: Users, Roles ir t.t.)
+        //db lenteles (neiskaitant defaultiniu: Users, Roles ir t.t.)
 
         public DbSet<Product> Products { get; set; }
+        public DbSet<Warehouse> Warehouses { get; set; }
     }
 }

@@ -11,7 +11,7 @@
 <body>
     <div id="page">
         <!--  MENU START -->
-        <div id="header">
+        <div id="header"> @* TODO: kodel 'id' vadinasi 'header' jeigu tai yra 'left-side-bar' ?*@
             <div class="logo-holder">
                 <a href="#" class="logo">
                     <img src="~/Content/Images/logo.png" alt="">
@@ -52,29 +52,7 @@
                         </li>
                     </ul>
                 </div>
-                @*<div class="hello">
-                        Sveiki, Admin
-                    </div>
-                    <div class="profile">
-                        <div class="profile-img">
-                            <a href="#" class="toggle-menu">
-                                <span>A</span>
-                            </a>
-                        </div>
-                        <div class="profile-menu">
-                            <ul>
-                                <li>
-                                    <a href="#"><i class="fa fa-user"></i>Profilis</a>
-                                </li>
-                                <li>
-                                    <a href="#"><i class="fa fa-wrench"></i>Nustatymai</a>
-                                </li>
-                                <li>
-                                    <a href="#"><i class="fa fa-sign-out"></i>Atsijungti</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>*@
+
                 @Html.Partial("_LoginPartial")
             </div>
 

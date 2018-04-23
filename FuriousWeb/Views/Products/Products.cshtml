@@ -3,7 +3,7 @@
 <div class="product-list">
     <div class='button-list'>
         <div class="add">
-            <a href="#" class="add-button">Sukurti naują prekę</a>
+            @Html.ActionLink("Sukurti naują prekę", "Create", "Products", null, new { @class = "add-button" })  
         </div>
     </div>
     <div class="mass-action">
@@ -23,13 +23,11 @@
             <button class="search-button">Ieškoti</button>
         </div>
     </div>
+
     <div class="list">
         <div class="list-titles">
             <div class="check-box">
                 <input id="checkBox" type="checkbox">
-            </div>
-            <div class="id">
-                Nr.
             </div>
             <div class="image">
                 Nuotrauka
@@ -49,141 +47,35 @@
             <div class="actions">
             </div>
         </div>
+
+        @foreach(var product in Model)
+        {
         <div class="list-item">
             <div class="check-box">
                 <input id="checkBox" type="checkbox">
-            </div>
-            <div class="id">
-                1
             </div>
             <div class="image">
                 <img src="images/nike.jpg" alt="">
             </div>
             <div class="name">
-                Nike batas
+                @product.Name
             </div>
             <div class='quantity'>
-                100
+                not yet implemented
             </div>
             <div class="price">
-                19.99 €
+                not yet implemented
             </div>
             <div class="category">
-                Batai
+                not yet implemented
             </div>
             <div class="actions">
                 <a href="#" class="edit"><i class="fa fa-edit"></i></a>
                 <a href="#" class="delete"><i class="fa fa-trash"></i></a>
             </div>
         </div>
-        <div class="list-item">
-            <div class="check-box">
-                <input id="checkBox" type="checkbox">
-            </div>
-            <div class="id">
-                2
-            </div>
-            <div class="image">
-                <img src="images/reebok.jpg" alt="">
-            </div>
-            <div class="name">
-                Reebok batas
-            </div>
-            <div class='quantity'>
-                20
-            </div>
-            <div class="price">
-                29.99 €
-            </div>
-            <div class="category">
-                Kėdai
-            </div>
-            <div class="actions">
-                <a href="#" class="edit"><i class="fa fa-edit"></i></a>
-                <a href="#" class="delete"><i class="fa fa-trash"></i></a>
-            </div>
-        </div>
-        <div class="list-item">
-            <div class="check-box">
-                <input id="checkBox" type="checkbox">
-            </div>
-            <div class="id">
-                3
-            </div>
-            <div class="image">
-                <img src="images/adidas.jpg" alt="">
-            </div>
-            <div class="name">
-                Adidas batas
-            </div>
-            <div class='quantity'>
-                13
-            </div>
-            <div class="price">
-                9.99 €
-            </div>
-            <div class="category">
-                Kėdai
-            </div>
-            <div class="actions">
-                <a href="#" class="edit"><i class="fa fa-edit"></i></a>
-                <a href="#" class="delete"><i class="fa fa-trash"></i></a>
-            </div>
-        </div>
-        <div class="list-item">
-            <div class="check-box">
-                <input id="checkBox" type="checkbox">
-            </div>
-            <div class="id">
-                4
-            </div>
-            <div class="image">
-                <img src="images/cap.jpeg" alt="">
-            </div>
-            <div class="name">
-                Kepurė
-            </div>
-            <div class='quantity'>
-                20
-            </div>
-            <div class="price">
-                5.99 €
-            </div>
-            <div class="category">
-                Kepurės
-            </div>
-            <div class="actions">
-                <a href="#" class="edit"><i class="fa fa-edit"></i></a>
-                <a href="#" class="delete"><i class="fa fa-trash"></i></a>
-            </div>
-        </div>
-        <div class="list-item">
-            <div class="check-box">
-                <input id="checkBox" type="checkbox">
-            </div>
-            <div class="id">
-                5
-            </div>
-            <div class="image">
-                <img src="images/wallet.jpeg" alt="">
-            </div>
-            <div class="name">
-                Piniginė
-            </div>
-            <div class='quantity'>
-                200
-            </div>
-            <div class="price">
-                39.99 €
-            </div>
-            <div class="category">
-                Piniginės
-            </div>
-            <div class="actions">
-                <a href="#" class="edit"><i class="fa fa-edit"></i></a>
-                <a href="#" class="delete"><i class="fa fa-trash"></i></a>
-            </div>
-        </div>
+        }
+
         <div class="paging">
             <div class="prev"><a href="#" class="prev">Ankstesnis</a></div>
             <div class="numbered"><a href="" class="numbered current">1</a></div>

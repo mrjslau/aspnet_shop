@@ -15,15 +15,9 @@ namespace FuriousWeb.Controllers
     {
         private DatabaseContext db = new DatabaseContext();
 
-        // GET: Products
-        //public ActionResult Index()
-        //{
-        //    return View("Products", db.Products.ToList());
-        //}
-
         public ActionResult GetProductsList()
         {
-            return View("Products", db.Products.ToList());
+            return PartialView("Products", db.Products.ToList());
         }
 
         // GET: Products/Details/5
