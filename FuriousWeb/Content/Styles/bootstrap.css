@@ -786,6 +786,7 @@ pre code {
 .row {
   margin-right: -15px;
   margin-left: -15px;
+  margin-bottom: 20px;
 }
 
 .row:before,
@@ -5253,6 +5254,7 @@ a.thumbnail:focus {
 }
 
 .list-group-item {
+    overflow:hidden;
   position: relative;
   display: block;
   padding: 10px 15px;

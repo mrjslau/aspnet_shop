@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using FuriousWeb.Models;
+using System.Web.Http.Cors;
 
 namespace FuriousWeb.Controllers
 {
@@ -24,6 +26,19 @@ namespace FuriousWeb.Controllers
         {
             ViewBag.Message = "Your contact page.";
 
+            return View();
+        }
+
+        [AllowCrossSite]
+        public ActionResult Cart()
+        {
+            Response.AppendHeader("Access-Control-Allow-Origin", "*");
+            ViewBag.Message = "Enter your payment details";
+            Cart cart = new Cart();
+            cart.Set("1","2");
+            cart.Set("2","3");
+            cart.Set("1","3");
+            ViewBag.Products = cart.GetDictionary();
             return View();
         }
     }
