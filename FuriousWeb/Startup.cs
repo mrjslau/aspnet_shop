@@ -29,7 +29,7 @@ namespace FuriousWeb
                         var adminRole = new IdentityRole() { Name = "Admin" };
                         roleManager.Create(adminRole);
 
-                        var simpleUserRole = new IdentityRole() { Name = "SimpleUser" };
+                        var simpleUserRole = new IdentityRole() { Name = "User" };
                         roleManager.Create(simpleUserRole);
                         
                         //creating users
