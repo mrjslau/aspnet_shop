@@ -9,6 +9,7 @@ namespace FuriousWeb.Data
         public DatabaseContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
+            Database.SetInitializer<DatabaseContext>(new CreateDatabaseIfNotExists<DatabaseContext>());
         }
 
         public static DatabaseContext Create()
@@ -30,7 +31,8 @@ namespace FuriousWeb.Data
 
         //db lenteles (neiskaitant defaultiniu: Users, Roles ir t.t.)
 
-        public DbSet<Product> Products { get; set; }
-        public DbSet<Warehouse> Warehouses { get; set; }
+        public DbSet<Product> Products { get; set; } //prekes
+        public DbSet<Warehouse> Warehouses { get; set; } //sandeliai
+        public DbSet<Stock> Stock { get; set; } //prekiu sarasas sandeliuose
     }
 }
