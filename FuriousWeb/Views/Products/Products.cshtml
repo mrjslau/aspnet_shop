@@ -1,4 +1,4 @@
-﻿@model IEnumerable<FuriousWeb.Models.Product>
+﻿@model IEnumerable<FuriousWeb.Models.DetailedProduct>
 
 <div class="product-list">
     <div class='button-list'>
@@ -61,13 +61,23 @@
                 @product.Name
             </div>
             <div class='quantity'>
-                not yet implemented
+                @product.Quantity
             </div>
             <div class="price">
-                not yet implemented
+                @product.Price
             </div>
             <div class="category">
                 not yet implemented
+            </div>
+            @* Siuos stulpelius reikėtu visai paslėpti, nes dabar juos galima pamatyt per browser'io page source *@
+            <div class="id" style="display:none;">
+                @product.ProductId
+            </div>
+            <div class="code" style="display:none;">
+                @product.Code
+            </div>
+            <div class="warehouseId" style="display:none;">
+                @product.WarehouseId
             </div>
             <div class="actions">
                 <a href="#" class="edit"><i class="fa fa-edit"></i></a>

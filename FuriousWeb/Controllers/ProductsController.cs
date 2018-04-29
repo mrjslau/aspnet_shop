@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Data.Entity;
-using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
 using FuriousWeb.Data;
 using FuriousWeb.Models;
+using FuriousWeb.Business;
+using System.Data.SqlClient;
+using System.Configuration;
 
 namespace FuriousWeb.Controllers
 {
@@ -17,7 +17,23 @@ namespace FuriousWeb.Controllers
 
         public ActionResult GetProductsList()
         {
-            return PartialView("Products", db.Products.ToList());
+            string connString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+            SqlConnection conn = new SqlConnection(connString);
+            try
+            {
+                conn.Open();
+                List<DetailedProduct> products = Products.LoadDetailedProducts(conn);
+
+                return PartialView("Products", products);
+            }
+            catch(Exception ex)
+            {
+                return Content($"<script>alert(\"Klaida: {ex.Message}\")</script>");
+            }
+            finally
+            {
+                conn.Close();
+            }
         }
 
         public ActionResult Details(int? id)

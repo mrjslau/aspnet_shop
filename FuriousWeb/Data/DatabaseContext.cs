@@ -33,6 +33,6 @@ namespace FuriousWeb.Data
 
         public DbSet<Product> Products { get; set; } //prekes
         public DbSet<Warehouse> Warehouses { get; set; } //sandeliai
-        public DbSet<Stock> Stock { get; set; } //prekiu sarasas sandeliuose
+        public DbSet<ProductInStock> Stock { get; set; } //prekiu sarasas sandeliuose
     }
 }
