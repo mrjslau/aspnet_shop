@@ -1,5 +1,6 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,59 +9,24 @@
     @Styles.Render("~/Content/Styles/css")
     @*@Scripts.Render("~/bundles/modernizr")*@
 </head>
+
 <body>
     <div id="page">
-        <!--  MENU START -->
-        <div id="header"> @* TODO: kodel 'id' vadinasi 'header' jeigu tai yra 'left-side-bar' ?*@
-            <div class="logo-holder">
-                <a href="#" class="logo">
-                    <img src="~/Content/Images/logo.png" alt="">
-                </a>
-            </div>
-            <div class="main-menu">
-                <ul class="menu">
-                    <li class="selected">
-                        <a href="#"><i class="fa fa-shopping-basket"></i>Prekės</a>
-                    </li>
-                    <li>
-                        <a href="#"><i class="fa fa-users"></i>Vartotojai</a>
-                    </li>
-                    <li>
-                        <a href="#"><i class="fa fa-shopping-cart"></i>Užsakymai</a>
-                    </li>
-                </ul>
-            </div>
+
+        <div id="side-bar-left">
+            @Html.Partial("_LeftSideBarPartial")
         </div>
-        <!--  MENU END -->
 
         <div class="right-side">
-            <div class="top-bar">
-                <div class="mobile-menu">
-                    <a href="#" class="mobile-menu-toggler">
-                        <i class="fa fa-bars"></i>
-                        <i class="fa fa-times"></i>
-                    </a>
-                    <ul class="menu">
-                        <li class="selected">
-                            <a href="#"><i class="fa fa-shopping-basket"></i>Prekės</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-users"></i>Vartotojai</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-shopping-cart"></i>Užsakymai</a>
-                        </li>
-                    </ul>
-                </div>
 
-                @Html.Partial("_LoginPartial")
+            <div class="top-bar">
+                @Html.Partial("_HeaderBarPartial")
             </div>
 
             <div class="main-content">
-                @RenderBody()
+                @RenderBody() @*Home/Index*@ 
             </div>
 
-            <!-- FOOTER -->
             <div class="footer">
                 <div class="copy">
                     Visos teisės saugomos &copy; @DateTime.Now.Year
@@ -69,7 +35,9 @@
                     Sprendimas: <span>2Fast2Furious</span>
                 </div>
             </div>
+
         </div>
+
     </div>
 
     <script src="~/libs/jquery/dist/jquery.min.js" type="text/javascript"></script>
@@ -81,4 +49,5 @@
     <script src="~/Scripts/general.js" type="text/javascript"></script>
     @RenderSection("scripts", required: false)
 </body>
+
 </html>

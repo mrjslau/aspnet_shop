@@ -781,8 +781,9 @@
     <Content Include="Views\Products\Edit.cshtml" />
     <Content Include="Views\Products\Products_old.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Shared\_HeaderBarPartial.cshtml" />
     <Content Include="Views\Home\Cart.cshtml" />
+    <Content Include="Views\Shared\_LeftSideBarPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
