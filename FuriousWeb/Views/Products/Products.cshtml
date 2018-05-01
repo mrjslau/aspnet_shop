@@ -2,7 +2,7 @@
 
 <div class="product-list">
     <div class='button-list'>
-        <div class="add">
+        <div class="createButton">
             @Html.ActionLink("Sukurti naują prekę", "Create", "Products", null, new { @class = "add-button" })  
         </div>
     </div>
@@ -81,7 +81,7 @@
             </div>
             <div class="actions">
                 <a href="#" class="edit"><i class="fa fa-edit"></i></a>
-                <a href="#" class="delete"><i class="fa fa-trash"></i></a>
+                @Html.ActionLink(" ", "Delete", "Products", new { id = product.ProductId }, new { @class = "delete fa fa-trash" })                                                    
             </div>
         </div>
         }

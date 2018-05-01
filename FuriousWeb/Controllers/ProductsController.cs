@@ -90,7 +90,7 @@ namespace FuriousWeb.Controllers
 
                 db.SaveChanges();
 
-                return View("../Home/Index");
+                return RedirectToAction("../Home/Index");
             }
 
             return View(viewModel);
@@ -130,11 +130,15 @@ namespace FuriousWeb.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Product product = db.Products.Find(id);
-            if (product == null)
-            {
+            if (product == null)         
                 return HttpNotFound();
-            }
-            return View(product);
+
+            var viewModel = new DeleteConfirmProductViewModel();
+            viewModel.Code = product.Code;
+            viewModel.Name = product.Name;
+            viewModel.Description = product.Description;          
+
+            return View(viewModel);
         }
 
         [HttpPost, ActionName("Delete")]
@@ -144,7 +148,7 @@ namespace FuriousWeb.Controllers
             Product product = db.Products.Find(id);
             db.Products.Remove(product);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("../Home/Index");
         }
 
         protected override void Dispose(bool disposing)
