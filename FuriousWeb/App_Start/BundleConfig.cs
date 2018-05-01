@@ -25,8 +25,7 @@ namespace FuriousWeb
 
             bundles.Add(new StyleBundle("~/Content/Styles/css").Include(
                       "~/Content/Styles/bootstrap.css",
-                      "~/Content/Styles/site.css",
-                      "~/Content/Styles/style.css"));
+                      "~/Content/Styles/site.css"));
         }
     }
 }

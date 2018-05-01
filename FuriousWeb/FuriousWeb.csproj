@@ -219,7 +219,6 @@
     <Content Include="Content\Styles\bootstrap.min.css" />
     <Content Include="Content\Styles\extra.css" />
     <Content Include="Content\Styles\pure-extend.css" />
-    <Content Include="Content\Styles\style.css" />
     <Content Include="Data\SQL\dbdrop.sql" />
     <Content Include="Data\SQL\db_clear.sql" />
     <Content Include="Data\SQL\db_fill.sql" />
