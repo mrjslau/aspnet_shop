@@ -527,11 +527,12 @@ input.hidden_submit {
     top: -10000px;
 }
 
-input,
+/*del sito checkbox'ai yra nematomi*/
+/*input,
 textarea,
 select {
     -webkit-appearance: none;
-}
+}*/
 
 /*FONTS*/
 
