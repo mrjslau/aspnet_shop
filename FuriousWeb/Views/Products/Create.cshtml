@@ -1,4 +1,4 @@
-﻿@model FuriousWeb.Models.Product
+﻿@model FuriousWeb.Models.ViewModels.CreateDetailedProductViewModel
 
 @{
     ViewBag.Title = "Create";
@@ -6,27 +6,69 @@
 
 <h2>Create</h2>
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Product</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
         <div class="form-group">
-            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+            @Html.LabelFor(m => m.Code, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.EditorFor(m => m.Code, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(m => m.Code, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+            @Html.LabelFor(m => m.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.EditorFor(m => m.Name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.EditorFor(m => m.Description, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(m => m.Description, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.AddToStock, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.EditorFor(m => m.AddToStock)
+                @Html.ValidationMessageFor(m => m.AddToStock, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.WarehouseCode, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.DropDownListFor(m => m.WarehouseCode, new SelectList(Model.WarehousesCodes), new { htmlAttributes = new { @class = "form-control" }, disabled = "disabled" })
+                @Html.ValidationMessageFor(m => m.WarehouseCode, "", new { @class = "text-danger" })
+            </div>
+            @Html.HiddenFor(m => m.WarehouseCode)
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.Quantity, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.EditorFor(m => m.Quantity, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                @Html.ValidationMessageFor(m => m.Quantity, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.Price, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.EditorFor(m => m.Price, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                @Html.ValidationMessageFor(m => m.Price, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -35,9 +77,25 @@
                 <input type="submit" value="Create" class="btn btn-default" />
             </div>
         </div>
+
+        @* kitaip sandeliu list'as neateis iki kontrolerio *@
+        @for (int i = 0; i < Model.WarehousesCodes.Count; i++)
+        {
+            @Html.HiddenFor(m => m.WarehousesCodes[i]);
+        }
     </div>
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Atgal", "Index")
 </div>
+
+@section Scripts {
+    <script type="text/javascript">
+        $("#AddToStock").click(function () {
+            document.getElementById("Quantity").readOnly = !this.checked;
+            document.getElementById("Price").readOnly = !this.checked;
+            document.getElementById("WarehouseCode").disabled = !this.checked;
+        });     
+    </script>
+}

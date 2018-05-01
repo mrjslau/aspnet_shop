@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 
-namespace FuriousWeb.Business
+namespace FuriousWeb.BusinessLogic
 {
     public class Products
     {
@@ -32,6 +32,7 @@ namespace FuriousWeb.Business
                         product.Name = reader["Name"].ToString();
                         product.Description = reader["Description"].ToString();
                         product.WarehouseId = (int)reader["WarehouseId"];
+                        product.WarehouseCode = reader["WarehouseCode"].ToString();
                         product.Quantity = (long)reader["Quantity"];
                         product.Price = (double)reader["Price"];
 

@@ -5,9 +5,11 @@ using System.Net;
 using System.Web.Mvc;
 using FuriousWeb.Data;
 using FuriousWeb.Models;
-using FuriousWeb.Business;
+using FuriousWeb.BusinessLogic;
 using System.Data.SqlClient;
 using System.Configuration;
+using FuriousWeb.Models.ViewModels;
+using System.Linq;
 
 namespace FuriousWeb.Controllers
 {
@@ -52,21 +54,46 @@ namespace FuriousWeb.Controllers
 
         public ActionResult Create()
         {
-            return View();
+            List<string> warehouseCodes = new List<string>();
+            foreach(var warehouse in db.Warehouses)
+            {
+                warehouseCodes.Add(warehouse.Code);
+            }
+
+            var viewModel = new CreateDetailedProductViewModel(warehouseCodes);
+
+            return View(viewModel);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,Description")] Product product)
+        public ActionResult Create(CreateDetailedProductViewModel viewModel)
         {
             if (ModelState.IsValid)
             {
+                var product = new Product();
+                product.Code = viewModel.Code;
+                product.Name = viewModel.Name;
+                product.Description = viewModel.Description;
+
                 db.Products.Add(product);
+
+                if (viewModel.AddToStock)
+                {
+                    var productInStock = new ProductInStock();
+                    productInStock.WarehouseId = db.Warehouses.Where(x => x.Code == viewModel.WarehouseCode).Select(x => x.Id).First();
+                    productInStock.Price = viewModel.Price;
+                    productInStock.Quantity = viewModel.Quantity;
+
+                    db.Stock.Add(productInStock);
+                }
+
                 db.SaveChanges();
+
                 return View("../Home/Index");
             }
 
-            return View(product);
+            return View(viewModel);
         }
 
         public ActionResult Edit(int? id)
