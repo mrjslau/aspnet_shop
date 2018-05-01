@@ -48,20 +48,20 @@ namespace FuriousWeb.Models.ViewModels
     public class LoginViewModel
     {
         //[Required]
-        //[Display(Name = "Email")]
+        //[Display(Name = "E-paštas")]
         //[EmailAddress]
         //public string Email { get; set; }
 
         [Required]
-        [Display(Name = "Username")]
+        [Display(Name = "Prisijungimo vardas")]
         public string Username { get; set; }
 
         [Required]
         [DataType(DataType.Password)]
-        [Display(Name = "Password")]
+        [Display(Name = "Slaptažodis")]
         public string Password { get; set; }
 
-        [Display(Name = "Remember me?")]
+        [Display(Name = "Prisiminti?")]
         public bool RememberMe { get; set; }
     }
 
@@ -69,22 +69,22 @@ namespace FuriousWeb.Models.ViewModels
     {
         //[Required]
         //[EmailAddress]
-        //[Display(Name = "Email")]
+        //[Display(Name = "E-paštas")]
         //public string Email { get; set; }
 
         [Required]
-        [Display(Name = "Username")]
+        [Display(Name = "Prisijungimo vardas")]
         public string Username { get; set; }
 
         [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 1)]
+        [StringLength(100, ErrorMessage = "{0} turi būti bent {2} simbolių ilgio.", MinimumLength = 1)]
         [DataType(DataType.Password)]
-        [Display(Name = "Password")]
+        [Display(Name = "Slaptažodis")]
         public string Password { get; set; }
 
         [DataType(DataType.Password)]
-        [Display(Name = "Confirm password")]
-        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        [Display(Name = "Pakartoti slaptažodį")]
+        [Compare("Password", ErrorMessage = "Slaptažodžiai nesutampa.")]
         public string ConfirmPassword { get; set; }
     }
 
