@@ -17,7 +17,7 @@ namespace FuriousWeb.Controllers
     {
         private DatabaseContext db = new DatabaseContext();
 
-        public ActionResult GetProductsListInStock()
+        public ActionResult GetProductsListInStock(bool isPartial)
         {
             string connString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
             SqlConnection conn = new SqlConnection(connString);
@@ -26,7 +26,10 @@ namespace FuriousWeb.Controllers
                 conn.Open();
                 List<DetailedProduct> products = Products.LoadDetailedProducts(conn);
 
-                return PartialView("Products", products);
+                if(isPartial)
+                    return PartialView("ProductsInStock", products);
+                else
+                    return View("ProductsInStock", products);
             }
             catch(Exception ex)
             {
@@ -36,6 +39,13 @@ namespace FuriousWeb.Controllers
             {
                 conn.Close();
             }
+        }
+
+        public ActionResult GetProductsList()
+        {
+            var products = db.Products.ToList();
+
+            return View("Products", products);
         }
 
         public ActionResult Details(int? id)

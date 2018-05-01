@@ -211,20 +211,21 @@
 @section Scripts {
     <script type="text/javascript">
         $(document).ready(function () {
-                $.ajax({
-                    type: "GET",
-                    url: '/Products/GetProductsListInStock',
-                    contentType: "application/json; charset=utf-8",
-                    dataType: "html",
-                    error: function (xhr, status, errorThrown) {
-                        var errorMsg = "Status: " + status + " " + errorThrown;
-                        console.log(errorMsg);
-                        alert(errorMsg);
-                    },
-                    success: function (data) {
-                        $(".products").html(data);
-                    }
-                })        
+            $.ajax({
+                type: "GET",
+                url: '/Products/GetProductsListInStock',
+                contentType: "application/json; charset=utf-8",
+                dataType: "html",
+                data: { isPartial : true },
+                error: function (xhr, status, errorThrown) {
+                    var errorMsg = "Status: " + status + " " + errorThrown;
+                    console.log(errorMsg);
+                    alert(errorMsg);
+                },
+                success: function (data) {
+                    $(".products").html(data);
+                }
+            })        
         });
     </script>
 }

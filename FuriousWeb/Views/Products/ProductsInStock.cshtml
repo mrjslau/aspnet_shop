@@ -1,4 +1,4 @@
-﻿@model IEnumerable<FuriousWeb.Models.Product>
+﻿@model IEnumerable<FuriousWeb.Models.DetailedProduct>
 
 <div class="product-list">
     <div class='button-list'>
@@ -33,10 +33,13 @@
                 Nuotrauka
             </div>
             <div class="name">
-                Kodas
-            </div>
-            <div class="name">
                 Pavadinimas
+            </div>
+            <div class='quantity'>
+                Likutis
+            </div>
+            <div class="price">
+                Kaina
             </div>
             <div class="category">
                 Kategorija
@@ -55,18 +58,30 @@
                 <img src="images/nike.jpg" alt="">
             </div>
             <div class="name">
-                @product.Code
-            </div>
-            <div class="name">
                 @product.Name
+            </div>
+            <div class='quantity'>
+                @product.Quantity
+            </div>
+            <div class="price">
+                @product.Price
             </div>
             <div class="category">
                 not yet implemented
             </div>
             @* Siuos stulpelius reikėtu visai paslėpti, nes dabar juos galima pamatyt per browser'io page source *@
+            <div class="id" style="display:none;">
+                @product.ProductId
+            </div>
+            <div class="code" style="display:none;">
+                @product.Code
+            </div>
+            <div class="warehouseId" style="display:none;">
+                @product.WarehouseId
+            </div>
             <div class="actions">
                 <a href="#" class="edit"><i class="fa fa-edit"></i></a>
-                @Html.ActionLink(" ", "Delete", "Products", new { id = product.Id }, new { @class = "delete fa fa-trash" })                                                    
+                @Html.ActionLink(" ", "Delete", "Products", new { id = product.ProductId }, new { @class = "delete fa fa-trash" })                                                    
             </div>
         </div>
         }
