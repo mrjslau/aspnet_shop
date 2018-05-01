@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
 
-namespace FuriousWeb.Models
+namespace FuriousWeb.Models.ViewModels
 {
     public class IndexViewModel
     {

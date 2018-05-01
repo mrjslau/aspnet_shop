@@ -1,7 +1,6 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
-namespace FuriousWeb.Models
+namespace FuriousWeb.Models.ViewModels
 {
     //public class ExternalLoginConfirmationViewModel
     //{
