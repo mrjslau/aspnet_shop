@@ -7,6 +7,7 @@
         public string Name { get; set; }
         public string Description { get; set; }
         public int WarehouseId { get; set; }
+        public string WarehouseCode { get; set; }
         public long Quantity { get; set; }
         public double Price { get; set; }
     }
