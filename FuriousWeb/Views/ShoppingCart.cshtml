@@ -1,25 +1,24 @@
-﻿@{
-    ViewBag.Title = "Cart";
-    var CartProducts = ViewBag.Products as Dictionary<string, string>;
+﻿@model IEnumerable<FuriousWeb.Models.ShoppingCartItem>
 
+@{
+    ViewBag.Title = "Cart";
 }
-<h2>@ViewBag.Title.</h2>
+
+<h3>Krėpšelis</h3>
 
 <div class="panel">
-    <div class="panel-heading">
-        <span>ViewBag.Message</span>
-    </div>
+    <div class="panel-heading"></div>
     <div class="panel-body">
         <ul class="list-group">
             <li class="list-group-item">
-                <div class="col-md-6">Product ID</div>
-                <div class="col-md-6">Quantity</div>
+                <div class="col-md-6">Prekė</div>
+                <div class="col-md-6">Kiekis</div>
             </li>
-            @foreach (var product in CartProducts)
+            @foreach (var product in Model)
             {
                 <li class="list-group-item">
-                    <div class="col-md-6">@product.Key</div>
-                    <div class="col-md-6">@product.Value</div>
+                    <div class="col-md-6">@product.Product.Name</div>
+                    <div class="col-md-6">@product.Quantity</div>
                 </li>
             }
         </ul>
@@ -27,7 +26,7 @@
 </div>
 
 
-<div class="panel" id="payment-panel">
+@*<div class="panel" id="payment-panel">
     <div class="panel-heading text-center">
         <h3>@ViewBag.Message</h3>
     </div>
@@ -67,8 +66,4 @@
     <div class="panel-footer text-right">
         <button id="pay-now" class="btn btn-md btn-primary">Pay now</button>
     </div>
-</div>
-
-<script>
-    
-</script>
+</div>*@

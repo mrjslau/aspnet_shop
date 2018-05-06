@@ -184,6 +184,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="BusinessLogic\Products.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ShoppingCartController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
@@ -193,9 +194,11 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\ShoppingCartItem.cs" />
     <Compile Include="Models\ViewModels\AccountViewModels.cs" />
     <Compile Include="Models\BasicAuthenticationIdentity.cs" />
     <Compile Include="Models\ViewModels\ManageViewModels.cs" />
+    <Compile Include="Models\ShoppingCart.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\ViewModels\ProductsViewModels.cs" />
@@ -777,6 +780,7 @@
     <Content Include="Views\Products\Products_old.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Shared\_HeaderBarPartial.cshtml" />
+    <Content Include="Views\ShoppingCart.cshtml" />
     <Content Include="Views\Shared\_LeftSideBarPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
