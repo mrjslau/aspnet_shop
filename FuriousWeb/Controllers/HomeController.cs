@@ -29,11 +29,12 @@ namespace FuriousWeb.Controllers
         {
             Response.AppendHeader("Access-Control-Allow-Origin", "*");
             ViewBag.Message = "Enter your payment details";
-            Cart cart = new Cart();
-            cart.Set("1","2");
-            cart.Set("2","3");
-            cart.Set("1","3");
-            ViewBag.Products = cart.GetDictionary();
+
+            ShoppingCart cart = new ShoppingCart();
+            //cart.Add(1, 10);
+            //cart.Add(2, 10);
+            //cart.Add(3, 10);
+            //ViewBag.Products = cart.Products;
             return View();
         }
     }

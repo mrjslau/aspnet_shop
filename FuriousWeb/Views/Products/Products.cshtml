@@ -26,21 +26,11 @@
 
     <div class="list">
         <div class="list-titles">
-            <div class="check-box">
-                <input id="checkBox" type="checkbox">
-            </div>
-            <div class="image">
-                Nuotrauka
-            </div>
-            <div class="name">
-                Kodas
-            </div>
-            <div class="name">
-                Pavadinimas
-            </div>
-            <div class="category">
-                Kategorija
-            </div>
+            <div class="check-box"> <input id="checkBox" type="checkbox"> </div>
+            <div class="name"> Kodas </div>
+            <div class="name"> Pavadinimas </div>
+            <div class="category"> Kategorija </div>
+            <div class="category"> Kaina </div>
             <div class="actions">
             </div>
         </div>
@@ -51,18 +41,10 @@
             <div class="check-box">
                 <input id="checkBox" type="checkbox">
             </div>
-            <div class="image">
-                <img src="images/nike.jpg" alt="">
-            </div>
-            <div class="name">
-                @product.Code
-            </div>
-            <div class="name">
-                @product.Name
-            </div>
-            <div class="category">
-                not yet implemented
-            </div>
+            <div class="name"> @product.Code </div>
+            <div class="name"> @product.Name </div>
+            <div class="category"> not yet implemented </div>
+            <div class="category"> @product.Price </div>
             @* Siuos stulpelius reikėtu visai paslėpti, nes dabar juos galima pamatyt per browser'io page source *@
             <div class="actions">
                 <a href="#" class="edit"><i class="fa fa-edit"></i></a>

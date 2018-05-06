@@ -17,35 +17,14 @@ namespace FuriousWeb.Controllers
     {
         private DatabaseContext db = new DatabaseContext();
 
-        public ActionResult GetProductsListInStock(bool isPartial)
-        {
-            string connString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
-            SqlConnection conn = new SqlConnection(connString);
-            try
-            {
-                conn.Open();
-                List<DetailedProduct> products = Products.LoadDetailedProducts(conn);
-
-                if(isPartial)
-                    return PartialView("ProductsInStock", products);
-                else
-                    return View("ProductsInStock", products);
-            }
-            catch(Exception ex)
-            {
-                return Content($"<script>alert(\"Klaida: {ex.Message}\")</script>");
-            }
-            finally
-            {
-                conn.Close();
-            }
-        }
-
-        public ActionResult GetProductsList()
+        public ActionResult GetProductsList(bool isPartial)
         {
             var products = db.Products.ToList();
 
-            return View("Products", products);
+            if (isPartial)
+                return PartialView("Products", products);
+            else
+                return View("Products", products);
         }
 
         public ActionResult Details(int? id)
@@ -64,15 +43,7 @@ namespace FuriousWeb.Controllers
 
         public ActionResult Create()
         {
-            List<string> warehouseCodes = new List<string>();
-            foreach(var warehouse in db.Warehouses)
-            {
-                warehouseCodes.Add(warehouse.Code);
-            }
-
-            var viewModel = new CreateDetailedProductViewModel(warehouseCodes);
-
-            return View(viewModel);
+            return View(new CreateDetailedProductViewModel());
         }
 
         [HttpPost]
@@ -85,19 +56,9 @@ namespace FuriousWeb.Controllers
                 product.Code = viewModel.Code;
                 product.Name = viewModel.Name;
                 product.Description = viewModel.Description;
+                product.Price = viewModel.Price;
 
-                db.Products.Add(product);
-
-                if (viewModel.AddToStock)
-                {
-                    var productInStock = new ProductInStock();
-                    productInStock.WarehouseId = db.Warehouses.Where(x => x.Code == viewModel.WarehouseCode).Select(x => x.Id).First();
-                    productInStock.Price = viewModel.Price;
-                    productInStock.Quantity = viewModel.Quantity;
-
-                    db.Stock.Add(productInStock);
-                }
-
+                db.Products.Add(product);         
                 db.SaveChanges();
 
                 return RedirectToAction("../Home/Index");

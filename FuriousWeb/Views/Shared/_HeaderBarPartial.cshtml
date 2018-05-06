@@ -2,7 +2,7 @@
 
 <ul class="nav navbar-nav navbar-right">
     <li>@Html.ActionLink("Pagrindinis puslapis", "Index", "Home", routeValues: null, htmlAttributes: new { @class = "fa fa-home", id = "homeLink" })</li>
-    <li>@Html.ActionLink("Krėpšelis", "OpenCart", "Products", routeValues: null, htmlAttributes: new { @class = "fa fa-shopping-basket", id = "cartLink" })</li>
+    <li>@Html.ActionLink("Krėpšelis", "OpenCart", "ShoppingCart", routeValues: null, htmlAttributes: new { @class = "fa fa-shopping-basket", id = "cartLink" })</li>
 
     @if (Request.IsAuthenticated)
     {
