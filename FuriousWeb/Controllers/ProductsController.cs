@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
+﻿using System.Data.Entity;
 using System.Net;
 using System.Web.Mvc;
 using FuriousWeb.Data;
 using FuriousWeb.Models;
-using FuriousWeb.BusinessLogic;
-using System.Data.SqlClient;
-using System.Configuration;
 using FuriousWeb.Models.ViewModels;
 using System.Linq;
 
