@@ -14,7 +14,7 @@ namespace FuriousWeb.Controllers
         {
             var shoppingCart = new ShoppingCart(); //TODO imti iš sesijos
 
-            return View("ShoppingCart", shoppingCart.GetItems());
+            return View("../ShoppingCart", shoppingCart.GetItems());
         }
 
         public ActionResult AddItem(int productId)
