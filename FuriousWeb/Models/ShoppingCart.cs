@@ -15,7 +15,7 @@ namespace FuriousWeb.Models
         public void Add(int productId, long quantity)
         {
             using (var db = new Data.DatabaseContext())
-            {            
+            {
                 ShoppingCartItem cartItem = Items.SingleOrDefault(item => item.Product.Id == productId);
 
                 if (cartItem == null)
@@ -61,7 +61,8 @@ namespace FuriousWeb.Models
         {
             return Items;
         }
-
+    }
+}
         #region Iškelti
         //public void ExecutePayment(double amount, string number, string holder, int exp_year, int exp_month, string cvv)
         //{
@@ -77,7 +78,6 @@ namespace FuriousWeb.Models
         //    var json = JsonConvert.SerializeObject(payment);
         //    /* Where do I get the API ..*/
         //}
-    }
 
     //[AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = false)]
     //public class BasicAuthenticationFilter : AuthorizationFilterAttribute
@@ -152,4 +152,3 @@ namespace FuriousWeb.Models
     //    }
     //}
     #endregion
-}
