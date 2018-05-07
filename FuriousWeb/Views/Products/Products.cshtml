@@ -1,0 +1,65 @@
+﻿@model IEnumerable<FuriousWeb.Models.Product>
+
+<div class="product-list">
+    <div class='button-list'>
+        <div class="createButton">
+            @Html.ActionLink("Sukurti naują prekę", "Create", "Products", null, new { @class = "add-button" })  
+        </div>
+    </div>
+    <div class="mass-action">
+        <span>Masinis veiksmas: </span>
+        <select>
+            <option default>Pasirinkti...</option>
+            <option>Trinti</option>
+        </select>
+        <button class="mass-action">Vykdyti</button>
+    </div>
+    <div class="info">
+        <div class="text">
+            Iš viso prekių: <span>200</span>
+        </div>
+        <div class="search-bar">
+            <input type="text" placeholder="Ieškoti..." class="search">
+            <button class="search-button">Ieškoti</button>
+        </div>
+    </div>
+
+    <div class="list">
+        <div class="list-titles">
+            <div class="check-box"> <input id="checkBox" type="checkbox"> </div>
+            <div class="name"> Kodas </div>
+            <div class="name"> Pavadinimas </div>
+            <div class="category"> Kategorija </div>
+            <div class="category"> Kaina </div>
+            <div class="actions">
+            </div>
+        </div>
+
+        @foreach(var product in Model)
+        {
+        <div class="list-item">
+            <div class="check-box">
+                <input id="checkBox" type="checkbox">
+            </div>
+            <div class="name"> @product.Code </div>
+            <div class="name"> @product.Name </div>
+            <div class="category"> not yet implemented </div>
+            <div class="category"> @product.Price </div>
+            @* Siuos stulpelius reikėtu visai paslėpti, nes dabar juos galima pamatyt per browser'io page source *@
+            <div class="actions">
+                <a href="#" class="edit"><i class="fa fa-edit"></i></a>
+                @Html.ActionLink(" ", "Delete", "Products", new { id = product.Id }, new { @class = "delete fa fa-trash" })                                                    
+            </div>
+        </div>
+        }
+
+        <div class="paging">
+            <div class="prev"><a href="#" class="prev">Ankstesnis</a></div>
+            <div class="numbered"><a href="" class="numbered current">1</a></div>
+            <div class="numbered"><a href="" class="numbered">2</a></div>
+            <div class="numbered"><a href="" class="numbered">3</a></div>
+            <div class="numbered"><a href="" class="numbered">4</a></div>
+            <div class="next"><a href="#" class="next">Sekantis</a></div>
+        </div>
+    </div>
+</div>

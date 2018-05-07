@@ -1,0 +1,14 @@
+{
+  "name": "jfontsize",
+  "homepage": "https://github.com/ouvrages/jfontsize",
+  "_release": "d3489818eb",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "d3489818eb51f8539adfb0479063cee1e21a4306"
+  },
+  "_source": "https://github.com/ouvrages/jfontsize.git",
+  "_target": "*",
+  "_originalSource": "jfontsize",
+  "_direct": true
+}

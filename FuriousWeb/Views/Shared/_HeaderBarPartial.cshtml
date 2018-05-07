@@ -1,0 +1,48 @@
+﻿@using Microsoft.AspNet.Identity
+
+<ul class="nav navbar-nav navbar-right">
+    <li>@Html.ActionLink("Pagrindinis puslapis", "Index", "Home", routeValues: null, htmlAttributes: new { @class = "fa fa-home", id = "homeLink" })</li>
+    <li>@Html.ActionLink("Krėpšelis", "OpenCart", "ShoppingCart", routeValues: null, htmlAttributes: new { @class = "fa fa-shopping-basket", id = "cartLink" })</li>
+
+    @if (Request.IsAuthenticated)
+    {
+        using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+        {
+            @Html.AntiForgeryToken()
+            //netelpa i header bar'a
+            @*<li>
+                <div class="hello">
+                    Sveiki, @{User.Identity.GetUserName();}!
+                </div>
+            </li>*@
+            <li>
+                <div class="profile">
+                    <div class="profile-img">
+                        <a href="#" class="toggle-menu">
+                            <span>A</span>
+                        </a>
+                    </div>
+
+                    <div class="profile-menu">
+                        <ul>
+                            <li>
+                                <a href="#"><i class="fa fa-user"></i>Profilis</a>
+                            </li>
+                            <li>
+                                <a href="#"><i class="fa fa-wrench"></i>Nustatymai</a>
+                            </li>
+                            <li>
+                                <a href="javascript:document.getElementById('logoutForm').submit()"><i class="fa fa-sign-out"></i>Atsijungti</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </li>
+        }
+    }
+    else
+    {
+        <li>@Html.ActionLink("Užsiregistruoti", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+        <li>@Html.ActionLink("Prisijungti", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>  
+    }
+</ul>
