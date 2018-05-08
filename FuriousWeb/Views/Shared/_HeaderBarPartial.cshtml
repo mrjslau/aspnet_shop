@@ -1,8 +1,19 @@
 ﻿@using Microsoft.AspNet.Identity
 
+@{ 
+    var shoppingCartItemsCount = Session["shoppingCartItemsCount"] != null ? Session["shoppingCartItemsCount"] : 0;
+}
+
 <ul class="nav navbar-nav navbar-right">
-    <li>@Html.ActionLink("Pagrindinis puslapis", "Index", "Home", routeValues: null, htmlAttributes: new { @class = "fa fa-home", id = "homeLink" })</li>
-    <li>@Html.ActionLink("Krėpšelis", "OpenCart", "ShoppingCart", routeValues: null, htmlAttributes: new { @class = "fa fa-shopping-basket", id = "cartLink" })</li>
+    <li><a href="@Url.Action("Index", "Home", routeValues: null)">
+        <i class="fa fa-home"></i>
+        <span class="homeLinkLabel">Pagrindinis puslapis</span>
+     </a></li>
+    <li><a href="@Url.Action("OpenCart", "ShoppingCart", routeValues: null)">
+        <i class="fa fa-shopping-basket"></i>
+        [<span id="shoppingCartItemsCount">@shoppingCartItemsCount</span>]
+        <span class="shoppingCartLinkLabel">Krėpšelis</span>
+    </a></li>
 
     @if (Request.IsAuthenticated)
     {
@@ -42,7 +53,18 @@
     }
     else
     {
-        <li>@Html.ActionLink("Užsiregistruoti", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
-        <li>@Html.ActionLink("Prisijungti", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>  
+        <li>
+            <a href="@Url.Action("Register", "Account", routeValues: null)">
+                <i class="fa fa-home"></i>
+                <span class="registerLinkLabel">Užsiregistruoti</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="@Url.Action("Login", "Account", routeValues: null)">
+                <i class="fa fa-home"></i>
+                <span class="loginLinkLabel">Prisijungti</span>
+            </a>
+        </li>
     }
 </ul>

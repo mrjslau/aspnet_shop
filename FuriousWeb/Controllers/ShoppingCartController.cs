@@ -12,14 +12,35 @@ namespace FuriousWeb.Controllers
 
         public ActionResult OpenCart()
         {
-            var shoppingCart = new ShoppingCart(); //TODO imti iš sesijos
+            ShoppingCart shoppingCart = null;
+            if (HttpContext.Session["shoppingCart"] != null)
+            {
+                shoppingCart = (ShoppingCart)HttpContext.Session["shoppingCart"];
+            }
+            else
+            {
+                shoppingCart = new ShoppingCart();
+                HttpContext.Session["shoppingCart"] = shoppingCart;
+            }
 
             return View("../ShoppingCart", shoppingCart.GetItems());
         }
 
-        public ActionResult AddItem(int productId)
+        public ActionResult AddItem(int productId, long quantity)
         {
-            throw new NotImplementedException();
+            ShoppingCart shoppingCart = null;
+            if (HttpContext.Session["shoppingCart"] != null)
+                shoppingCart = (ShoppingCart)HttpContext.Session["shoppingCart"];
+            else
+                shoppingCart = new ShoppingCart();
+
+            shoppingCart.Add(productId, quantity);
+            HttpContext.Session["shoppingCart"] = shoppingCart;
+
+            long shoppingCartItemsCount = shoppingCart.CountItems();
+            HttpContext.Session["shoppingCartItemsCount"] = shoppingCartItemsCount;
+
+            return Json(new { success = true, shoppingCartItemsCount = shoppingCartItemsCount }, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult DeleteItem(int productId)

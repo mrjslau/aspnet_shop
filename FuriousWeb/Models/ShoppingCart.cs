@@ -61,6 +61,15 @@ namespace FuriousWeb.Models
         {
             return Items;
         }
+
+        public long CountItems()
+        {
+            long itemsCount = 0;
+            foreach (var item in Items)
+                itemsCount += item.Quantity;
+
+            return itemsCount;
+        }
     }
 }
         #region Iškelti

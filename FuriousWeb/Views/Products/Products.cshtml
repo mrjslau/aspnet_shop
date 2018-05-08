@@ -41,16 +41,20 @@
             <div class="check-box">
                 <input id="checkBox" type="checkbox">
             </div>
-            <div class="name"> @product.Code </div>
-            <div class="name"> @product.Name </div>
-            <div class="category"> not yet implemented </div>
-            <div class="category"> @product.Price </div>
+            <div class="name">@product.Code</div>
+            <div class="name">@product.Name</div>
+            <div class="category">not yet implemented</div>
+            <div class="category">@product.Price</div>
             @* Siuos stulpelius reikėtu visai paslėpti, nes dabar juos galima pamatyt per browser'io page source *@
-            <div class="actions">
+            <div class="id" style="display:none;"> @product.Id </div>
+            <div class="actions5">
                 <a href="#" class="edit"><i class="fa fa-edit"></i></a>
-                @Html.ActionLink(" ", "Delete", "Products", new { id = product.Id }, new { @class = "delete fa fa-trash" })                                                    
+                <a href="@Url.Action("Delete", "Products", routeValues: new { id = product.Id })"><i class="delete fa fa-trash"></i></a>
+                <input type="number" class="quantityInput productQuantity" min="1" value="1"/>
+                <button type="button" class="btnAddToCart">Įdėti į krėpšelį</button>
             </div>
-        </div>
+
+    </div>
         }
 
         <div class="paging">
@@ -63,3 +67,34 @@
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+    $(".btnAddToCart").click(function () {
+        var productId = $(this).parent().siblings(".id").text().trim();
+        var productQuantity = $(this).siblings(".productQuantity").val();
+        $.ajax({
+            type: "GET",
+            url: '/ShoppingCart/AddItem',
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            async: true,
+            data: { productId: productId, quantity: productQuantity },
+            error: function (xhr, status, errorThrown) {
+                var errorMsg = "Status: " + status + " " + errorThrown;
+                console.log(errorMsg);
+                alert(errorMsg);
+            },
+            success: function (response) {
+                if (response.success) {
+                    $("#shoppingCartItemsCount").text(response.shoppingCartItemsCount);
+                    alert("Prekė buvo sėkmingai įkelta į krėpšelį");
+                }
+            }
+        })
+    });
+
+    $(".productQuantity").change(function () {
+        if ($(this).val() <= 0)
+            $(this).val(1);
+    });
+</script>
