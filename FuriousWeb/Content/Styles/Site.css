@@ -520,10 +520,11 @@ a.logo img{
     height: 100%;
 }
 
-.product-list .list-item input,
+/*kitaip visi inputai tampa checkbox'ais*/
+/*.product-list .list-item input,
 .product-list .list-titles input{
     -webkit-appearance: checkbox;
-}
+}*/
 
 .product-list .paging{
     display: flex;
@@ -709,4 +710,9 @@ h4 {
 
 /* LANDSCAPE ORIENTATION*/
 @media all and (orientation: landscape) {
+}
+
+
+.quantityInput{
+    width: 75px;
 }

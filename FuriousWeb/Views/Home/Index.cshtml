@@ -216,6 +216,7 @@
                 url: '/Products/GetProductsList',
                 contentType: "application/json; charset=utf-8",
                 dataType: "html",
+                async: true,
                 data: { isPartial : true },
                 error: function (xhr, status, errorThrown) {
                     var errorMsg = "Status: " + status + " " + errorThrown;
