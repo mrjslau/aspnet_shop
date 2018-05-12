@@ -48,7 +48,7 @@
             @* Siuos stulpelius reikėtu visai paslėpti, nes dabar juos galima pamatyt per browser'io page source *@
             <div class="id" style="display:none;"> @product.Id </div>
             <div class="actions5">
-                <a href="#" class="edit"><i class="fa fa-edit"></i></a>
+                <a href="@Url.Action("Edit", "Products", routeValues: new { id = product.Id })"><i class="edit fa fa-edit"></i></a>
                 <a href="@Url.Action("Delete", "Products", routeValues: new { id = product.Id })"><i class="delete fa fa-trash"></i></a>
                 <input type="number" class="quantityInput productQuantity" min="1" value="1"/>
                 <button type="button" class="btnAddToCart">Įdėti į krėpšelį</button>
@@ -93,8 +93,9 @@
         })
     });
 
+    //neleidžiam įvesti mažiau už 1
     $(".productQuantity").change(function () {
-        if ($(this).val() <= 0)
+        if ($(this).val() < 1)
             $(this).val(1);
     });
 </script>
