@@ -4,7 +4,7 @@
     ViewBag.Title = "Cart";
 }
 
-<h3>Krėpšelis</h3>
+<h3>Krepšelis</h3>
 
 <div class="panel">
     <div class="panel-heading"></div>
@@ -22,6 +22,10 @@
                 </li>
             }
         </ul>
+    </div>
+    <div class="panel-footer">
+        <!--<input type="button" value="Apmokėti" onclick="window.location.href='../Checkout'"/>-->
+        <button type="button" onclick="location.href='@Url.Action("openCheckout", "Checkout")'" class="btn-primary">Apmokėti</button>
     </div>
 </div>
 

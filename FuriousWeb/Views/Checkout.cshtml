@@ -1,0 +1,89 @@
+﻿
+@{
+    ViewBag.Title = "Checkout";
+}
+
+<div class="panel" id="info-panel">
+    <div class="panel-heading text-center">
+        <h3>Įveskite kontaktinius duomenis</h3>
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-4 text-right">
+            </div>
+            <div class="col-md-4">
+                <input class="form-control" type="text" id="name" placeholder="Vardas*" required />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+            </div>
+            <div class="col-md-4">
+                <input class="form-control" type="text" id="lastname" placeholder="Pavardė*" required/>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+            </div>
+            <div class="col-md-4">
+                <input class="form-control" type="text" id="address" placeholder="Adresas*" required/>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+            </div>
+            <div class="col-md-4">
+                <input class="form-control" type="text" id="email" placeholder="El. pašto adresas*" required />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+            </div>
+            <div class="col-md-4">
+                <textarea class="form-control" type="text" id="comment" placeholder="Palikite komentarą"></textarea>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="panel" id="payment-panel">
+    <div class="panel-heading text-center">
+        <h3>Įveskite kortelės duomenis</h3>
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-4 text-right">
+            </div>
+            <div class="col-md-4">
+                <input class="form-control" type="text" id="card-number" placeholder="Card number"/>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+            </div>
+            <div class="col-md-2 col-xs-6">
+                <input class="form-control" type="number" id="exp-year" placeholder="Expiration year" />
+            </div>
+            <div class="col-md-2 col-xs-6">
+                <input class="form-control" type="number" id="exp-month" placeholder="Expiration month" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+            </div>
+            <div class="col-md-4">
+                <input class="form-control" type="text" id="card-holder" placeholder="Card holder"/>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+            </div>
+            <div class="col-md-4">
+                <input class="form-control" type="text" id="card-cvv" placeholder="Card CVV"/>
+            </div>
+        </div>
+    </div>
+    <div class="panel-footer text-right">
+        <button type="pay-now" onclick="location.href='@Url.Action("finalizeCheckout", "Checkout")'" class="btn-primary">Apmokėti</button>
+    </div>
+</div>
