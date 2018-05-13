@@ -1,17 +1,16 @@
 ﻿@model FuriousWeb.Models.ViewModels.EditProductViewModel
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Prekės redagavimas";
 }
 
-<h2>Edit</h2>
+<h3>Prekės redagavimas</h3>
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>Product</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.Id)
