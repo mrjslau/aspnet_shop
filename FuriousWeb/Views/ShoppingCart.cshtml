@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<FuriousWeb.Models.ShoppingCartItem>
 
 @{
-    ViewBag.Title = "Cart";
+    ViewBag.Title = "Krėpšelis";
 }
 
 <h3>Krėpšelis</h3>
@@ -14,11 +14,17 @@
                 <div class="col-md-6">Prekė</div>
                 <div class="col-md-6">Kiekis</div>
             </li>
-            @foreach (var product in Model)
+            @foreach (var cartItem in Model)
             {
                 <li class="list-group-item">
-                    <div class="col-md-6">@product.Product.Name</div>
-                    <div class="col-md-6">@product.Quantity</div>
+                    <div class="id" style="display:none;"> @cartItem.Product.Id </div>
+                    <div class="col-md-6">@cartItem.Product.Name</div>
+                    <div class="col-md-6 quantity">@cartItem.Quantity</div>
+                    <div class="actions">
+                        <a href="@Url.Action("DeleteItem", "ShoppingCart", routeValues: new { productId = cartItem.Product.Id })"><i class="delete fa fa-trash"></i></a>
+                        <input type="number" class="quantityInput productQuantity" min="1" value="1" onchange="onProductQuantityChange(this)"/>
+                        <button type="button" class="btnAddToCart" onclick="onBtnAddToCartClick(this, @cartItem.Product.Id, true)">Įdėti į krėpšelį</button>
+                    </div>
                 </li>
             }
         </ul>
