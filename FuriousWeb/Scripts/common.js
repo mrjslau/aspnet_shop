@@ -34,6 +34,30 @@
     })
 }
 
+function getProducts(queryString) {
+    $.ajax({
+        type: "GET",
+        url: '/Products/GetProductsList',
+        contentType: "application/json; charset=utf-8",
+        dataType: "html",
+        async: true,
+        data: {
+            isPartial: true, query: queryString
+        },
+        error: function (xhr, status, errorThrown) {
+            var errorMsg = "Status: " + status + " " + errorThrown;
+            console.log(errorMsg);
+            alert(errorMsg);
+        },
+        success: function (data) {
+            console.log(3);
+            console.log($(".products"));
+            $(".products").html(data);
+        }
+    }).promi
+
+}
+
 //neleidžiam įvesti mažiau už 1
 function onProductQuantityChange(element) {
     if ($(element).val() < 1)

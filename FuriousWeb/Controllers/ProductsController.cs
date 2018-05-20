@@ -12,9 +12,13 @@ namespace FuriousWeb.Controllers
     {
         private DatabaseContext db = new DatabaseContext();
 
-        public ActionResult GetProductsList(bool isPartial)
+        public ActionResult GetProductsList(bool isPartial, string query)
         {
             var products = db.Products.ToList();
+            if (!string.IsNullOrWhiteSpace(query))
+            {
+                products = products.Where(x => x.Name == query || x.Code == query).ToList();
+            }
 
             if (isPartial)
                 return PartialView("Products", products);
