@@ -2,7 +2,10 @@
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Configuration;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
@@ -13,56 +16,63 @@ namespace FuriousWeb.Models
 {
     public class Checkout
     {
+        [Required]
+        public string email { get; set; }
+        [Required]
+        public double amount { get; set; }
+        [Required]
+        public string card_number { get; set; }
+        [Required]
+        public string card_holder { get; set; }
+        [Required]
+        public int exp_year { get; set; }
+        [Required]
+        public int exp_month { get; set; }
+        [Required]
+        public string card_cvv { get; set; }
+
         private List<ShoppingCartItem> Items;
         static HttpClient client;
         private Payment payment;
         private static HttpResponseMessage response;
 
-        public Checkout(double amount, string number, string holder, int exp_year, int exp_month, string cvv)
+        public bool initPayment()
         {
-            payment = new Payment(amount, number, holder, exp_year, exp_month, cvv);
-            CreateProductAsync(payment).Wait();
-            var content = response.Content.ReadAsStringAsync();
-            Console.WriteLine(content);
+            var response = CallAPI();
+            //var content = response.Content.ReadAsStringAsync();
+            Console.WriteLine(response);
+            return true;
+        }
+
+        public string CallAPI()
+        {
+            string url = @"https://mock-payment-processor.appspot.com/v1/payment";
+            //Payment payment = new Payment(200, card_number, card_holder, exp_year, exp_month, card_cvv);
+            //var client = new WebClient { Credentials = new NetworkCredential("technologines", "platformos") };
+
+            WebClient client = new WebClient();
+            string credentials = Convert.ToBase64String(Encoding.ASCII.GetBytes("technologines:platformos"));
+            client.Headers[HttpRequestHeader.Authorization] = "Basic dGVjaG5vbG9naW5lczpwbGF0Zm9ybW9z";
+            client.Headers[HttpRequestHeader.Accept] = "application/json";
+            client.Headers[HttpRequestHeader.ContentType] = "application/json";
+            var data = "{amount: 100,  number: 4111111111111111,  holder: Vardenis Pavardenis,  exp_year: 2018,  exp_month: 9,  cvv: 123}";
+
+            var result = client.UploadString(new Uri("https://mock-payment-processor.appspot.com/v1/payment"), "POST", data);
+     
+            return result;
 
         }
 
-        static async Task CreateProductAsync(Payment payment)
+        private CredentialCache GetCredential()
         {
-            var authData = string.Format("{0}:{1}", "technologines", "platformos");
-            var authHeaderValue = Convert.ToBase64String(Encoding.UTF8.GetBytes(authData));
-            client = new HttpClient();
-            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", authHeaderValue);
-            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-            client.BaseAddress = new Uri("https://mock-payment-processor.appspot.com");
-            HttpResponseMessage res = await client.PostAsJsonAsync("v1/payment", new JavaScriptSerializer().Serialize(payment));
-            res.EnsureSuccessStatusCode();
-            response = res;
-        }
-
-        public void sayHello()
-        {
-            Console.WriteLine("HELLO");
+            string url = @"https://mock-payment-processor.appspot.com";
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Ssl3;
+            CredentialCache credentialCache = new CredentialCache();
+            credentialCache.Add(new System.Uri(url), "Basic", new NetworkCredential(ConfigurationManager.AppSettings["technologines"], ConfigurationManager.AppSettings["platformos"]));
+            return credentialCache;
         }
 
 
-
-
-        public void ExecutePayment(double amount, string number, string holder, int exp_year, int exp_month, string cvv)
-        {
-            var payment = new
-            {
-                amount = amount,
-                number = number,
-                holder = holder,
-                exp_year = exp_year,
-                exp_month = exp_month,
-                cvv = cvv
-            };
-            var json = JsonConvert.SerializeObject(payment);
-            /* Where do I get the API ..*/
-        }
-        
 
     }
 }

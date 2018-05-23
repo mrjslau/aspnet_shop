@@ -4,38 +4,46 @@
     ViewBag.Title = "Krėpšelis";
 }
 
-<h3>Krepšelis</h3>
 
-<div class="panel">
-    <div class="panel-heading"></div>
-    <div class="panel-body">
-        <ul class="list-group">
-            <li class="list-group-item">
-                <div class="col-md-6">Prekė</div>
-                <div class="col-md-6">Kiekis</div>
-            </li>
-            @foreach (var cartItem in Model)
-            {
+@if (Model != null)
+{
+    <h3>Krepšelis</h3>
+    <div class="panel">
+        <div class="panel-heading"></div>
+        <div class="panel-body">
+            <ul class="list-group">
                 <li class="list-group-item">
-                    <div class="id" style="display:none;"> @cartItem.Product.Id </div>
-                    <div class="col-md-6">@cartItem.Product.Name</div>
-                    <div class="col-md-6 quantityInCart">@cartItem.Quantity</div>
-                    <div class="actions">
-                        <a href="@Url.Action("DeleteItem", "ShoppingCart", routeValues: new { productId = cartItem.Product.Id })"><i class="delete fa fa-trash"></i></a>
-                        <input type="number" class="quantityInput productQuantityToAdd" min="1" value="1" onchange="onProductQuantityChange(this)"/>
-                        <button type="button" class="btnAddToCart" onclick="onBtnAddToCartClick(this, @cartItem.Product.Id, true)">Įdėti į krėpšelį</button>
-                    </div>
+                    <div class="col-md-6">Prekė</div>
+                    <div class="col-md-6">Kiekis</div>
                 </li>
-            }
-        </ul>
+                @foreach (var cartItem in Model)
+                {
+                    <li class="list-group-item">
+                        <div class="id" style="display:none;"> @cartItem.Product.Id </div>
+                        <div class="col-md-6">@cartItem.Product.Name</div>
+                        <div class="col-md-6 quantityInCart">@cartItem.Quantity</div>
+                        <div class="actions">
+                            <a href="@Url.Action("DeleteItem", "ShoppingCart", routeValues: new { productId = cartItem.Product.Id })"><i class="delete fa fa-trash"></i></a>
+                            <input type="number" class="quantityInput productQuantityToAdd" min="1" value="1" onchange="onProductQuantityChange(this)" />
+                            <button type="button" class="btnAddToCart" onclick="onBtnAddToCartClick(this, @cartItem.Product.Id, true)">Įdėti į krėpšelį</button>
+                        </div>
+                    </li>
+                }
+            </ul>
 
-        @Html.ActionLink("Pirkti", null, null, routeValues: null, htmlAttributes: new { @class = "button" })
+            @Html.ActionLink("Pirkti", null, null, routeValues: null, htmlAttributes: new { @class = "button" })
+        </div>
+        <div class="panel-footer">
+            <!--<input type="button" value="Apmokėti" onclick="window.location.href='../Checkout'"/>-->
+            <button type="button" onclick="location.href='@Url.Action("openCheckout", "Checkout")'" class="btn-primary">Apmokėti</button>
+        </div>
     </div>
-    <div class="panel-footer">
-        <!--<input type="button" value="Apmokėti" onclick="window.location.href='../Checkout'"/>-->
-        <button type="button" onclick="location.href='@Url.Action("openCheckout", "Checkout")'" class="btn-primary">Apmokėti</button>
-    </div>
-</div>
+}
+else
+{
+    <h3>Krepšelis yra tuščias</h3>
+
+}
 
 
 @*<div class="panel" id="payment-panel">

@@ -15,11 +15,17 @@ namespace FuriousWeb.Controllers
             return View("../Checkout");
         }
 
-       /* public ActionResult FinalizeCheckout()
+        public ActionResult SubmitPayment()
         {
-            //Call payment API
-            
-        }*/
+            Checkout checkout = new Checkout();
+            checkout.card_number = String.Format("{0}", Request.Form["card_number"]);
+            checkout.exp_year = Int32.Parse(Request.Form["exp_year"]);
+            checkout.exp_month = Int32.Parse(Request.Form["exp_month"]);
+            checkout.card_holder = String.Format("{0}", Request.Form["name"] + " " + Request.Form["lastname"]);
+            checkout.card_cvv = String.Format("{0}", Request.Form["card_cvv"]);
+            var response = checkout.initPayment();
+            return View("../Checkout");
+        }
 
     }
 }
