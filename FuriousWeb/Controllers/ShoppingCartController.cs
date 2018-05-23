@@ -1,8 +1,4 @@
-﻿using FuriousWeb.Data;
-using FuriousWeb.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using FuriousWeb.Models;
 using System.Web.Mvc;
 
 namespace FuriousWeb.Controllers
@@ -30,13 +26,16 @@ namespace FuriousWeb.Controllers
         {
             ShoppingCart shoppingCart = null;
             if (HttpContext.Session["shoppingCart"] != null)
+            {
                 shoppingCart = (ShoppingCart)HttpContext.Session["shoppingCart"];
+            }
             else
+            {
                 shoppingCart = new ShoppingCart();
-
+                HttpContext.Session["shoppingCart"] = shoppingCart;
+            }
             shoppingCart.Add(productId, quantity);
-            HttpContext.Session["shoppingCart"] = shoppingCart;
-
+            
             long shoppingCartItemsCount = shoppingCart.CountItems();
             HttpContext.Session["shoppingCartItemsCount"] = shoppingCartItemsCount;
 
@@ -45,12 +44,13 @@ namespace FuriousWeb.Controllers
 
         public ActionResult DeleteItem(int productId)
         {
-            throw new NotImplementedException();
-        }
+            var shoppingCart = (ShoppingCart)HttpContext.Session["shoppingCart"];
+            shoppingCart.Remove(productId);
 
-        public ActionResult EditItemQuantity(int productId, long newQuantity)
-        {
-            throw new NotImplementedException();
+            long shoppingCartItemsCount = shoppingCart.CountItems();
+            HttpContext.Session["shoppingCartItemsCount"] = shoppingCartItemsCount;
+
+            return View("../ShoppingCart", shoppingCart.GetItems());
         }
     }
 }

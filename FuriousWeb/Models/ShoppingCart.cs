@@ -20,7 +20,7 @@ namespace FuriousWeb.Models
 
                 if (cartItem == null)
                 {
-                    Product productToAdd = db.Products.Where(x => x.Id == productId).Single();
+                    Product productToAdd = db.Products.Find(productId);
 
                     cartItem = new ShoppingCartItem();
                     cartItem.Product = productToAdd;

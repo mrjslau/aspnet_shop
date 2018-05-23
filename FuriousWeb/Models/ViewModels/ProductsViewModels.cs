@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace FuriousWeb.Models.ViewModels
 {
-    public class CreateDetailedProductViewModel
+    public class CreateProductViewModel
     {
         [Required]
         [Display(Name = "Kodas")]
@@ -19,6 +19,22 @@ namespace FuriousWeb.Models.ViewModels
 
         [Display(Name = "Kaina")]
         public double Price { get; set; }
+    }
+
+    public class EditProductViewModel : CreateProductViewModel
+    {
+        public int Id { get; set; } //product Id, will be hidden
+
+        public EditProductViewModel(Product product)
+        {
+            Id = product.Id;
+            Code = product.Code;
+            Name = product.Name;
+            Description = product.Description;
+            Price = product.Price;
+        }
+
+        public EditProductViewModel() { }
     }
 
     public class DeleteConfirmProductViewModel

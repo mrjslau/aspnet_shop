@@ -12,9 +12,13 @@ namespace FuriousWeb.Controllers
     {
         private DatabaseContext db = new DatabaseContext();
 
-        public ActionResult GetProductsList(bool isPartial)
+        public ActionResult GetProductsList(bool isPartial, string query)
         {
             var products = db.Products.ToList();
+            if (!string.IsNullOrWhiteSpace(query))
+            {
+                products = products.Where(x => x.Name == query || x.Code == query).ToList();
+            }
 
             if (isPartial)
                 return PartialView("Products", products);
@@ -38,12 +42,12 @@ namespace FuriousWeb.Controllers
 
         public ActionResult Create()
         {
-            return View(new CreateDetailedProductViewModel());
+            return View(new CreateProductViewModel());
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(CreateDetailedProductViewModel viewModel)
+        public ActionResult Create(CreateProductViewModel viewModel)
         {
             if (ModelState.IsValid)
             {
@@ -65,28 +69,34 @@ namespace FuriousWeb.Controllers
         public ActionResult Edit(int? id)
         {
             if (id == null)
-            {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
+
             Product product = db.Products.Find(id);
             if (product == null)
-            {
                 return HttpNotFound();
-            }
-            return View(product);
+
+            EditProductViewModel viewModel = new EditProductViewModel(product);
+
+            return View(viewModel);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,Description")] Product product)
+        public ActionResult Edit(EditProductViewModel viewModel)
         {
             if (ModelState.IsValid)
             {
+                Product product = db.Products.Find(viewModel.Id);
+                product.Code = viewModel.Code;
+                product.Name = viewModel.Name;
+                product.Description = viewModel.Description;
+                product.Price = viewModel.Price;
+
                 db.Entry(product).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("../Home/Index");
             }
-            return View(product);
+            return View(viewModel);
         }
 
         public ActionResult Delete(int? id)
