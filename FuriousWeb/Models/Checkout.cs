@@ -4,6 +4,8 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Configuration;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -51,15 +53,28 @@ namespace FuriousWeb.Models
             //var client = new WebClient { Credentials = new NetworkCredential("technologines", "platformos") };
 
             WebClient client = new WebClient();
+            client.Encoding = Encoding.UTF8;
             string credentials = Convert.ToBase64String(Encoding.ASCII.GetBytes("technologines:platformos"));
             client.Headers[HttpRequestHeader.Authorization] = "Basic dGVjaG5vbG9naW5lczpwbGF0Zm9ybW9z";
             client.Headers[HttpRequestHeader.Accept] = "application/json";
             client.Headers[HttpRequestHeader.ContentType] = "application/json";
-            var data = "{amount: 100,  number: 4111111111111111,  holder: Vardenis Pavardenis,  exp_year: 2018,  exp_month: 9,  cvv: 123}";
+            var data = "{\"amount\": 100,  \"number\": \"4111111111111111\",  \"holder\": \"Vardenis Pavardenis\",  \"exp_year\": 2018,  \"exp_month\": 9,  \"cvv\": \"123\"}";
+            try
+            {
+                var result = client.UploadString(new Uri("https://mock-payment-processor.appspot.com/v1/payment"), "POST", data);
+                return result;
 
-            var result = client.UploadString(new Uri("https://mock-payment-processor.appspot.com/v1/payment"), "POST", data);
+            }
+            catch (WebException ex)
+            {
+                if (ex.Response != null)
+                {
+                    string response = new StreamReader(ex.Response.GetResponseStream()).ReadToEnd();
+                    Debug.WriteLine(response);
+                }
+            }
+            return null;
      
-            return result;
 
         }
 
