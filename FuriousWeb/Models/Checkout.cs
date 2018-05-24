@@ -34,6 +34,7 @@ namespace FuriousWeb.Models
         public bool InitPayment()
         {
             ShoppingCart shoppingCart = null;
+            //Glebai please check
             //shoppingCart = (ShoppingCart)HttpContext.Session["shoppingCart"];
             this.Amount = shoppingCart.CalculatePrice();
             if (CallAPI())
