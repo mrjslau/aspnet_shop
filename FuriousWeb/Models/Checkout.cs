@@ -12,6 +12,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 using System.Web.Script.Serialization;
 
 namespace FuriousWeb.Models
@@ -36,34 +37,37 @@ namespace FuriousWeb.Models
         private List<ShoppingCartItem> Items;
         static HttpClient client;
         private Payment payment;
-        private static HttpResponseMessage response;
+        private string response;
 
         public bool initPayment()
         {
-            var response = CallAPI();
-            //var content = response.Content.ReadAsStringAsync();
-            Console.WriteLine(response);
-            return true;
+            if (CallAPI())
+            {
+                //save payment;
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
-        public string CallAPI()
+        public bool CallAPI()
         {
             string url = @"https://mock-payment-processor.appspot.com/v1/payment";
-            //Payment payment = new Payment(200, card_number, card_holder, exp_year, exp_month, card_cvv);
-            //var client = new WebClient { Credentials = new NetworkCredential("technologines", "platformos") };
-
+            Payment payment = new Payment(200, card_number, card_holder, exp_year, exp_month, card_cvv);
             WebClient client = new WebClient();
             client.Encoding = Encoding.UTF8;
             string credentials = Convert.ToBase64String(Encoding.ASCII.GetBytes("technologines:platformos"));
-            client.Headers[HttpRequestHeader.Authorization] = "Basic dGVjaG5vbG9naW5lczpwbGF0Zm9ybW9z";
+            client.Headers[HttpRequestHeader.Authorization] = "Basic "+ credentials;
             client.Headers[HttpRequestHeader.Accept] = "application/json";
             client.Headers[HttpRequestHeader.ContentType] = "application/json";
-            var data = "{\"amount\": 100,  \"number\": \"4111111111111111\",  \"holder\": \"Vardenis Pavardenis\",  \"exp_year\": 2018,  \"exp_month\": 9,  \"cvv\": \"123\"}";
+            var data = new JavaScriptSerializer().Serialize(payment);
             try
             {
                 var result = client.UploadString(new Uri("https://mock-payment-processor.appspot.com/v1/payment"), "POST", data);
-                return result;
-
+                this.response = result;
+                return true;
             }
             catch (WebException ex)
             {
@@ -71,9 +75,14 @@ namespace FuriousWeb.Models
                 {
                     string response = new StreamReader(ex.Response.GetResponseStream()).ReadToEnd();
                     Debug.WriteLine(response);
+                    this.response = response;
                 }
+                else
+                {
+                    this.response = null;
+                }
+                return false;
             }
-            return null;
      
 
         }

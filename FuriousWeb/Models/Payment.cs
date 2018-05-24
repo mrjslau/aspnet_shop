@@ -2,12 +2,12 @@
 {
     internal class Payment
     {
-        private double amount;
-        private string number;
-        private string holder;
-        private int exp_year;
-        private int exp_month;
-        private string cvv;
+        public double amount;
+        public string number;
+        public string holder;
+        public int exp_year;
+        public int exp_month;
+        public string cvv;
 
         public Payment(double amount, string number, string holder, int exp_year, int exp_month, string cvv)
         {
