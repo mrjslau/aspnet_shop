@@ -1,11 +1,11 @@
 ﻿@model IEnumerable<FuriousWeb.Models.ShoppingCartItem>
 
 @{
-    ViewBag.Title = "Krėpšelis";
+    ViewBag.Title = "Krepšelis";
 }
 
 
-@if (Model != null)
+@if(Model.Count() > 0)
 {
     <h3>Krepšelis</h3>
     <div class="panel">
@@ -30,11 +30,8 @@
                     </li>
                 }
             </ul>
-
-            @Html.ActionLink("Pirkti", null, null, routeValues: null, htmlAttributes: new { @class = "button" })
         </div>
         <div class="panel-footer">
-            <!--<input type="button" value="Apmokėti" onclick="window.location.href='../Checkout'"/>-->
             <button type="button" onclick="location.href='@Url.Action("openCheckout", "Checkout")'" class="btn-primary">Apmokėti</button>
         </div>
     </div>
@@ -44,46 +41,3 @@ else
     <h3>Krepšelis yra tuščias</h3>
 
 }
-
-
-@*<div class="panel" id="payment-panel">
-    <div class="panel-heading text-center">
-        <h3>@ViewBag.Message</h3>
-    </div>
-    <div class="panel-body">
-        <div class="row">
-            <div class="col-md-4 text-right">
-            </div>
-            <div class="col-md-4">
-                <input class="form-control" type="text" id="card-number" placeholder="Card number"/>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-4">
-            </div>
-            <div class="col-md-2 col-xs-6">
-                <input class="form-control" type="number" id="exp-year" placeholder="Expiration year" />
-            </div>
-            <div class="col-md-2 col-xs-6">
-                <input class="form-control" type="number" id="exp-month" placeholder="Expiration month" />
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-4">
-            </div>
-            <div class="col-md-4">
-                <input class="form-control" type="text" id="card-holder" placeholder="Card holder"/>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-4">
-            </div>
-            <div class="col-md-4">
-                <input class="form-control" type="text" id="card-cvv" placeholder="Card CVV"/>
-            </div>
-        </div>
-    </div>
-    <div class="panel-footer text-right">
-        <button id="pay-now" class="btn btn-md btn-primary">Pay now</button>
-    </div>
-</div>*@

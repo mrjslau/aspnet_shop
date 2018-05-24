@@ -16,25 +16,25 @@
         </div>
     </div>*@
     <div class="form-group">
-        @Html.LabelFor(m => m.Username, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
+        @Html.LabelFor(m => m.Username, new { @class = "col-md-4 control-label" })
+        <div class="col-md-4">
             @Html.TextBoxFor(m => m.Username, new { @class = "form-control" })
         </div>
     </div>
     <div class="form-group">
-        @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
+        @Html.LabelFor(m => m.Password, new { @class = "col-md-4 control-label" })
+        <div class="col-md-4">
             @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
         </div>
     </div>
     <div class="form-group">
-        @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
+        @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-4 control-label" })
+        <div class="col-md-4">
             @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
         </div>
     </div>
     <div class="form-group">
-        <div class="col-md-offset-2 col-md-4">
+        <div class="col-md-offset-4 col-md-4">
             <div class='form-actions'>
                 <input type="submit" value="Patvirtinti" class="btn btn-default" />
                 @Html.ActionLink("Atšaukti", "Index", "Home", null, new { @class = "btn btn-default" })

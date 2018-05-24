@@ -70,6 +70,19 @@ namespace FuriousWeb.Models
 
             return itemsCount;
         }
+
+        public double CalculatePrice()
+        {
+            double total = 0;
+            if (Items.Count > 0)
+            {
+                foreach (ShoppingCartItem item in Items)
+                {
+                    total += item.Product.Price * item.Quantity;
+                }
+            }
+            return total;
+        }
     }
 }
      

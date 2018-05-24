@@ -52,5 +52,7 @@ namespace FuriousWeb.Controllers
 
             return View("../ShoppingCart", shoppingCart.GetItems());
         }
+
+        
     }
 }

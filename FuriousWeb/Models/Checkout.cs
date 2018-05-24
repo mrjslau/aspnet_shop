@@ -19,31 +19,25 @@ namespace FuriousWeb.Models
 {
     public class Checkout
     {
-        [Required]
-        public string email { get; set; }
-        [Required]
-        public double amount { get; set; }
-        [Required]
-        public string card_number { get; set; }
-        [Required]
-        public string card_holder { get; set; }
-        [Required]
-        public int exp_year { get; set; }
-        [Required]
-        public int exp_month { get; set; }
-        [Required]
-        public string card_cvv { get; set; }
+        public string Email { get; set; }
+        public double Amount { get; set; }
+        public string Card_number { get; set; }
+        public string Card_holder { get; set; }
+        public int Exp_year { get; set; }
+        public int Exp_month { get; set; }
+        public string Card_cvv { get; set; }
 
         private List<ShoppingCartItem> Items;
-        static HttpClient client;
         private Payment payment;
         private string response;
 
-        public bool initPayment()
+        public bool InitPayment()
         {
+            ShoppingCart shoppingCart = null;
+            //shoppingCart = (ShoppingCart)HttpContext.Session["shoppingCart"];
+            this.Amount = shoppingCart.CalculatePrice();
             if (CallAPI())
             {
-                //save payment;
                 return true;
             }
             else
@@ -54,10 +48,11 @@ namespace FuriousWeb.Models
 
         public bool CallAPI()
         {
-            string url = @"https://mock-payment-processor.appspot.com/v1/payment";
-            Payment payment = new Payment(200, card_number, card_holder, exp_year, exp_month, card_cvv);
-            WebClient client = new WebClient();
-            client.Encoding = Encoding.UTF8;
+            Payment payment = new Payment(Amount, Card_number, Card_holder, Exp_year, Exp_month, Card_cvv);
+            WebClient client = new WebClient()
+            {
+                Encoding = Encoding.UTF8
+            };
             string credentials = Convert.ToBase64String(Encoding.ASCII.GetBytes("technologines:platformos"));
             client.Headers[HttpRequestHeader.Authorization] = "Basic "+ credentials;
             client.Headers[HttpRequestHeader.Accept] = "application/json";
@@ -67,6 +62,7 @@ namespace FuriousWeb.Models
             {
                 var result = client.UploadString(new Uri("https://mock-payment-processor.appspot.com/v1/payment"), "POST", data);
                 this.response = result;
+                this.payment = new JavaScriptSerializer().Deserialize<Payment>(response);
                 return true;
             }
             catch (WebException ex)
@@ -91,8 +87,10 @@ namespace FuriousWeb.Models
         {
             string url = @"https://mock-payment-processor.appspot.com";
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Ssl3;
-            CredentialCache credentialCache = new CredentialCache();
-            credentialCache.Add(new System.Uri(url), "Basic", new NetworkCredential(ConfigurationManager.AppSettings["technologines"], ConfigurationManager.AppSettings["platformos"]));
+            CredentialCache credentialCache = new CredentialCache
+            {
+                { new System.Uri(url), "Basic", new NetworkCredential(ConfigurationManager.AppSettings["technologines"], ConfigurationManager.AppSettings["platformos"]) }
+            };
             return credentialCache;
         }
 
