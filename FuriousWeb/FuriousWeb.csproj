@@ -189,6 +189,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
+    <Compile Include="Controllers\StoreController.cs" />
     <Compile Include="Cors\AllowCrossSiteAttribute.cs" />
     <Compile Include="Data\DatabaseContext.cs" />
     <Compile Include="Data\Migrations\Configuration.cs" />
@@ -220,10 +221,20 @@
     <Content Include="Content\Images\Products\pants.jpg" />
     <Content Include="Content\Images\Products\reebok.jpg" />
     <Content Include="Content\Images\Products\wallet.jpeg" />
+    <Content Include="Content\Images\ShopSlider\girl1.jpg" />
+    <Content Include="Content\Images\ShopSlider\girl2.jpg" />
+    <Content Include="Content\Images\ShopSlider\girl3.jpg" />
+    <Content Include="Content\Images\ShopSlider\pricing.png" />
+    <Content Include="Content\Styles\animate.css" />
     <Content Include="Content\Styles\bootstrap.css" />
     <Content Include="Content\Styles\bootstrap.min.css" />
     <Content Include="Content\Styles\extra.css" />
+    <Content Include="Content\Styles\font-awesome.min.css" />
+    <Content Include="Content\Styles\main.css" />
+    <Content Include="Content\Styles\prettyPhoto.css" />
+    <Content Include="Content\Styles\price-range.css" />
     <Content Include="Content\Styles\pure-extend.css" />
+    <Content Include="Content\Styles\responsive.css" />
     <Content Include="Data\SQL\dbdrop.sql" />
     <Content Include="Data\SQL\db_clear.sql" />
     <Content Include="Data\SQL\db_fill.sql" />
@@ -732,16 +743,21 @@
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\buildmobile.js" />
     <Content Include="Scripts\general.js" />
+    <Content Include="Scripts\html5shiv.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.prettyPhoto.js" />
+    <Content Include="Scripts\jquery.scrollUp.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\common.js" />
+    <Content Include="Scripts\main.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\modernizr.js" />
+    <Content Include="Scripts\price-range.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
@@ -791,6 +807,13 @@
     <Content Include="Views\ShoppingCart.cshtml" />
     <Content Include="Views\Shared\_LeftSideBarPartial.cshtml" />
     <Content Include="Views\Checkout.cshtml" />
+    <Content Include="Views\Store\_ViewStart.cshtml" />
+    <Content Include="Views\Store\_Layout.cshtml" />
+    <Content Include="Views\Store\Shared\_HeaderTopPartial.cshtml" />
+    <Content Include="Views\Store\Shared\_HeaderMiddlePartial.cshtml" />
+    <Content Include="Views\Store\Shared\_HeaderBottomPartial.cshtml" />
+    <Content Include="Views\Store\Home\Index.cshtml" />
+    <Content Include="Views\Store\Account\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
