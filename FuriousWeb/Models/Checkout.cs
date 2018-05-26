@@ -32,13 +32,9 @@ namespace FuriousWeb.Models
         public PaymentError paymentErr;
         private string response;
 
-        public bool InitPayment()
+        public bool InitPayment(ShoppingCart shoppingCart)
         {
-            ShoppingCart shoppingCart = null;
-            //Glebai please check
-            shoppingCart = (ShoppingCart)HttpContext.Session["shoppingCart"];
             this.Amount = shoppingCart.CalculatePrice();
-            //this.Amount = 200; // test amount
             if (CallAPI())
             {
                 return true;

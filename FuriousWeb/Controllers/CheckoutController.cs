@@ -26,15 +26,12 @@ namespace FuriousWeb.Controllers
                 Card_holder = String.Format("{0}", Request.Form["name"] + " " + Request.Form["lastname"]),
                 Card_cvv = String.Format("{0}", Request.Form["card_cvv"])
             };
-            if (checkout.InitPayment())
+            if (checkout.InitPayment((ShoppingCart)HttpContext.Session["shoppingCart"]))
             {
-                //return success messahe
                 return View("../Thank-you");
             }
             else
             {
-                //return error message
-                //var errorMsg = checkout.paymentErr;
                 return View("../Checkout", checkout);
             }
         }
