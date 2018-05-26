@@ -12,7 +12,8 @@ namespace FuriousWeb.Controllers
 
         public ActionResult OpenCheckout()
         {
-            return View("../Checkout");
+            Checkout checkout = new Checkout();
+            return View("../Checkout", checkout);
         }
 
         public ActionResult SubmitPayment()
@@ -33,7 +34,8 @@ namespace FuriousWeb.Controllers
             else
             {
                 //return error message
-                return View("../Checkout");
+                //var errorMsg = checkout.paymentErr;
+                return View("../Checkout", checkout);
             }
         }
     }

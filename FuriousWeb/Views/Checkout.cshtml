@@ -3,6 +3,9 @@
     ViewBag.Title = "Checkout";
 }
 @model FuriousWeb.Models.Checkout
+@if(Model.paymentErr != null){
+    <h3>The payment was not successful <!--Model.paymentErr.Message--></h3>
+}
 
 <form method="post" action="SubmitPayment" runat="server">
     <div class="panel" id="info-panel">

@@ -29,14 +29,16 @@ namespace FuriousWeb.Models
 
         private List<ShoppingCartItem> Items;
         private Payment payment;
+        public PaymentError paymentErr;
         private string response;
 
         public bool InitPayment()
         {
             ShoppingCart shoppingCart = null;
             //Glebai please check
-            //shoppingCart = (ShoppingCart)HttpContext.Session["shoppingCart"];
+            shoppingCart = (ShoppingCart)HttpContext.Session["shoppingCart"];
             this.Amount = shoppingCart.CalculatePrice();
+            //this.Amount = 200; // test amount
             if (CallAPI())
             {
                 return true;
@@ -72,6 +74,7 @@ namespace FuriousWeb.Models
                 {
                     string response = new StreamReader(ex.Response.GetResponseStream()).ReadToEnd();
                     Debug.WriteLine(response);
+                    this.paymentErr = new JavaScriptSerializer().Deserialize<PaymentError>(response);
                     this.response = response;
                 }
                 else
