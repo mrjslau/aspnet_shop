@@ -1,17 +1,10 @@
-﻿using Microsoft.AspNet.Identity;
-using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Configuration;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
 using System.Net;
-using System.Net.Http;
-using System.Net.Http.Headers;
 using System.Text;
-using System.Threading.Tasks;
 using System.Web;
 using System.Web.Script.Serialization;
 
@@ -32,24 +25,17 @@ namespace FuriousWeb.Models
         public PaymentError paymentErr;
         private string response;
 
-        public bool InitPayment()
+        public bool InitPayment(ShoppingCart shoppingCart)
         {
-            ShoppingCart shoppingCart = null;
-            //Glebai please check
-            shoppingCart = (ShoppingCart)HttpContext.Session["shoppingCart"];
             this.Amount = shoppingCart.CalculatePrice();
             //this.Amount = 200; // test amount
-            if (CallAPI())
-            {
+            if (PerformPayment())
                 return true;
-            }
             else
-            {
-                return false;
-            }
+                return false;       
         }
 
-        public bool CallAPI()
+        public bool PerformPayment()
         {
             Payment payment = new Payment(Amount, Card_number, Card_holder, Exp_year, Exp_month, Card_cvv);
             WebClient client = new WebClient()
@@ -81,6 +67,7 @@ namespace FuriousWeb.Models
                 {
                     this.response = null;
                 }
+
                 return false;
             }
      
@@ -90,16 +77,15 @@ namespace FuriousWeb.Models
         private CredentialCache GetCredential()
         {
             string url = @"https://mock-payment-processor.appspot.com";
+
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Ssl3;
             CredentialCache credentialCache = new CredentialCache
             {
                 { new System.Uri(url), "Basic", new NetworkCredential(ConfigurationManager.AppSettings["technologines"], ConfigurationManager.AppSettings["platformos"]) }
             };
+
             return credentialCache;
         }
-
-
-
     }
 }
      
