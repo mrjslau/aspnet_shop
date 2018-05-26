@@ -26,6 +26,15 @@ namespace FuriousWeb
             bundles.Add(new StyleBundle("~/Content/Styles/css").Include(
                       "~/Content/Styles/bootstrap.css",
                       "~/Content/Styles/site.css"));
+
+            bundles.Add(new StyleBundle("~/Content/Styles/shop").Include(
+                      "~/Content/Styles/bootstrap.min.css",
+                      "~/libs/font-awesome/css/font-awesome.min.css",
+                      "~/Content/Styles/prettyPhoto.css",
+                      "~/Content/Styles/price-range.css",
+                      "~/Content/Styles/animate.css",
+                      "~/Content/Styles/main.css",
+                      "~/Content/Styles/responsive.css"));
         }
     }
 }
