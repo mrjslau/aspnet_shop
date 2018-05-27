@@ -54,7 +54,15 @@ namespace FuriousWeb.Controllers
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
-            ViewBag.ReturnUrl = returnUrl;
+            if(TempData["redirectTo"] != null)
+            {
+                ViewBag.ReturnUrl = TempData["redirectTo"];
+                TempData.Keep();
+            }
+            else
+            {
+                ViewBag.ReturnUrl = returnUrl;
+            }
             return View("../Store/Account/Login");
         }
 
@@ -154,14 +162,17 @@ namespace FuriousWeb.Controllers
                 if (result.Succeeded)
                 {
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    SignInManager.UserManager.AddToRole(user.Id, "SimpleUser");
+                    SignInManager.UserManager.AddToRole(user.Id, "User");
 
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
-
+                    if(TempData["redirectTo"] != null)
+                    {
+                        return Redirect(TempData["redirectTo"].ToString());
+                    }
                     return RedirectToAction("Index", "Home");
                 }
                 AddErrors(result);

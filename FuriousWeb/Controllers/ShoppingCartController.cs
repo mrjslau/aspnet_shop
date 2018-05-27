@@ -5,7 +5,6 @@ namespace FuriousWeb.Controllers
 {
     public class ShoppingCartController : Controller
     {
-
         public ActionResult OpenCart()
         {
             ShoppingCart shoppingCart = null;

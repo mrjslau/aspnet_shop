@@ -189,13 +189,13 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
-    <Compile Include="Cors\AllowCrossSiteAttribute.cs" />
     <Compile Include="Data\DatabaseContext.cs" />
     <Compile Include="Data\Migrations\Configuration.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\PaymentError.cs" />
+    <Compile Include="Models\OrderDetails.cs" />
+    <Compile Include="Models\Order.cs" />
     <Compile Include="Models\ThankYou.cs" />
     <Compile Include="Models\Checkout.cs" />
     <Compile Include="Models\Payment.cs" />

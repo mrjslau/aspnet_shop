@@ -7,14 +7,11 @@ namespace FuriousWeb.Models
     {
         [Key]
         public int Id { get; set; }
-
         [Index(IsUnique = true)]
         [MaxLength(50)]
         public string Code { get; set; }
-
         public string Name { get; set; }
         public string Description { get; set; }
-
         public double Price { get; set; }
     }
 }
