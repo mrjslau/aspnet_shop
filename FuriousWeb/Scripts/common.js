@@ -44,7 +44,7 @@ function getProducts(queryString, adminAccess) {
         dataType: "html",
         async: true,
         data: {
-            isPartial: true, query: queryString
+            query: queryString
         },
         error: function (xhr, status, errorThrown) {
             var errorMsg = "Status: " + status + " " + errorThrown;
