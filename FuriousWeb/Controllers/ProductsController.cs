@@ -17,7 +17,7 @@ namespace FuriousWeb.Controllers
             var products = db.Products.ToList();
             if (!string.IsNullOrWhiteSpace(query))
             {
-                products = products.Where(x => x.Name == query || x.Code == query).ToList();
+                products = products.Where(x => x.Name.ToLower().Contains(query.ToLower()) || x.Code.ToLower().Contains(query.ToLower())).ToList();
             }
 
             if (isPartial)
