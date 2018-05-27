@@ -51,13 +51,11 @@ namespace FuriousWeb.Controllers
                 payment.Created_at = checkout.paymentInfo.Created_at;
                 payment.Code = checkout.paymentInfo.Id;
                 db.Payments.Add(payment);
-                db.SaveChanges();
                 //save order
                 var order = new Order();
                 order.PaymentID = payment.ID;
                 order.UserID = checkout.User;
                 db.Orders.Add(order);
-                db.SaveChanges();
                 //save order details
                 foreach(ShoppingCartItem item in checkout.Cart.GetItems())
                 {
@@ -66,9 +64,9 @@ namespace FuriousWeb.Controllers
                     orderDetail.ProductID = item.Product.Id;
                     orderDetail.Quantity = item.Quantity;
                     db.OrderDetails.Add(orderDetail);
-                    db.SaveChanges();
                 }
-                checkout.Cart.Clear();
+                db.SaveChanges();
+                HttpContext.Session["shoppingCartItemsCount"] = 0;
                 HttpContext.Session["shoppingCart"] = new ShoppingCart();
                 return View("../Store/Thank-you");
             }

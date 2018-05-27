@@ -6,12 +6,15 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using FuriousWeb.Models;
 using FuriousWeb.Models.ViewModels;
+using FuriousWeb.Data;
+using System.Linq;
 
 namespace FuriousWeb.Controllers
 {
     [Authorize]
     public class AccountController : Controller
     {
+        private DatabaseContext db = new DatabaseContext();
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
@@ -46,6 +49,28 @@ namespace FuriousWeb.Controllers
             private set
             {
                 _userManager = value;
+            }
+        }
+
+        [AllowAnonymous]
+        public ActionResult Profile()
+        {
+            bool loggedIn = (System.Web.HttpContext.Current.User != null) && System.Web.HttpContext.Current.User.Identity.IsAuthenticated;
+            if (loggedIn)
+            {
+                var user = System.Web.HttpContext.Current.User.Identity.GetUserId();
+                HomeViewModel profile = new HomeViewModel();
+                profile.User = user;
+                var orders = db.Orders
+                   .Where(b => b.UserID == user);
+                profile.Orders = orders;
+                return View("../Store/Account/Home", profile);
+            }
+            else
+            {
+                var url = this.Url.Action("Profile", "Account");
+                TempData["redirectTo"] = url;
+                return RedirectToAction("login", "Account");
             }
         }
 
