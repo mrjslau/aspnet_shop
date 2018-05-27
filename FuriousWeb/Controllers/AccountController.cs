@@ -63,8 +63,6 @@ namespace FuriousWeb.Controllers
             {
                 ViewBag.ReturnUrl = returnUrl;
             }
-            return View();
-            ViewBag.ReturnUrl = returnUrl;
             return View("../Store/Account/Login");
         }
 

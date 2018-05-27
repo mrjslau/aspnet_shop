@@ -21,7 +21,7 @@ namespace FuriousWeb.Controllers
             {
                 var user = System.Web.HttpContext.Current.User.Identity.GetUserId();
                 checkout.User = user;
-                return View("../Checkout", checkout);
+                return View("../Store/Checkout", checkout);
             }
             else
             {
@@ -70,11 +70,11 @@ namespace FuriousWeb.Controllers
                 }
                 checkout.Cart.Clear();
                 HttpContext.Session["shoppingCart"] = new ShoppingCart();
-                return View("../Thank-you");
+                return View("../Store/Thank-you");
             }
             else
             {
-                return View("../Checkout", checkout);
+                return View("../Store/Checkout", checkout);
             }
         }
     }
