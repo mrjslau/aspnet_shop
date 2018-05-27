@@ -5,7 +5,6 @@ namespace FuriousWeb.Controllers
 {
     public class ShoppingCartController : Controller
     {
-
         public ActionResult OpenCart()
         {
             ShoppingCart shoppingCart = null;
@@ -18,7 +17,6 @@ namespace FuriousWeb.Controllers
                 shoppingCart = new ShoppingCart();
                 HttpContext.Session["shoppingCart"] = shoppingCart;
             }
-
             return View("../ShoppingCart", shoppingCart.GetItems());
         }
 

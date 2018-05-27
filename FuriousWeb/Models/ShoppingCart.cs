@@ -42,6 +42,11 @@ namespace FuriousWeb.Models
                 throw new System.Exception("Prekės {productId} krėpšelyje nėra!"); //geriau išmest CustomException'ą
         }
 
+        public void Clear()
+        {
+            Items.Clear();
+        }
+
         public void EditQuantity(int productId, long quantity)
         {
             ShoppingCartItem cartItem = GetItem(productId);

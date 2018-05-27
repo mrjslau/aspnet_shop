@@ -56,13 +56,10 @@ namespace FuriousWeb.Controllers
                 product.Name = viewModel.Name;
                 product.Description = viewModel.Description;
                 product.Price = viewModel.Price;
-
                 db.Products.Add(product);         
                 db.SaveChanges();
-
                 return RedirectToAction("../Home/Index");
             }
-
             return View(viewModel);
         }
 
