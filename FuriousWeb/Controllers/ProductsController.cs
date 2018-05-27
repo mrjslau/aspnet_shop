@@ -12,7 +12,7 @@ namespace FuriousWeb.Controllers
     {
         private DatabaseContext db = new DatabaseContext();
 
-        public ActionResult GetProductsList(bool isPartial, string query)
+        public ActionResult GetProductsListForUser(bool isPartial, string query)
         {
             var products = db.Products.ToList();
             if (!string.IsNullOrWhiteSpace(query))
@@ -21,9 +21,23 @@ namespace FuriousWeb.Controllers
             }
 
             if (isPartial)
-                return PartialView("Products", products);
+                return PartialView("../Store/Products/Products", products);
             else
-                return View("Products", products);
+                return View("../Store/Products/Products", products);
+        }
+
+        public ActionResult GetProductsListForAdmin(bool isPartial, string query)
+        {
+            var products = db.Products.ToList();
+            if (!string.IsNullOrWhiteSpace(query))
+            {
+                products = products.Where(x => x.Name == query || x.Code == query).ToList();
+            }
+
+            if (isPartial)
+                return PartialView("../Admin/Products/Products", products);
+            else
+                return View("../Admin/Products/Products", products);
         }
 
         public ActionResult Details(int? id)
@@ -37,7 +51,7 @@ namespace FuriousWeb.Controllers
             {
                 return HttpNotFound();
             }
-            return View(product);
+            return View("../Admin/Products/Edit", product);
         }
 
         public ActionResult Create()

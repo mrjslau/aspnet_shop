@@ -7,25 +7,14 @@
 <ul class="nav navbar-nav navbar-right">
     <li><a href="@Url.Action("Index", "Home", routeValues: null)">
         <i class="fa fa-home"></i>
-        <span class="homeLinkLabel">Pagrindinis puslapis</span>
+        <span class="homeLinkLabel">Į pagrindinį puslapį</span>
      </a></li>
-    <li><a href="@Url.Action("OpenCart", "ShoppingCart", routeValues: null)">
-        <i class="fa fa-shopping-basket"></i>
-        [<span id="shoppingCartItemsCount">@shoppingCartItemsCount</span>]
-        <span class="shoppingCartLinkLabel">Krėpšelis</span>
-    </a></li>
 
     @if (Request.IsAuthenticated)
     {
         using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
         {
             @Html.AntiForgeryToken()
-            //netelpa i header bar'a
-            @*<li>
-                <div class="hello">
-                    Sveiki, @{User.Identity.GetUserName();}!
-                </div>
-            </li>*@
             <li>
                 <div class="profile">
                     <div class="profile-img">
@@ -53,13 +42,6 @@
     }
     else
     {
-        <li>
-            <a href="@Url.Action("Register", "Account", routeValues: null)">
-                <i class="fa fa-home"></i>
-                <span class="registerLinkLabel">Užsiregistruoti</span>
-            </a>
-        </li>
-
         <li>
             <a href="@Url.Action("Login", "Account", routeValues: null)">
                 <i class="fa fa-home"></i>

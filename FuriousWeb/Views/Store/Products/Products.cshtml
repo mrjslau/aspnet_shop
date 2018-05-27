@@ -1,0 +1,29 @@
+﻿@model IEnumerable<FuriousWeb.Models.Product>
+
+<div class="features_items">
+    <h2 class="title text-center">Visos prekės</h2>
+    @foreach (var product in Model)
+    {
+        <div class="col-sm-4">
+            <div class="product-image-wrapper">
+                <div class="single-products">
+                    <div class="productinfo text-center">
+                        <a href="#"><img src="images/shop/product12.jpg" alt="" /></a>
+                        <h2>€@product.Price</h2>
+                        <p>@product.Name</p>
+                        <button type="button" class="btn btn-default btnAddToCart" onclick="onBtnAddToCartClick(this, @product.Id, false)"><i class="fa fa-shopping-cart"></i> Įdėti į krėpšelį</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    }
+  
+    @* TODO: reikia padaryt kad pagination veiktu *@
+    <ul class="pagination">
+        <li class="active"><a href="">1</a></li>
+        <li><a href="">2</a></li>
+        <li><a href="">3</a></li>
+        <li><a href="">&raquo;</a></li>
+    </ul>
+</div>

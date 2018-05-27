@@ -6,11 +6,12 @@ using System.Web.Mvc;
 
 namespace FuriousWeb.Controllers
 {
-    public class StoreController : Controller
+    public class AdminController : Controller
     {
+
         public ActionResult Index()
         {
-            return View("Home/Index");
+            return View();
         }
     }
 }
