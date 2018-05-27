@@ -41,6 +41,18 @@ namespace FuriousWeb.Controllers
             return Json(new { success = true, shoppingCartItemsCount = shoppingCartItemsCount }, JsonRequestBehavior.AllowGet);
         }
 
+        public ActionResult EditItemQuantity(int productId, long newQuantity)
+        {
+            var shoppingCart = (ShoppingCart)HttpContext.Session["shoppingCart"];
+
+            shoppingCart.EditQuantity(productId, newQuantity);
+
+            long shoppingCartItemsCount = shoppingCart.CountItems();
+            HttpContext.Session["shoppingCartItemsCount"] = shoppingCartItemsCount;
+
+            return Json(new { success = true, shoppingCartItemsCount = shoppingCartItemsCount }, JsonRequestBehavior.AllowGet);
+        }
+
         public ActionResult DeleteItem(int productId)
         {
             var shoppingCart = (ShoppingCart)HttpContext.Session["shoppingCart"];
@@ -51,7 +63,6 @@ namespace FuriousWeb.Controllers
 
             return View("ShoppingCart", shoppingCart.GetItems());
         }
-
-        
+      
     }
 }

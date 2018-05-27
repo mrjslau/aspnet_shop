@@ -24,8 +24,8 @@
                         <div class="col-md-6 quantityInCart">@cartItem.Quantity</div>
                         <div class="actions">
                             <a href="@Url.Action("DeleteItem", "ShoppingCart", routeValues: new { productId = cartItem.Product.Id })"><i class="delete fa fa-trash"></i></a>
-                            <input type="number" class="quantityInput productQuantityToAdd" min="1" value="1" onchange="onProductQuantityChange(this)" />
-                            <button type="button" class="btnAddToCart" onclick="onBtnAddToCartClick(this, @cartItem.Product.Id, true)">Įdėti į krėpšelį</button>
+                            <input type="number" class="quantityInput newProductQuantity" min="1" value="1" onchange="onProductQuantityChange(this)" />
+                            <button type="button" class="btnEditCartItemQuantity" onclick="onBtnEditCartItemQuantityClick(this, @cartItem.Product.Id, true)">Atnaujinti kiekį</button>
                         </div>
                     </li>
                 }

@@ -34,6 +34,44 @@
     })
 }
 
+function onBtnEditCartItemQuantityClick(btnEditCartItemQuantity, productId, refreshCart) {
+    //define as global vars because we need to persist these values after ajax call.
+    $BTN_EDIT_CART_ITEM_QUANTITY = $(btnEditCartItemQuantity);
+
+    NEW_PRODUCT_QUANTITY = parseInt($BTN_EDIT_CART_ITEM_QUANTITY.siblings(".newProductQuantity").val());
+   
+    $.ajax({
+        type: "GET",
+        url: '/ShoppingCart/EditItemQuantity',
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        async: true,
+        data: { productId: productId, newQuantity: NEW_PRODUCT_QUANTITY },
+        error: function (xhr, status, errorThrown) {
+            var errorMsg = "Status: " + status + " " + errorThrown;
+            console.log(errorMsg);
+            alert(errorMsg);
+        },
+        success: function (response) {
+            if (response.success) {
+                $("#shoppingCartItemsCount").text(response.shoppingCartItemsCount);
+
+                if (refreshCart) {
+                    var $quantityInCartField = $BTN_EDIT_CART_ITEM_QUANTITY.parent().siblings('.quantityInCart');
+                    var oldQuantity = parseInt($quantityInCartField.text());
+                    $quantityInCartField.text(NEW_PRODUCT_QUANTITY);
+                }
+                alert("Prekės kiekis buvo sėkmingai atnaujintas");
+            }
+        },
+        complete: function () {
+            delete $BTN_EDIT_CART_ITEM_QUANTITY;
+            delete NEW_PRODUCT_QUANTITY;
+        }
+    })
+}
+
+
 function getProducts(queryString, adminAccess) {
     var actionName = adminAccess ? "GetProductsListForAdmin" : "GetProductsListForUser";
 
