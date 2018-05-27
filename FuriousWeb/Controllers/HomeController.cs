@@ -6,7 +6,7 @@ namespace FuriousWeb.Controllers
     {
         public ActionResult Index()
         {
-            return View("../Store/Home/Index");
+            return View();
         }
 
         public ActionResult About()

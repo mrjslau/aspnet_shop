@@ -32,11 +32,8 @@ namespace FuriousWeb.Data
         //db lenteles (neiskaitant defaultiniu: Users, Roles ir t.t.)
 
         public DbSet<Product> Products { get; set; } //prekes
-
         public DbSet<Order> Orders { get; set; } //užsakymai
-
-        public DbSet<OrderDetails> OrderDetails { get; set; } //užsakymu duoemnys
-
+        public DbSet<OrderDetails> OrderDetails { get; set; } //užsakymu duomenys
         public DbSet<Payment> Payments { get; set; } //mokejimai
     }
 }

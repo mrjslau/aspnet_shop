@@ -189,6 +189,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
+    <Compile Include="CustomViewLocationRazorViewEngine.cs" />
     <Compile Include="Data\DatabaseContext.cs" />
     <Compile Include="Data\Migrations\Configuration.cs" />
     <Compile Include="Global.asax.cs">
@@ -760,9 +761,9 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Views\Store\Thank-you.cshtml" />
+    <Content Include="Views\Store\Checkout\Thank-you.cshtml" />
     <None Include="Views\Admin\Index.cshtml" />
-    <Content Include="Views\Admin\Products\Products.cshtml" />
+    <Content Include="Views\Admin\Products\ProductsForAdmin.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -772,7 +773,6 @@
     </Content>
     <Content Include="Views\Web.config" />
     <Content Include="Views\Admin\Shared\Error.cshtml" />
-    <Content Include="Views\Admin\Shared\_Layout_old.cshtml" />
     <Content Include="Views\Store\Account\_ExternalLoginsListPartial.cshtml" />
     <Content Include="Views\Store\Account\ConfirmEmail.cshtml" />
     <Content Include="Views\Store\Account\ExternalLoginConfirmation.cshtml" />
@@ -792,23 +792,22 @@
     <Content Include="Views\Admin\Manage\SetPassword.cshtml" />
     <Content Include="Views\Admin\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Admin\Shared\Lockout.cshtml" />
-    <Content Include="Views\Admin\Shared\_LoginPartial_old.cshtml" />
     <Content Include="Views\Admin\Products\Create.cshtml" />
     <Content Include="Views\Admin\Products\Delete.cshtml" />
     <Content Include="Views\Admin\Products\Details.cshtml" />
     <Content Include="Views\Admin\Products\Edit.cshtml" />
-    <Content Include="Views\Admin\Shared\_Layout.cshtml" />
-    <Content Include="Views\Admin\Shared\_HeaderBarPartial.cshtml" />
+    <Content Include="Views\Admin\Shared\_AdminLayout.cshtml" />
+    <Content Include="Views\Admin\Shared\_AdminHeaderBarPartial.cshtml" />
     <Content Include="Views\Store\ShoppingCart.cshtml" />
-    <Content Include="Views\Admin\Shared\_LeftSideBarPartial.cshtml" />
-    <Content Include="Views\Store\Checkout.cshtml" />
-    <Content Include="Views\Store\Shared\_Layout.cshtml" />
-    <Content Include="Views\Store\Shared\_HeaderTopPartial.cshtml" />
-    <Content Include="Views\Store\Shared\_HeaderMiddlePartial.cshtml" />
-    <Content Include="Views\Store\Shared\_HeaderBottomPartial.cshtml" />
+    <Content Include="Views\Admin\Shared\_AdminLeftSideBarPartial.cshtml" />
+    <Content Include="Views\Store\Checkout\Checkout.cshtml" />
+    <Content Include="Views\Store\Shared\_StoreLayout.cshtml" />
+    <Content Include="Views\Store\Shared\_StoreHeaderTopPartial.cshtml" />
+    <Content Include="Views\Store\Shared\_StoreHeaderMiddlePartial.cshtml" />
+    <Content Include="Views\Store\Shared\_StoreHeaderBottomPartial.cshtml" />
     <Content Include="Views\Store\Home\Index.cshtml" />
     <Content Include="Views\Store\Account_new_nenaudojamas\Login.cshtml" />
-    <Content Include="Views\Store\Products\Products.cshtml" />
+    <Content Include="Views\Store\Products\ProductsForUser.cshtml" />
     <Content Include="Views\Admin\_ViewStart.cshtml" />
     <Content Include="Views\Store\_ViewStart.cshtml" />
   </ItemGroup>

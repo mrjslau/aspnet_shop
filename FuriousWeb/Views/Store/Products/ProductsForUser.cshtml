@@ -1,5 +1,9 @@
 ﻿@model IEnumerable<FuriousWeb.Models.Product>
 
+@{ 
+    bool debugHere = true;
+}
+
 <div class="features_items">
     <h2 class="title text-center">Visos prekės</h2>
     @foreach (var product in Model)

@@ -63,7 +63,7 @@ namespace FuriousWeb.Controllers
             {
                 ViewBag.ReturnUrl = returnUrl;
             }
-            return View("../Store/Account/Login");
+            return View();
         }
 
         //
@@ -144,7 +144,7 @@ namespace FuriousWeb.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
-            return View("../Store/Account/Register");
+            return View();
         }
 
         //
