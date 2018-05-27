@@ -1,7 +1,7 @@
 ﻿function onBtnAddToCartClick(btnAddToCart, productId, refreshCart) {
     //define as global vars because we need to persist these values after ajax call.
     $BTN_ADD_TO_CART = $(btnAddToCart);
-    PRODUCT_QUANTITY_TO_ADD = parseInt($BTN_ADD_TO_CART.siblings(".productQuantityToAdd").val());
+    PRODUCT_QUANTITY_TO_ADD = 1;
 
     $.ajax({
         type: "GET",
@@ -34,10 +34,12 @@
     })
 }
 
-function getProducts(queryString) {
+function getProducts(queryString, adminAccess) {
+    var actionName = adminAccess ? "GetProductsListForAdmin" : "GetProductsListForUser";
+
     $.ajax({
         type: "GET",
-        url: '/Products/GetProductsList',
+        url: '/Products/' + actionName,
         contentType: "application/json; charset=utf-8",
         dataType: "html",
         async: true,
@@ -50,16 +52,17 @@ function getProducts(queryString) {
             alert(errorMsg);
         },
         success: function (data) {
-            console.log(3);
-            console.log($(".products"));
             $(".products").html(data);
         }
-    }).promi
-
+    })
 }
 
 //neleidžiam įvesti mažiau už 1
 function onProductQuantityChange(element) {
     if ($(element).val() < 1)
         $(element).val(1);
+}
+
+function search(adminAccess) {
+    getProducts($("#search-query").val(), adminAccess);
 }

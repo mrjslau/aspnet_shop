@@ -16,15 +16,15 @@
     <header id="header">
         <!--header-->
         <div class="header_top">
-            @Html.Partial("Shared/_HeaderTopPartial")
+            @Html.Partial("../Store/Shared/_HeaderTopPartial")
         </div>
 
         <div class="header-middle">
-            @Html.Partial("Shared/_HeaderMiddlePartial")
+            @Html.Partial("../Store/Shared/_HeaderMiddlePartial")
         </div>
 
         <div class="header-bottom">
-            @Html.Partial("Shared/_HeaderBottomPartial")
+            @Html.Partial("../Store/Shared/_HeaderBottomPartial")
         </div>
     </header><!--/header-->
 
@@ -44,11 +44,13 @@
 
     </footer><!--/Footer-->
 
-    <script src="~/Scripts/jquery.js"></script>
+    @*<script src="~/Scripts/jquery.js"></script>*@
+    <script src="~/libs/jquery/dist/jquery.min.js" type="text/javascript"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
     <script src="~/Scripts/jquery.scrollUp.min.js"></script>
     <script src="~/Scripts/price-range.js"></script>
     <script src="~/Scripts/jquery.prettyPhoto.js"></script>
     <script src="~/Scripts/main.js"></script>
+    <script src="~/Scripts/common.js" language="javascript" type="text/javascript"></script>
     @RenderSection("scripts", required: false)
 </body>
