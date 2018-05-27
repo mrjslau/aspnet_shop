@@ -1,5 +1,4 @@
 ﻿using System.Web.Mvc;
-using FuriousWeb.Models;
 
 namespace FuriousWeb.Controllers
 {
@@ -7,7 +6,7 @@ namespace FuriousWeb.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            return View("../Store/Home/Index");
         }
 
         public ActionResult About()
@@ -21,20 +20,6 @@ namespace FuriousWeb.Controllers
         {
             ViewBag.Message = "Your contact page.";
 
-            return View();
-        }
-
-        [AllowCrossSite]
-        public ActionResult Cart()
-        {
-            Response.AppendHeader("Access-Control-Allow-Origin", "*");
-            ViewBag.Message = "Enter your payment details";
-
-            ShoppingCart cart = new ShoppingCart();
-            //cart.Add(1, 10);
-            //cart.Add(2, 10);
-            //cart.Add(3, 10);
-            //ViewBag.Products = cart.Products;
             return View();
         }
     }

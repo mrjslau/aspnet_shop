@@ -5,8 +5,8 @@
 </div>
 <div class="main-menu">
     <ul class="menu">
-        <li class="selected"> <a href="@Url.Action("Index", "Home" )"><i class="fa fa-home"></i>Pagrindinis</a> </li>
-        <li> <a href="@Url.Action("GetProductsList", "Products", routeValues: new { isPartial = "false" })"><i class="fa fa-product-hunt"></i>Prekės</a> </li>
+        <li> <a href="@Url.Action("Index", "Admin", null)"><i class="fa fa-home"></i>Pagrindinis</a> </li>
+        <li> <a href="@Url.Action("GetProductsListForAdmin", "Products", routeValues: new { isPartial = "false" })"><i class="fa fa-product-hunt"></i>Prekės</a> </li>
         <li> <a href="#"><i class="fa fa-users"></i>Vartotojai</a> </li>
         <li> <a href="#"><i class="fa fa-shopping-cart"></i>Užsakymai</a> </li>
     </ul>

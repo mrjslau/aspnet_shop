@@ -17,7 +17,8 @@ namespace FuriousWeb.Controllers
                 shoppingCart = new ShoppingCart();
                 HttpContext.Session["shoppingCart"] = shoppingCart;
             }
-            return View("../ShoppingCart", shoppingCart.GetItems());
+
+            return View("../Store/ShoppingCart", shoppingCart.GetItems());
         }
 
         public ActionResult AddItem(int productId, long quantity)
@@ -48,7 +49,7 @@ namespace FuriousWeb.Controllers
             long shoppingCartItemsCount = shoppingCart.CountItems();
             HttpContext.Session["shoppingCartItemsCount"] = shoppingCartItemsCount;
 
-            return View("../ShoppingCart", shoppingCart.GetItems());
+            return View("../Store/ShoppingCart", shoppingCart.GetItems());
         }
 
         

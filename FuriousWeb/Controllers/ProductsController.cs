@@ -12,7 +12,7 @@ namespace FuriousWeb.Controllers
     {
         private DatabaseContext db = new DatabaseContext();
 
-        public ActionResult GetProductsList(bool isPartial, string query)
+        public ActionResult GetProductsListForUser(bool isPartial, string query)
         {
             var products = db.Products.ToList();
             if (!string.IsNullOrWhiteSpace(query))
@@ -21,9 +21,23 @@ namespace FuriousWeb.Controllers
             }
 
             if (isPartial)
-                return PartialView("Products", products);
+                return PartialView("../Store/Products/Products", products);
             else
-                return View("Products", products);
+                return View("../Store/Products/Products", products);
+        }
+
+        public ActionResult GetProductsListForAdmin(bool isPartial, string query)
+        {
+            var products = db.Products.ToList();
+            if (!string.IsNullOrWhiteSpace(query))
+            {
+                products = products.Where(x => x.Name == query || x.Code == query).ToList();
+            }
+
+            if (isPartial)
+                return PartialView("../Admin/Products/Products", products);
+            else
+                return View("../Admin/Products/Products", products);
         }
 
         public ActionResult Details(int? id)
@@ -37,12 +51,12 @@ namespace FuriousWeb.Controllers
             {
                 return HttpNotFound();
             }
-            return View(product);
+            return View("../Admin/Products/Edit", product);
         }
 
         public ActionResult Create()
         {
-            return View(new CreateProductViewModel());
+            return View("../Admin/Products/Create");
         }
 
         [HttpPost]
@@ -58,9 +72,11 @@ namespace FuriousWeb.Controllers
                 product.Price = viewModel.Price;
                 db.Products.Add(product);         
                 db.SaveChanges();
-                return RedirectToAction("../Home/Index");
+
+                return RedirectToAction("GetProductsListForAdmin", new { isPartial = false});
             }
-            return View(viewModel);
+
+            return View("../Admin/Products/Create", viewModel);
         }
 
         public ActionResult Edit(int? id)
@@ -74,7 +90,7 @@ namespace FuriousWeb.Controllers
 
             EditProductViewModel viewModel = new EditProductViewModel(product);
 
-            return View(viewModel);
+            return View("../Admin/Products/Edit", viewModel);
         }
 
         [HttpPost]
@@ -91,9 +107,9 @@ namespace FuriousWeb.Controllers
 
                 db.Entry(product).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("../Home/Index");
+                return RedirectToAction("GetProductsListForAdmin", new { isPartial = false });
             }
-            return View(viewModel);
+            return View("../Admin/Products/Edit", viewModel);
         }
 
         public ActionResult Delete(int? id)
@@ -111,7 +127,7 @@ namespace FuriousWeb.Controllers
             viewModel.Name = product.Name;
             viewModel.Description = product.Description;          
 
-            return View(viewModel);
+            return View("../Admin/Products/Delete", viewModel);
         }
 
         [HttpPost, ActionName("Delete")]
@@ -121,7 +137,7 @@ namespace FuriousWeb.Controllers
             Product product = db.Products.Find(id);
             db.Products.Remove(product);
             db.SaveChanges();
-            return RedirectToAction("../Home/Index");
+            return RedirectToAction("GetProductsListForAdmin", new { isPartial = false });
         }
 
         protected override void Dispose(bool disposing)
