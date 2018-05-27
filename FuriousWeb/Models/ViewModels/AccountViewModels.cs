@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace FuriousWeb.Models.ViewModels
 {
@@ -63,6 +64,13 @@ namespace FuriousWeb.Models.ViewModels
 
         [Display(Name = "Prisiminti?")]
         public bool RememberMe { get; set; }
+    }
+
+    public class HomeViewModel
+    {
+        public string User;
+        public System.Linq.IQueryable<Order> Orders;
+        public List<OrderDetails> OrderDetails;
     }
 
     public class RegisterViewModel

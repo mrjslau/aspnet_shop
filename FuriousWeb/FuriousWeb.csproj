@@ -810,6 +810,7 @@
     <Content Include="Views\Store\Products\ProductsForUser.cshtml" />
     <Content Include="Views\Admin\_ViewStart.cshtml" />
     <Content Include="Views\Store\_ViewStart.cshtml" />
+    <Content Include="Views\Store\Account\Home.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
