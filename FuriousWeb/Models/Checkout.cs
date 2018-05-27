@@ -37,6 +37,7 @@ namespace FuriousWeb.Models
             if (CallAPI())
             {
                 return true;
+            }
             else
             {
                 return false;
