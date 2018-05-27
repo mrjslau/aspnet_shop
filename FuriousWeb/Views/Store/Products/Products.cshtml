@@ -8,10 +8,10 @@
             <div class="product-image-wrapper">
                 <div class="single-products">
                     <div class="productinfo text-center">
-                        <a href="#"><img src="images/shop/product12.jpg" alt="" /></a>
+                        <a href="@Url.Action("DetailsForUsers", "Products", routeValues: new { id = product.Id })"><img src="~/Content/Images/Products/adidas.jpg" alt="" /></a>
                         <h2>€@product.Price</h2>
                         <p>@product.Name</p>
-                        <button type="button" class="btn btn-default btnAddToCart" onclick="onBtnAddToCartClick(this, @product.Id, false)"><i class="fa fa-shopping-cart"></i> Įdėti į krėpšelį</button>
+                        <button type="button" class="btn btn-default btnAddToCart add-to-cart" onclick="onBtnAddToCartClick(this, @product.Id, false)"><i class="fa fa-shopping-cart"></i> Įdėti į krėpšelį</button>
                     </div>
                 </div>
             </div>

@@ -54,6 +54,20 @@ namespace FuriousWeb.Controllers
             return View("../Admin/Products/Edit", product);
         }
 
+        public ActionResult DetailsForUsers(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Product product = db.Products.Find(id);
+            if (product == null)
+            {
+                return HttpNotFound();
+            }
+            return View("../Store/Products/Details", product);
+        }
+
         public ActionResult Create()
         {
             return View(new CreateProductViewModel());
