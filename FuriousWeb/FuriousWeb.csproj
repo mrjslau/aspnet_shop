@@ -238,9 +238,9 @@
     <Content Include="Content\Styles\price-range.css" />
     <Content Include="Content\Styles\pure-extend.css" />
     <Content Include="Content\Styles\responsive.css" />
-    <Content Include="Data\SQL\dbdrop.sql" />
-    <Content Include="Data\SQL\db_clear.sql" />
-    <Content Include="Data\SQL\db_fill.sql" />
+    <Content Include="Data\SQL\DB_DROP.sql" />
+    <Content Include="Data\SQL\DB_CLEAR_ALL_TABLES.sql" />
+    <Content Include="Data\SQL\DB_FILL_PRODUCTS.sql" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Styles\Site.css" />
