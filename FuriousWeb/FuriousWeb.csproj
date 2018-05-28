@@ -227,6 +227,7 @@
     <Content Include="Content\Images\ShopSlider\pricing.png" />
     <Content Include="Content\Images\Store\searchicon.png" />
     <Content Include="Content\Images\Store\shipping.jpg" />
+    <Content Include="Content\Styles\adminstyle.css" />
     <Content Include="Content\Styles\animate.css" />
     <Content Include="Content\Styles\bootstrap.css" />
     <Content Include="Content\Styles\bootstrap.min.css" />
@@ -844,7 +845,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>49814</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>

@@ -43,7 +43,7 @@
                     </li>*@
 
 
-                            <tr>
+                            <tr class="to_count">
                                 <td class="cart_product">
                                     <a href=""><img src="images/cart/one.png" alt=""></a>
                                 </td>
@@ -62,7 +62,7 @@
                                     </div>
                                 </td>
                                 <td class="cart_total">
-                                    <p class="cart_total_price">$59</p>
+                                    <p class="cart_total_price"></p>
                                 </td>
                                 <td class="cart_delete">
                                     <a class="cart_quantity_delete" href="@Url.Action("DeleteItem", "ShoppingCart", routeValues: new { productId = cartItem.Product.Id })"><i class="fa fa-times"></i></a>
@@ -73,9 +73,9 @@
                             <td></td>
                             <td></td>
                             <td></td>
-                            <td></td>
                             <td>Iš viso:</td>
-                            <td> 59 eur.</td>
+                            <td id="display_total">test</td>
+                            <td></td>
                         </tr>
                     </tbody>
                 </table>
@@ -86,24 +86,6 @@
             </div>
         </div>
     </section> <!--/#cart_items-->
-
-    @section Scripts {
-    <script type="text/javascript">
-        $(".cart_quantity_up").click(function () {
-            event.preventDefault();
-            var value = parseInt($(this).next("input").val());
-            var value = value + 1;
-            $(this).next("input").val(value);
-        });
-        $(".cart_quantity_down").click(function (event) {
-            event.preventDefault();
-            var value = parseInt($(this).prev("input").val());
-            var value = value - 1;
-            if (value >= 1) { $(this).prev("input").val(value); }
-            else { $(this).prev("input").val(1); }
-        });
-    </script>
-    }
 
 
 
