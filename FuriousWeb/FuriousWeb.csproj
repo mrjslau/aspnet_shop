@@ -225,6 +225,8 @@
     <Content Include="Content\Images\ShopSlider\girl2.jpg" />
     <Content Include="Content\Images\ShopSlider\girl3.jpg" />
     <Content Include="Content\Images\ShopSlider\pricing.png" />
+    <Content Include="Content\Images\Store\searchicon.png" />
+    <Content Include="Content\Images\Store\shipping.jpg" />
     <Content Include="Content\Styles\animate.css" />
     <Content Include="Content\Styles\bootstrap.css" />
     <Content Include="Content\Styles\bootstrap.min.css" />
@@ -811,6 +813,7 @@
     <Content Include="Views\Admin\_ViewStart.cshtml" />
     <Content Include="Views\Store\_ViewStart.cshtml" />
     <Content Include="Views\Store\Account\Home.cshtml" />
+    <Content Include="Views\Store\Products\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
