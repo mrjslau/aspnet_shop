@@ -5,8 +5,93 @@
 }
 
 
-@if(Model.Count() > 0)
+@if (Model.Count() > 0)
 {
+    <section id="cart_items">
+        <div class="container">
+            <div class="breadcrumbs">
+                <ol class="breadcrumb">
+                    <li><a href="#">Pagrindinis</a></li>
+                    <li class="active">Krepšelis</li>
+                </ol>
+            </div>
+            <div class="table-responsive cart_info">
+                <table class="table table-condensed">
+                    <thead>
+                        <tr class="cart_menu">
+                            <td class="image">Prekė</td>
+                            <td class="description"></td>
+                            <td class="price">Kaina</td>
+                            <td class="quantity">Kiekis</td>
+                            <td class="total">Iš viso</td>
+                            <td></td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var cartItem in Model)
+                        {
+                            @*
+                    <li class="list-group-item">
+                        <div class="id" style="display:none;"> @cartItem.Product.Id </div>
+                        <div class="col-md-6">@cartItem.Product.Name</div>
+                        <div class="col-md-6 quantityInCart">@cartItem.Quantity</div>
+                        <div class="actions">
+                            <a href="@Url.Action("DeleteItem", "ShoppingCart", routeValues: new { productId = cartItem.Product.Id })"><i class="delete fa fa-trash"></i></a>
+                            <input type="number" class="quantityInput productQuantityToAdd" min="1" value="1" onchange="onProductQuantityChange(this)" />
+                            <button type="button" class="btnAddToCart" onclick="onBtnAddToCartClick(this, @cartItem.Product.Id, true)">Įdėti į krėpšelį</button>
+                        </div>
+                    </li>*@
+
+
+                            <tr>
+                                <td class="cart_product">
+                                    <a href=""><img src="images/cart/one.png" alt=""></a>
+                                </td>
+                                <td class="cart_description">
+                                    <h4><a href="">@cartItem.Product.Name</a></h4>
+                                    <p>Prekės ID: @cartItem.Product.Id</p>
+                                </td>
+                                <td class="cart_price">
+                                    <p>@cartItem.Product.Price</p>
+                                </td>
+                                <td class="cart_quantity">
+                                    <div class="cart_quantity_button">
+                                        <a class="cart_quantity_up" href=""> + </a>
+                                        <input class="cart_quantity_input" type="text" name="quantity" min="1" value=">@cartItem.Quantity" autocomplete="off" size="2" onchange="onProductQuantityChange(this)">
+                                        <a class="cart_quantity_down" href=""> - </a>
+                                    </div>
+                                </td>
+                                <td class="cart_total">
+                                    <p class="cart_total_price">$59</p>
+                                </td>
+                                <td class="cart_delete">
+                                    <a class="cart_quantity_delete" href="@Url.Action("DeleteItem", "ShoppingCart", routeValues: new { productId = cartItem.Product.Id })"><i class="fa fa-times"></i></a>
+                                </td>
+                            </tr>
+                        }
+                        <tr class="cart_count_total">
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>Iš viso:</td>
+                            <td> 59 eur.</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="cart_actions">
+                    <a href="@Url.Action("openCheckout", "Checkout")" class="btn form-buttons">Apmokėti</a>
+                    <a href="#" class="btn form-buttons">Išvalyti krepšelį</a>
+                </div>
+            </div>
+        </div>
+    </section> <!--/#cart_items-->
+
+
+
+
+
+    @* 
     <h3>Krepšelis</h3>
     <div class="panel">
         <div class="panel-heading"></div>
@@ -34,10 +119,27 @@
         <div class="panel-footer">
             <button type="button" onclick="location.href='@Url.Action("openCheckout", "Checkout")'" class="btn-primary">Apmokėti</button>
         </div>
-    </div>
+    </div>*@
 }
 else
 {
-    <h3>Krepšelis yra tuščias</h3>
-
+    <section id="cart_items">
+        <div class="container">
+            <div class="breadcrumbs">
+                <ol class="breadcrumb">
+                    <li><a href="#">Pagrindinis</a></li>
+                    <li class="active">Krepšelis</li>
+                </ol>
+            </div>
+            <div class="empty-cart">
+                <p>Krepšelis tuščias.</p>
+            </div>
+            <div class="come-back">
+                <div>
+                    <img src="~/Content/Images/logo.png">
+                </div>
+                <p>Grįžti į <a href="@Url.Action("Index", "Home")">pagrindinį puslapį</a></p>
+            </div>
+        </div>
+    </section>
 }

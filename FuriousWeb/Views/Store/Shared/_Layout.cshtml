@@ -13,23 +13,24 @@
 </head><!--/head-->
 
 <body>
-    <header id="header">
-        <!--header-->
-        <div class="header_top">
-            @Html.Partial("../Store/Shared/_HeaderTopPartial")
-        </div>
+    <div class="page">
+        <header id="header">
+            <!--header-->
+            <div class="header_top">
+                @Html.Partial("../Store/Shared/_HeaderTopPartial")
+            </div>
 
-        <div class="header-middle">
-            @Html.Partial("../Store/Shared/_HeaderMiddlePartial")
-        </div>
+            <div class="header-middle">
+                @Html.Partial("../Store/Shared/_HeaderMiddlePartial")
+            </div>
 
-        <div class="header-bottom">
-            @Html.Partial("../Store/Shared/_HeaderBottomPartial")
-        </div>
-    </header><!--/header-->
+            <div class="header-bottom">
+                @Html.Partial("../Store/Shared/_HeaderBottomPartial")
+            </div>
+        </header><!--/header-->
 
-    @RenderBody()
-
+        @RenderBody()
+    </div>
     <footer id="footer">
         <!--Footer-->
 
