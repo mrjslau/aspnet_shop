@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FuriousWeb.Models
 {
@@ -9,5 +10,8 @@ namespace FuriousWeb.Models
         public int OrderID { get; set; }
         public int ProductID { get; set; }
         public long Quantity { get; set; }
+
+        [ForeignKey("OrderID")]
+        public Order Order { get; set; }
     }
 }

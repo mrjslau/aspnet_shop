@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace FuriousWeb.Models
 {
@@ -8,5 +9,6 @@ namespace FuriousWeb.Models
         public int ID { get; set; }
         public string UserID { get; set; }
         public int PaymentID { get; set; }
+        public int Status { get; set; }
     }
 }
