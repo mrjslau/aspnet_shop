@@ -56,9 +56,9 @@
                                 </td>
                                 <td class="cart_quantity">
                                     <div class="cart_quantity_button">
-                                        <a class="cart_quantity_up" href=""> + </a>
-                                        <input class="cart_quantity_input" type="text" name="quantity" min="1" value=">@cartItem.Quantity" autocomplete="off" size="2" onchange="onProductQuantityChange(this)">
-                                        <a class="cart_quantity_down" href=""> - </a>
+                                        <a class="cart_quantity_up" href="#"> + </a>
+                                        <input class="cart_quantity_input" type="text" name="quantity" min="1" value="@cartItem.Quantity" autocomplete="off" size="2" onchange="onProductQuantityChange(this)">
+                                        <a class="cart_quantity_down" href="#"> - </a>
                                     </div>
                                 </td>
                                 <td class="cart_total">
@@ -87,7 +87,23 @@
         </div>
     </section> <!--/#cart_items-->
 
-
+    @section Scripts {
+    <script type="text/javascript">
+        $(".cart_quantity_up").click(function () {
+            event.preventDefault();
+            var value = parseInt($(this).next("input").val());
+            var value = value + 1;
+            $(this).next("input").val(value);
+        });
+        $(".cart_quantity_down").click(function (event) {
+            event.preventDefault();
+            var value = parseInt($(this).prev("input").val());
+            var value = value - 1;
+            if (value >= 1) { $(this).prev("input").val(value); }
+            else { $(this).prev("input").val(1); }
+        });
+    </script>
+    }
 
 
 

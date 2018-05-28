@@ -12,28 +12,50 @@
         <div class="panel-body">
             <ul class="list-group clearfix">
                 <li class="list-group-item clearfix">
-                    <div class="col-md-2">ID</div>
-                    <div class="col-md-4">Laikas</div>
-                    <div class="col-md-6 text-md-right">Suma</div>
+                    <div class="col-md-3">ID</div>
+                    <div class="col-md-3">Laikas</div>
+                    <div class="col-md-3">Suma</div>
+                    <div class="col-md-3">Užsakymo būsena</div>
                 </li>
                 @foreach (var order in Model.Orders)
                 {
-                    <li class="list-group-item clearfix">
-                        <div class="col-md-2">@order.ID</div>
-                        <div class="col-md-4">Laikas</div>
-                        <div class="col-md-6 text-md-right">Kaina</div>
-                    </li>
+                <li class="list-group-item clearfix">
+                    <div class="col-md-3">@order.ID</div>
+                    <div class="col-md-3">Laikas</div>
+                    <div class="col-md-3">Kaina</div>
+                    <div class="col-md-3">@order.Status</div>
+                </li>
                 }
             </ul>
         </div>
+        @*
         <div class="panel-footer">
             <button type="button" onclick="location.href='@Url.Action("openCheckout", "Checkout")'" class="btn-primary">Apmokėti</button>
         </div>
+            *@
     </div>
 }
 else
 {
-    <h3>Pirkimų istorija yra tuščia</h3>
+    <section>
+        <div class="container">
+            <div class="breadcrumbs">
+                <ol class="breadcrumb">
+                    <li><a href="#">Pagrindinis</a></li>
+                    <li class="active">Profilis</li>
+                </ol>
+            </div>
+            <div class="empty-cart">
+                <p>Pirkimų istorija yra tuščia</p>
+            </div>
+            <div class="come-back">
+                <div>
+                    <img src="~/Content/Images/logo.png">
+                </div>
+                <p>Grįžti į <a href="@Url.Action("Index", "Home")">pagrindinį puslapį</a></p>
+            </div>
+        </div>
+    </section>
 
 }
 
