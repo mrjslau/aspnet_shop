@@ -201,7 +201,7 @@
                     var count = getProductsCount('');
                     pages = Math.ceil(count / 12);
                     console.log($('.products-pagination'));
-
+                    $('.products-pagination').append('<li class="active" data-value="1">' + 1 + '</li>');
                     for (i = 1; i < pages; i++) {
                         $('.products-pagination').append('<li data-value="' + (i + 1) + '">' + (i + 1) + '</li>');
                         console.log(i + 1);
@@ -214,11 +214,10 @@
             setTimeout(function () {
                 var count = getProductsCount('');
                 pages = Math.ceil(count / 12);
-                console.log($('.products-pagination'));
-
+                $('.products-pagination').append('<li class="active" data-value="1">' + 1 + '</li>');
+                
                 for (i = 1; i < pages; i++) {
                     $('.products-pagination').append('<li data-value="' + (i + 1) + '">' + (i + 1) + '</li>');
-                    console.log(i + 1);
                 }
 
 

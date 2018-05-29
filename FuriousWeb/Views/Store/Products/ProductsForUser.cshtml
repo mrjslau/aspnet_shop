@@ -9,7 +9,7 @@
                 <div class="single-products">
                     <div class="productinfo text-center">
                         <a href="@Url.Action("DetailsForUsers", "Products", routeValues: new { id = product.Id })"><img src="~/Content/Images/Products/adidas.jpg" alt="" /></a>
-                        <h2>€@product.Price</h2>
+                        <h2>@product.Price €</h2>
                         <p>@product.Name</p>
                         <button type="button" class="btn btn-default btnAddToCart add-to-cart" onclick="onBtnAddToCartClick(this, @product.Id, false)"><i class="fa fa-shopping-cart"></i> Įdėti į krėpšelį</button>
                     </div>
@@ -20,7 +20,6 @@
     }
   
     <ul class="products-pagination pagination">
-        <li class="active" data-value="1">1</li>
         @*<li>&raquo;</li>*@
     </ul>
 </div>

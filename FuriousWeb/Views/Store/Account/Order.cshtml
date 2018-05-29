@@ -1,4 +1,4 @@
-﻿@model FuriousWeb.Models.ViewModels.HomeViewModel
+﻿@model FuriousWeb.Models.ViewModels.ProfileViewModel
 @{
     ViewBag.Title = "Profilis";
 }
@@ -23,9 +23,9 @@
                     {
                         <li class="list-group-item clearfix">
                             <div class="col-md-2">@*orderDetail.Photo*@</div>
-                            <div class="col-md-6">@orderDetail.ProductID</div>
+                            <div class="col-md-6">@orderDetail.Product.Name</div>
                             <div class="col-md-2">@orderDetail.Quantity</div>
-                            <div class="col-md-2 text-right">Suma</div>
+                            <div class="col-md-2 text-right">@Model.GetSum(orderDetail.Product.Price, @orderDetail.Quantity)</div>
                         </li>
                     }
                 </ul>

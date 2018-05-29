@@ -64,7 +64,7 @@ namespace FuriousWeb.Controllers
                 //save order details
                 foreach(ShoppingCartItem item in checkout.Cart.GetItems())
                 {
-                    var orderDetail = new OrderDetails();
+                    var orderDetail = new OrderDetail();
                     orderDetail.OrderID = order.ID;
                     orderDetail.ProductID = item.Product.Id;
                     orderDetail.Quantity = item.Quantity;

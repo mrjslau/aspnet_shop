@@ -33,7 +33,7 @@ namespace FuriousWeb.Data
 
         public DbSet<Product> Products { get; set; } //prekes
         public DbSet<Order> Orders { get; set; } //užsakymai
-        public DbSet<OrderDetails> OrderDetails { get; set; } //užsakymu duomenys
+        public DbSet<OrderDetail> OrderDetails { get; set; } //užsakymu duomenys
         public DbSet<Payment> Payments { get; set; } //mokejimai
     }
 }
