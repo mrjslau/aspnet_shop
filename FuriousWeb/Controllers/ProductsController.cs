@@ -110,7 +110,7 @@ namespace FuriousWeb.Controllers
                 db.Products.Add(product);         
                 db.SaveChanges();
 
-                return RedirectToAction("GetProductsListForAdmin", new { isPartial = false});
+                return RedirectToAction("GetProductsListForAdmin", new { isPartial = false, query = "", currentPage = 1});
             }
 
             return View(viewModel);
