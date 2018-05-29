@@ -28,6 +28,12 @@ $(document).ready(function(){
 		});
     });
     fillCartPrice();
+
+    $('#user-product-search').keypress(function (event) {
+        if (event.keyCode == 13) {
+            search(true,)
+        }
+    });
 });
 
 
