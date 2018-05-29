@@ -19,10 +19,18 @@
 
             <div id="navbar" class="collapse navbar-collapse">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="@Url.Action("Index", "Admin", null)">Admin panelė</a></li>
-                    <li><a href="@Url.Action("GetProductsListForAdmin", "Products", routeValues: new { isPartial = "false" })">Prekės</a></li>
-                    <li><a href="users.html">Vartotojai</a></li>
-                    <li><a href="orders.html">Užsakymai</a></li>
+                    <li @(ViewContext.RouteData.Values["Action"].ToString() == "GetDashboardForAdmin" ? "class=active" : "")>
+                        <a href="@Url.Action("GetDashboardForAdmin", "Admin")">Admin panelė</a>
+                    </li>
+                    <li @(ViewContext.RouteData.Values["Action"].ToString() == "GetProductsListForAdmin" ? "class=active" : "")>
+                        <a href="@Url.Action("GetProductsListForAdmin", "Products", routeValues: new { isPartial = "false", query = "", currentPage = 1 })">Prekės</a>
+                    </li>
+                    <li @(ViewContext.RouteData.Values["Action"].ToString() == "GetUsersListForAdmin" ? "class=active" : "")>
+                        <a href="@Url.Action("GetUsersListForAdmin", "Admin", routeValues: new { isPartial = "false", query = "", currentPage = 1 })">Vartotojai</a>
+                    </li>
+                    <li @(ViewContext.RouteData.Values["Action"].ToString() == "GetOrderListForAdmin" ? "class=active" : "")>
+                        <a href="@Url.Action("GetOrderListForAdmin", "Admin", routeValues: new { isPartial = "false", query = "", currentPage = 1 })">Užsakymai</a>
+                    </li>
                 </ul>
 
 

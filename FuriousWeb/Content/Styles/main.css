@@ -219,6 +219,10 @@ a#scrollUp i{
 	background:#fff;
 }
 
+.shop-menu ul li.active a{
+	color:#fe980f;
+	background:#fff;
+}
 
 .header-bottom {
   padding-bottom: 30px;
