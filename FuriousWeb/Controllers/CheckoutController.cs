@@ -51,11 +51,16 @@ namespace FuriousWeb.Controllers
                 payment.Created_at = checkout.paymentInfo.Created_at;
                 payment.Code = checkout.paymentInfo.Id;
                 db.Payments.Add(payment);
+
                 //save order
                 var order = new Order();
                 order.PaymentID = payment.ID;
                 order.UserID = checkout.User;
+                var date = DateTime.Parse(checkout.paymentInfo.Created_at);
+                order.Created_at = date.ToString("yyyy-MM-dd");
+                order.Status = 1;
                 db.Orders.Add(order);
+
                 //save order details
                 foreach(ShoppingCartItem item in checkout.Cart.GetItems())
                 {
@@ -66,6 +71,7 @@ namespace FuriousWeb.Controllers
                     db.OrderDetails.Add(orderDetail);
                 }
                 db.SaveChanges();
+
                 HttpContext.Session["shoppingCartItemsCount"] = 0;
                 HttpContext.Session["shoppingCart"] = new ShoppingCart();
 

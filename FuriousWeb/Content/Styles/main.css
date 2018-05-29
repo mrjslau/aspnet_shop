@@ -1052,18 +1052,18 @@ h2.title {
   padding-left: 15px;
 }
 
-.pagination  li:first-child  a, .pagination  li:first-child  span {
+.pagination  li:first-child, .pagination  li:first-child  span {
   border-bottom-left-radius: 0;
   border-top-left-radius: 0;
   margin-left: 0;
 }
 
-.pagination  li:last-child  a, .pagination  li:last-child  span {
+.pagination  li:last-child, .pagination  li:last-child  span {
   border-bottom-right-radius: 0;
   border-top-right-radius: 0;
 }
 
-.pagination  .active  a, .pagination  .active  span, .pagination  .active  a:hover, .pagination  .active  span:hover, .pagination  .active  a:focus, .pagination  .active  span:focus {
+.pagination  .active, .pagination  .active  span, .pagination  .active  a:hover, .pagination  .active  span:hover, .pagination  .active  a:focus, .pagination  .active  span:focus {
   background-color: #FE980F;
   border-color: #FE980F;
   color: #FFFFFF;
@@ -1071,7 +1071,7 @@ h2.title {
   z-index: 2;
 }
 
-.pagination  li  a, .pagination  li  span {
+.pagination  li, .pagination  li  span {
   background-color: #f0f0e9;
   border: 0;
   float: left;
@@ -1082,9 +1082,10 @@ h2.title {
   text-decoration: none;
   margin-right: 5px;
   color:#000;
+  cursor:pointer;
 }
 
-.pagination  li  a:hover{
+.pagination  li:hover{
 	background:#FE980F;
 	color:#fff;
 }

@@ -12,23 +12,45 @@ namespace FuriousWeb.Controllers
     {
         private DatabaseContext db = new DatabaseContext();
 
-        public ActionResult GetProductsListForUser(string query)
+        public int GetProductCount(string query)
         {
             var products = db.Products.ToList();
             if (!string.IsNullOrWhiteSpace(query))
             {
                 products = products.Where(x => x.Name.ToLower().Contains(query.ToLower()) || x.Code.ToLower().Contains(query.ToLower())).ToList();
             }
-
-            return PartialView("ProductsForUser", products);
+            else
+            {
+                products = db.Products.ToList();
+            }
+            int count = products.Count();
+            return count;
         }
 
-        public ActionResult GetProductsListForAdmin(bool isPartial, string query)
+        public ActionResult GetProductsListForUser(string query, int page)
         {
+            int skip = (page - 1)*12;
+            int take = 12;
             var products = db.Products.ToList();
             if (!string.IsNullOrWhiteSpace(query))
             {
-                products = products.Where(x => x.Name == query || x.Code == query).ToList();
+                products = products.Where(x => x.Name.ToLower().Contains(query.ToLower()) || x.Code.ToLower().Contains(query.ToLower())).Skip(skip).Take(take).ToList();
+            }
+            else
+            {
+                products = db.Products.OrderBy(p => p.Id).Skip(skip).Take(take).ToList();
+            }
+            return PartialView("ProductsForUser", products);
+        }
+
+        public ActionResult GetProductsListForAdmin(bool isPartial, string query, int page)
+        {
+            int skip = (page - 1) * 12;
+            int take = 12;
+            var products = db.Products.ToList();
+            if (!string.IsNullOrWhiteSpace(query))
+            {
+                products = products.Where(x => x.Name == query || x.Code == query).Skip(skip).Take(take).ToList();
             }
 
             if (isPartial)

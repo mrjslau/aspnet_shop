@@ -8,6 +8,8 @@ using FuriousWeb.Models;
 using FuriousWeb.Models.ViewModels;
 using FuriousWeb.Data;
 using System.Linq;
+using System;
+using System.Data.SqlClient;
 
 namespace FuriousWeb.Controllers
 {
@@ -74,7 +76,45 @@ namespace FuriousWeb.Controllers
             }
         }
 
-   
+        [AllowAnonymous]
+        public ActionResult Order(int id)
+        {
+            bool loggedIn = (System.Web.HttpContext.Current.User != null) && System.Web.HttpContext.Current.User.Identity.IsAuthenticated;
+            
+            if (loggedIn)
+            {
+                var user = System.Web.HttpContext.Current.User.Identity.GetUserId();
+                HomeViewModel profile = new HomeViewModel();
+                profile.User = user;
+                try
+                {
+                    var order = db.Orders.Where(b => b.UserID == user && b.ID == id).First();
+                    profile.Order = order;
+                    var orderDetails = db.OrderDetails.Where(b => b.OrderID == id);
+                    profile.OrderDetails = orderDetails;
+                    if (orderDetails == null)
+                    {
+                        return View("../Store/Account/404");
+                    }
+                    else
+                    {
+                        ViewBag.order = order;
+                        return View(profile);
+                    }
+                }
+                catch(Exception ex)
+                {
+                    return View("../Store/Account/404");
+                }
+            }
+            else
+            {
+                return View("../Store/Account/404");
+            }
+        }
+
+        //
+        // GET: /Account/Login
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
