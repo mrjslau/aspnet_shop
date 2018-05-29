@@ -16,7 +16,7 @@
                         <div class="col-md-1">ID</div>
                         <div class="col-md-3">Laikas</div>
                         <div class="col-md-4">Būsena</div>
-                        <div class="col-md-4 text-right">Suma €</div>
+                        <div class="col-md-4 text-right">Suma</div>
                     </li>
                     @foreach (var order in Model.Orders)
                 {
@@ -24,7 +24,7 @@
                             <div class="col-md-1">@order.ID</div>
                             <div class="col-md-3">@order.Created_at</div>
                             <div class="col-md-4">@Model.GetStatus(order.Status)</div>
-                            <div class="col-md-4 text-right">@Math.Round((order.Payment.Amount/100), 2)</div>
+                            <div class="col-md-4 text-right">€ @Math.Round((order.Payment.Amount / 100), 2)</div>
                         </a>
                     }
                 </ul>

@@ -219,6 +219,10 @@ a#scrollUp i{
 	background:#fff;
 }
 
+.shop-menu ul li.active a{
+	color:#fe980f;
+	background:#fff;
+}
 
 .header-bottom {
   padding-bottom: 30px;
@@ -1470,13 +1474,14 @@ h2.title {
 	width: 50px;
 }
 
-
+.validation-summary-errors{
+    text-align:center;
+}
 /*************************
 *******Cart CSS******
 **************************/
-
 #do_action {
-  margin-bottom: 50px;
+    margin-bottom: 50px;
 }
 
 .breadcrumbs {
@@ -2509,15 +2514,16 @@ h2.title {
     background-color: #C70039;
     border-radius: 5px;
     padding: 5px;
-    padding-left: 20px;
+    padding-left: 30px;
     position: relative;
+    margin-bottom:20px;
 }
 
 .empty-cart {
     background-color: #FE980F;
     border-radius: 5px;
     padding: 5px;
-    padding-left: 20px;
+    padding-left: 30px;
     position: relative;
 }
 
@@ -2528,38 +2534,39 @@ h2.title {
     top: 5px;
     left: 5px;
     color: #fff;
-    font-size: 20px;
+    font-size: 16px;
 }
 
 .message:before {
     content: '\f00d';
     font-family: 'FontAwesome';
     position: absolute;
-    top: 5px;
+    top: 4px;
     left: 5px;
     color: #fff;
-    font-size: 20px;
+    font-size: 16px;
 }
 
 .empty-cart:before {
     content: '\f0e7';
     font-family: 'FontAwesome';
     position: absolute;
-    top: 5px;
+    top: 4px;
     left: 5px;
     color: #fff;
-    font-size: 20px;
+    font-size: 16px;
 }
 
 .thankyou p,
 .message p,
-.empty-cart p{
+.empty-cart p {
     color: #fff;
+    font-size: 16px;
 }
 
+.message p,
 .empty-cart p {
-    font-size: 20px;
-    margin: 0px;
+    margin-bottom: 0px;
 }
 
     .come-back {
@@ -2569,7 +2576,6 @@ h2.title {
 .thankyou p,
 .come-back p{
     text-align: center;
-    font-size: 20px;
     margin: 0px;
 }
 
@@ -2628,4 +2634,43 @@ h2.title {
 
 .login-form .middle p:hover {
     color: #FE980F;
+}
+
+.added_to_cart[disabled] {
+    background: #28B463;
+    color: #fff;
+}
+
+.billing_info{
+    margin-bottom:20px;
+}
+
+.billing_info .title {
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.billing_info .info,
+.billing_info .do_action{
+    display:flex;
+    justify-content:center;
+}
+
+.billing_info .info > div,
+.billing_info .do_action > div{
+    max-width: 400px;
+}
+
+.billing_info .do_action button{
+    margin-top:16px;
+}
+
+.billing_info .info > div > div{
+    display:flex;
+}
+
+.billing_info .info input {
+    margin: 5px;
 }

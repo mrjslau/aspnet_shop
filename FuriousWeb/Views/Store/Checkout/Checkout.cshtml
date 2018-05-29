@@ -2,8 +2,13 @@
     ViewBag.Title = "Checkout";
 }
 @model FuriousWeb.Models.Checkout
-@if(Model.paymentErr != null){
-    <h3>The payment was not successful <!--Model.paymentErr.Message--></h3>
+@if (Model.paymentErr != null)
+{
+    <!--Model.paymentErr.Message-->
+
+    <div class="message">
+        <p>Įvyko klaida bandant apmokėti, atsiprašome, bandykite dar kartą.</p>
+    </div>
 }
 
 <form method="post" action="SubmitPayment" runat="server">
@@ -41,32 +46,60 @@
         </div>
     </div>
     -->
-    <div class="panel" id="payment-panel">
-        <div class="panel-heading text-center">
-            <h3>Įveskite kortelės duomenis</h3>
+
+    <div class="billing_info">
+        <div class="title">
+            Įveskite kortelės duomenis
         </div>
-        <div class="panel-body">
-            <div class="row">
-                <div class="col-md-4 col-md-offset-4">
-                    <input class="form-control" maxlength="16" type="text" id="card-number" name="card_number" placeholder="Card number"/>
+        <div class="info">
+            <div>
+                <div>
+                    <input class="form-control" maxlength="16" type="text" id="card-number" name="card_number" placeholder="Kortelės numeris" />
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-md-2 col-xs-6 col-md-offset-4">
-                    <input class="form-control" maxlength="4" type="number" id="exp-year" name="exp_year" placeholder="Expiration year" />
+                <div>
+                    <input class="form-control" maxlength="4" type="number" id="exp-year" name="exp_year" placeholder="Galioja iki (metai)" />
+                    <input class="form-control" maxlength="2" type="number" id="exp-month" name="exp_month" placeholder="Galioja iki (mėnesis)" />
                 </div>
-                <div class="col-md-2 col-xs-6">
-                    <input class="form-control" maxlength="2" type="number" id="exp-month" name="exp_month" placeholder="Expiration month" />
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-4 col-md-offset-4">
-                    <input class="form-control" maxlength="3" type="text" id="card-cvv" name="card_cvv" placeholder="Card CVV"/>
+                <div>
+                    <input class="form-control" maxlength="3" type="text" id="card-cvv" name="card_cvv" placeholder="Kortelės CVV kodas" />
                 </div>
             </div>
         </div>
-        <div class="panel-footer text-right">
-            <button type="submit" id="pay-now" class="btn-primary">Apmokėti</button>
+        <div class="do_action">
+            <div>
+                <button type="submit" id="pay-now" class="btn btn-primary add-to-cart">Apmokėti</button>
+                <button type="reset" id="reset" class="btn btn-default add-to-cart">Valyti</button>
+            </div>
         </div>
     </div>
+
+    @*
+        <div class="panel" id="payment-panel">
+            <div class="panel-heading text-center">
+                <h3>Įveskite kortelės duomenis</h3>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-4 col-md-offset-4">
+                        <input class="form-control" maxlength="16" type="text" id="card-number" name="card_number" placeholder="Card number"/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2 col-xs-6 col-md-offset-4">
+                        <input class="form-control" maxlength="4" type="number" id="exp-year" name="exp_year" placeholder="Expiration year" />
+                    </div>
+                    <div class="col-md-2 col-xs-6">
+                        <input class="form-control" maxlength="2" type="number" id="exp-month" name="exp_month" placeholder="Expiration month" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 col-md-offset-4">
+                        <input class="form-control" maxlength="3" type="text" id="card-cvv" name="card_cvv" placeholder="Card CVV"/>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-footer text-right">
+                <button type="submit" id="pay-now" class="btn-primary">Apmokėti</button>
+            </div>
+        </div>*@
 </form>

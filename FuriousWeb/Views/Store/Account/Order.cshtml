@@ -25,7 +25,7 @@
                             <div class="col-md-2">@*orderDetail.Photo*@</div>
                             <div class="col-md-6">@orderDetail.Product.Name</div>
                             <div class="col-md-2">@orderDetail.Quantity</div>
-                            <div class="col-md-2 text-right">@Model.GetSum(orderDetail.Product.Price, @orderDetail.Quantity)</div>
+                            <div class="col-md-2 text-right">€ @Model.GetSum(orderDetail.Product.Price, @orderDetail.Quantity)</div>
                         </li>
                     }
                 </ul>
