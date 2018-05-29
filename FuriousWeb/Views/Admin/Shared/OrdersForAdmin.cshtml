@@ -1,21 +1,16 @@
-﻿@model IEnumerable<FuriousWeb.Models.User>
+﻿
+@{
+    ViewBag.Title = "OrdersForAdmin";
+}
 
 <div class="panel panel-default">
     <div class="panel-heading main-color-bg">
-        <h3 class="panel-title">Vartotojai </h3>
+        <h3 class="panel-title">Užsakymai </h3>
     </div>
     <div class="panel-body">
         <div class="admin-list">
-            <span> Iš viso vartotojų: <span>2</span></span>
-            <div class="row creation-row">
-                <div class="col-md-4"></div>
-                <div class="col-md-4">
-                    <div class='button-list'>
-                        <div class="createButton pull-right">
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <span> Iš viso aktyvių užsakymų: <span>99</span></span>
+
             <hr />
             <div class="row search-row">
                 <div class="col-md-1"></div>
@@ -49,28 +44,8 @@
                         </div>
                     </div>
 
-                    @foreach (var user in Model)
+                    @foreach (var order in Model)
                     {
-                        <div class="row admin-list-row">
-                            <div class="col-md-5 ">
-                                <span class="check-box">
-                                    <input id="checkBox" type="checkbox">
-                                </span>
-                                @user.Id
-                            </div>
-                            <div class="col-md-3  ">
-                                @user.Email
-                            </div>
-                            <div class="col-md-3  ">
-                                @user.UserName
-                            </div>
-                            <div class="col-md-1  ">
-                                <div class="actions">
-                                    <a href="#"><i class="edit fa fa-edit"></i></a>
-                                    <a href="#"><i class="delete fa fa-ban"></i></a>
-                                </div>
-                            </div> 
-                        </div>
                     }
 
                     <div class="text-center">
@@ -99,4 +74,3 @@
         </div>
     </div>
 </div>
-
