@@ -145,7 +145,7 @@ function getProductsCount(queryString) {
     return count;
 }
 
-function getProducts(queryString, adminAccess, page) {
+function getProducts(queryString, adminAccess, page, isPartial) {
     var actionName = adminAccess ? "GetProductsListForAdmin" : "GetProductsListForUser";
     var actionLocation = adminAccess ? "#partial-body" : ".products";
     $.ajax({
@@ -157,7 +157,7 @@ function getProducts(queryString, adminAccess, page) {
         data: {
             query: queryString,
             currentPage: page,
-            isPartial: true
+            isPartial: isPartial
         },
         error: function (xhr, status, errorThrown) {
             var errorMsg = "Status: " + status + " " + errorThrown;
@@ -229,7 +229,7 @@ function onProductQuantityChange(element) {
 function search(adminAccess, entity) {
     console.log(entity);
     if(entity == 'products')
-        getProducts($("#search-query").val(), adminAccess, 1);
+        getProducts($("#search-query").val(), adminAccess, 1, true);
     if (entity == 'orders')
         getOrders($("#search-query").val(), adminAccess, 1);
     if (entity == 'users')

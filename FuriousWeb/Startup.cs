@@ -33,11 +33,11 @@ namespace FuriousWeb
                         roleManager.Create(simpleUserRole);
 
                         //creating users
-                        var adminUser = new User { UserName = "admin@gmail.com", Email = "admin@gmail.com"};  
+                        var adminUser = new User { UserName = "admin@gmail.com", Email = "admin@gmail.com", Id = "1"};  
                         userManager.Create(adminUser, "Password!");
                         userManager.AddToRole(adminUser.Id, adminRole.Name);
 
-                        var simpleUser = new User() { UserName = "user@gmail.com", Email = "user@gmail.com" };
+                        var simpleUser = new User() { UserName = "user@gmail.com", Email = "user@gmail.com", Id = "2" };
                         userManager.Create(simpleUser, "Password!");
                         userManager.AddToRole(simpleUser.Id, simpleUserRole.Name);
                     }

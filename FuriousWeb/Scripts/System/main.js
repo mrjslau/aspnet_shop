@@ -31,7 +31,7 @@ $(document).ready(function(){
 
     $('#user-product-search').keypress(function (event) {
         if (event.keyCode == 13) {
-            search(true,)
+            getProducts($("#search-query").val(), false, 1, true);
         }
     });
 });
