@@ -227,6 +227,7 @@
     <Content Include="Content\Images\ShopSlider\pricing.png" />
     <Content Include="Content\Images\Store\searchicon.png" />
     <Content Include="Content\Images\Store\shipping.jpg" />
+    <Content Include="Content\Site.css" />
     <Content Include="Content\Styles\adminstyle.css" />
     <Content Include="Content\Styles\animate.css" />
     <Content Include="Content\Styles\bootstrap.css" />
@@ -815,9 +816,13 @@
     <Content Include="Views\Store\_ViewStart.cshtml" />
     <Content Include="Views\Store\Account\Home.cshtml" />
     <Content Include="Views\Store\Products\Details.cshtml" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Admin\Users\UsersForAdmin.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Admin\Orders\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

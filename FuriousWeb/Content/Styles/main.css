@@ -734,24 +734,19 @@ h2.title:before{
 }
 
 .category-products .badge {
-  background:none;
-  border-radius: 10px;
-  color: #696763;
-  display: inline-block;
-  font-size: 12px;
-  font-weight: bold;
-  line-height: 1;
-  min-width: 10px;
-  padding: 3px 7px;
-  text-align: center;
-  vertical-align: baseline;
-  white-space: nowrap;
+    background: none;
+    border-radius: 10px;
+    color: #696763;
+    display: inline-block;
+    font-size: 12px;
+    font-weight: bold;
+    line-height: 1;
+    min-width: 10px;
+    padding: 3px 7px;
+    text-align: center;
+    vertical-align: baseline;
+    white-space: nowrap;
 }
-
-.panel-body ul{
-  padding-left: 20px;
-}
-
 
 .panel-body ul li a {
   color: #696763;
