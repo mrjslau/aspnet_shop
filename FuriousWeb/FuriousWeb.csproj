@@ -820,7 +820,9 @@
     <Content Include="Views\Store\Products\Details.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Admin\Users\UsersForAdmin.cshtml" />
+    <Content Include="Views\Admin\Shared\UsersForAdmin.cshtml" />
+    <Content Include="Views\Admin\Shared\DashboardForAdmin.cshtml" />
+    <Content Include="Views\Admin\Manage\AdminLogin.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

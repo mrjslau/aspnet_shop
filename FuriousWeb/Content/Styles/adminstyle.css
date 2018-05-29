@@ -159,44 +159,44 @@ body {
 }
 
 /* Products admin */
-.product-list {
+.admin-list {
     background: #fff;
 }
-    .product-list .creation-row {
+    .admin-list .creation-row {
         padding: 10px;
         margin: 10px 0 10px 0;
     }
 
-    .product-list .product-btn {
+    .admin-list .product-btn {
         background-color: #fe980f;
         border-color: #8d5100;
         color: #fff;
     }
 
-        .product-list .product-btn:hover {
+        .admin-list .product-btn:hover {
             background: #fff;
             border-color: #fe980f;
             color: #fe980f;
         }
 
-    .product-list .search-row {
+    .admin-list .search-row {
         padding-bottom: 20px;
     }
 
-    .product-list .list-item,
-    .product-list .list-titles {
+    .admin-list .list-item,
+    .admin-list .list-titles {
         display: flex;
         align-items: center;
         border-bottom: 1px solid #000;
         padding: 15px 0;
     }
 
-        .product-list .list-titles > div {
+        .admin-list .list-titles > div {
             font-weight: bold;
         }
 
-        .product-list .list-item > div,
-        .product-list .list-titles > div {
+        .admin-list .list-item > div,
+        .admin-list .list-titles > div {
             width: 20%;
             display: flex;
             align-items: center;
@@ -204,51 +204,51 @@ body {
             font-size: 16px;
         }
 
-        .product-list .list-item > .check-box,
-        .product-list .list-titles > .check-box {
+        .admin-list .list-item > .check-box,
+        .admin-list .list-titles > .check-box {
             width: 15px;
             margin-right: 5px;
         }
 
-        .product-list .list-item > .id,
-        .product-list .list-titles > .id {
+        .admin-list .list-item > .id,
+        .admin-list .list-titles > .id {
             width: 15px;
         }
 
-        .product-list .list-item > .actions,
-        .product-list .list-titles > .actions {
+        .admin-list .list-item > .actions,
+        .admin-list .list-titles > .actions {
             width: 50px;
             display: flex;
             justify-content: space-between;
         }
-            .product-list .list-item > .actions .edit,
-            .product-list .list-item > .actions .delete {
-                color: #fe980f;
-            }
 
-        .product-list .list-item img {
-            width: 80px;
-            height: 100%;
-        }
-
-    /*kitaip visi inputai tampa checkbox'ais*/
-    /*.product-list .list-item input,
-.product-list .list-titles input{
-    -webkit-appearance: checkbox;
-}*/
-    .product-list .pagination li > a {
+    .admin-list .pagination li > a {
         border-color: #8d5100;
         color: #000;
     }
 
-    .product-list .pagination li #prod-page-prev, .product-list .pagination li #prod-page-next {
+    .admin-list .pagination li #prod-page-prev, .admin-list .pagination li #prod-page-next {
         background-color: #fe980f;
         border-color: #8d5100;
         color: #fff;
     }
 
+    .admin-list .admin-list-row {
+        padding: 10px 10px;
+        border-bottom: 1px solid #000;
+        font-size: 16px;
+    }
 
-    /* Edit products */
+        .admin-list .admin-list-headrow {
+            font-weight: bold;
+        }
+
+    .admin-list .actions .edit,
+    .admin-list .actions .delete {
+        color: #fe980f;
+    }
+
+    /* Edit/Create products */
     .prod-img-container{
         padding-top: 40px;
     }
