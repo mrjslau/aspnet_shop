@@ -31,14 +31,23 @@
                     <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "GetOrderListForAdmin" ? "active" : "")">
                         <a href="@Url.Action("GetOrderListForAdmin", "Admin", routeValues: new { isPartial = "false", query = "", currentPage = 1 })">Užsakymai</a>
                     </li>
+                    <li style="padding-left: 20px;">
+                        <a href="@Url.Action("Index", "Home", null)">Į parduotuvę</a>
+                    </li>
 
                 </ul>
 
-
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a href="@Url.Action("Index", "Admin", null)">Welcome, admin1</a></li>
-                    <li><a href="@Url.Action("LogOff", "Account", null)">Logout</a></li>
-                </ul>
+                @if (Request.IsAuthenticated)
+                {
+                    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+                    {
+                    @Html.AntiForgeryToken()
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="@Url.Action("Index", "Admin", null)">Sveiki, admin1</a></li>
+                        <li><a href="javascript:document.getElementById('logoutForm').submit()">Atsijungti</a></li>
+                    </ul>
+                    }
+                }
             </div><!--/.nav-collapse -->
         </div>
     </nav>
@@ -66,55 +75,3 @@
         </div>
     </header>
 </div>
-
-
-
-
-@*
-    <ul class="nav navbar-nav navbar-right">
-        <li><a href="@Url.Action("Index", "Home", routeValues: null)">
-            <i class="fa fa-home"></i>
-            <span class="homeLinkLabel">Į pagrindinį puslapį</span>
-         </a></li>
-
-        @if (Request.IsAuthenticated)
-        {
-            using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
-            {
-                @Html.AntiForgeryToken()
-                <li>
-                    <div class="profile">
-                        <div class="profile-img">
-                            <a href="#" class="toggle-menu">
-                                <span>A</span>
-                            </a>
-                        </div>
-
-                        <div class="profile-menu">
-                            <ul>
-                                <li>
-                                    <a href="#"><i class="fa fa-user"></i>Profilis</a>
-                                </li>
-                                <li>
-                                    <a href="#"><i class="fa fa-wrench"></i>Nustatymai</a>
-                                </li>
-                                <li>
-                                    <a href="javascript:document.getElementById('logoutForm').submit()"><i class="fa fa-sign-out"></i>Atsijungti</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </li>
-            }
-        }
-        else
-        {
-            <li>
-                <a href="@Url.Action("Login", "Account", routeValues: null)">
-                    <i class="fa fa-home"></i>
-                    <span class="loginLinkLabel">Prisijungti</span>
-                </a>
-            </li>
-        }
-    </ul>
-*@

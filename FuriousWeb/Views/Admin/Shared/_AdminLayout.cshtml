@@ -33,14 +33,16 @@
                 <div class="col-md-3">
                     @Html.Partial("_AdminLeftSideBarPartial")
                 </div>
-                    <div class="col-md-9" id="partial-body">
-                        @RenderBody()
-                    </div>
+                <div class="col-md-9" id="partial-body">
+                    @if (ViewContext.RouteData.Values["Action"].ToString() == "Index")
+                    {
+                         @RenderPage("~/Views/Admin/Shared/DashboardForAdmin.cshtml")
+                    }
+                    @RenderBody()
                 </div>
             </div>
-        </section>
-        <div class="push"></div>
-    </div>
+         </div>
+    </section>
 
     <footer id="admin-footer" class="text-muted">
         <div class="container text-center">

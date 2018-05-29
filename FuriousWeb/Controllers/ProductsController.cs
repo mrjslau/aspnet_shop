@@ -50,6 +50,7 @@ namespace FuriousWeb.Controllers
             }
         }
 
+        [Authorize(Roles = "Admin")]
         public ActionResult GetProductsListForAdmin(string query, int currentPage, bool  isPartial)
         {
             int skip = (currentPage - 1) * 12;
