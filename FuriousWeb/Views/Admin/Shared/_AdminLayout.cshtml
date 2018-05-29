@@ -14,40 +14,44 @@
 </head>
 
 <body>
-    <div>
-        @Html.Partial("_AdminHeaderBarPartial")
-    </div>
-
-    <section id="breadcrumb">
-        <div class="container">
-            <ol class="breadcrumb">
-                <li><a href="@Url.Action("Index", "Admin", null)">Dashboard</a></li>
-                <li class="active">@ViewBag.Title</li>
-            </ol>
+    <div class="cont-wrapper">
+        <div>
+            @Html.Partial("_AdminHeaderBarPartial")
         </div>
-    </section>
 
-    <section id="main">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-3">
-                    @Html.Partial("_AdminLeftSideBarPartial")
-                </div>
-                <div class="col-md-9" id="partial-body">
-                    @if (ViewContext.RouteData.Values["Action"].ToString() == "Index")
+        <section id="breadcrumb">
+            <div class="container">
+                <ol class="breadcrumb">
+                    <li><a href="@Url.Action("Index", "Admin", null)">Pagrindinis</a></li>
+                    <li class="active">@ViewBag.Title</li>
+                </ol>
+            </div>
+        </section>
+
+        <section id="main">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3">
+                        @Html.Partial("_AdminLeftSideBarPartial")
+                    </div>
+                    <div class="col-md-9" id="partial-body">
+                        @if (ViewContext.RouteData.Values["Action"].ToString() == "Index")
                     {
-                         @RenderPage("~/Views/Admin/Shared/DashboardForAdmin.cshtml")
-                    }
-                    @RenderBody()
+                        @RenderPage("~/Views/Admin/Shared/DashboardForAdmin.cshtml")
+                }
+                        @RenderBody()
+                    </div>
                 </div>
             </div>
-         </div>
-    </section>
+        </section>
+    </div>
 
-    <footer id="admin-footer" class="text-muted">
-        <div class="container text-center">
-            <p>Visos teisės saugomos @DateTime.Now.Year ©</p>
-            <div style="font-size: 1em;">Solution: <a href="#" title="Furious">2FastToFurious</a></div>
+    <footer class="text-muted">
+        <div class="admin-footer">
+            <div class="container text-center">
+                <p>Visos teisės saugomos @DateTime.Now.Year ©</p>
+                <div style="font-size: 1em;">Solution: <a href="#" title="Furious">2FastToFurious</a></div>
+            </div>
         </div>
     </footer>
 
