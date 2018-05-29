@@ -1,4 +1,4 @@
-﻿@import '../../libs/font-awesome/css/font-awesome.min.css';
+@import '../../libs/font-awesome/css/font-awesome.min.css';
 
 body {
     background: #f4f4f4;
@@ -229,8 +229,7 @@ body {
 
 
     .pagination-area {
-        margin-bottom: 45px;
-        margin-top: 45px
+        margin-top: 45px;
     }
 
 
@@ -238,19 +237,19 @@ body {
         width: 100%;
         display: inline-block;
         margin-bottom: 25px;
-        margin-top: 0;
+        margin-top: 25px;
         padding-left: 15px;
     }
 
     .pagination li:first-child, .pagination li:first-child span {
-        border-bottom-left-radius: 0;
-        border-top-left-radius: 0;
+        border-bottom-left-radius: 5px;
+        border-top-left-radius: 5px;
         margin-left: 0;
     }
 
     .pagination li:last-child, .pagination li:last-child span {
-        border-bottom-right-radius: 0;
-        border-top-right-radius: 0;
+        border-bottom-right-radius: 5px;
+        border-top-right-radius: 5px;
     }
 
     .pagination .active, .pagination .active span, .pagination .active a:hover, .pagination .active span:hover, .pagination .active a:focus, .pagination .active span:focus {
@@ -321,7 +320,8 @@ body {
     .prod-img-container{
         padding-top: 40px;
     }
-        .prod-img-container .close {
+
+        .prod-img-container .close{
             opacity: 1;
             border-radius: 100px;
             width: 20px;
@@ -332,21 +332,30 @@ body {
             background: #fff;
             text-align: center;
         }
+
+        .prod-img-container .prod-img-main {
+            display: inline-block;
+            width: 98%;
+            position: relative;
+        }
+
         .prod-img-container .prod-img-thumbnail{
             display: inline-block;
             width: 32%;
             position: relative;
         }
-        .prod-img-container .prod-img-thumbnail img {
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            padding: 5px;
-            height: auto;
-            width: 100%;
-        }
-            .prod-img-container .prod-img-thumbnail img:hover {
-                box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
+            .prod-img-container .prod-img-thumbnail img,
+            .prod-img-container .prod-img-main img {
+                border: 1px solid #ddd;
+                border-radius: 4px;
+                padding: 5px;
+                height: auto;
+                width: 100%;
             }
+                .prod-img-container .prod-img-thumbnail img:hover,
+                .prod-img-container .prod-img-main img:hover {
+                    box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
+                }
 
 
 
