@@ -1,5 +1,9 @@
 ﻿@model IEnumerable<FuriousWeb.Models.Product>
 
+@{
+    ViewBag.Title = "Prekės";
+}
+
 <div class="panel panel-default">
     <div class="panel-heading main-color-bg">
         <h3 class="panel-title">Prekės </h3>
@@ -63,23 +67,23 @@
 
                 @foreach (var product in Model)
                 {
-                <div class="list-item">
-                    <div class="check-box">
-                        <input id="checkBox" type="checkbox">
-                    </div>
-                    <div class="name">@product.Code</div>
-                    <div class="name">@product.Name</div>
-                    <div class="category">not yet implemented</div>
-                    <div class="category">@product.Price</div>
-                    @* Siuos stulpelius reikėtu visai paslėpti, nes dabar juos galima pamatyt per browser'io page source *@
-                    <div class="id" style="display:none;"> @product.Id </div>
-                    <div class="actions">
-                        <a href="@Url.Action("Edit", "Products", routeValues: new { id = product.Id })"><i class="edit fa fa-edit"></i></a>
-                        <a href="@Url.Action("Delete", "Products", routeValues: new { id = product.Id })"><i class="delete fa fa-trash"></i></a>
-                    </div>
+                    <div class="list-item">
+                        <div class="check-box">
+                            <input id="checkBox" type="checkbox">
+                        </div>
+                        <div class="name">@product.Code</div>
+                        <div class="name">@product.Name</div>
+                        <div class="category">not yet implemented</div>
+                        <div class="category">@product.Price</div>
+                        @* Siuos stulpelius reikėtu visai paslėpti, nes dabar juos galima pamatyt per browser'io page source *@
+                        <div class="id" style="display:none;"> @product.Id </div>
+                        <div class="actions">
+                            <a href="@Url.Action("Edit", "Products", routeValues: new { id = product.Id })"><i class="edit fa fa-edit"></i></a>
+                            <a href="@Url.Action("Delete", "Products", routeValues: new { id = product.Id })"><i class="delete fa fa-trash"></i></a>
+                        </div>
 
-                </div>
-                 }
+                    </div>
+                }
 
                 <div class="text-center">
                     <nav aria-label="Page navigation">
