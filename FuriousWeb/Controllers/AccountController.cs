@@ -61,7 +61,7 @@ namespace FuriousWeb.Controllers
             if (loggedIn)
             {
                 var user = System.Web.HttpContext.Current.User.Identity.GetUserId();
-                HomeViewModel profile = new HomeViewModel();
+                ProfileViewModel profile = new ProfileViewModel();
                 profile.User = user;
                 var orders = db.Orders
                    .Where(b => b.UserID == user);
@@ -84,7 +84,7 @@ namespace FuriousWeb.Controllers
             if (loggedIn)
             {
                 var user = System.Web.HttpContext.Current.User.Identity.GetUserId();
-                HomeViewModel profile = new HomeViewModel();
+                ProfileViewModel profile = new ProfileViewModel();
                 profile.User = user;
                 try
                 {

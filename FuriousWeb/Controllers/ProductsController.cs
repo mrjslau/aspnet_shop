@@ -43,14 +43,18 @@ namespace FuriousWeb.Controllers
             return PartialView("ProductsForUser", products);
         }
 
-        public ActionResult GetProductsListForAdmin(bool isPartial, string query, int page)
+        public ActionResult GetProductsListForAdmin(bool isPartial, string query, int currentPage)
         {
-            int skip = (page - 1) * 12;
+            int skip = (currentPage - 1) * 12;
             int take = 12;
             var products = db.Products.ToList();
             if (!string.IsNullOrWhiteSpace(query))
             {
-                products = products.Where(x => x.Name == query || x.Code == query).Skip(skip).Take(take).ToList();
+                products = products.Where(x => x.Name.ToLower().Contains(query.ToLower()) || x.Code.ToLower().Contains(query.ToLower())).Skip(skip).Take(take).ToList();
+            }
+            else
+            {
+                products = db.Products.OrderBy(p => p.Id).Skip(skip).Take(take).ToList();
             }
 
             if (isPartial)

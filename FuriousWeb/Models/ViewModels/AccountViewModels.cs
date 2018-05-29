@@ -27,7 +27,7 @@ namespace FuriousWeb.Models.ViewModels
         public bool RememberMe { get; set; }
     }
 
-    public class HomeViewModel
+    public class ProfileViewModel
     {
         public string User;
         public System.Linq.IQueryable<Order> Orders;

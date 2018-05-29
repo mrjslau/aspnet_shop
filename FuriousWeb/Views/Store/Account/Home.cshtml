@@ -1,4 +1,4 @@
-﻿@model FuriousWeb.Models.ViewModels.HomeViewModel
+﻿@model FuriousWeb.Models.ViewModels.ProfileViewModel
 @{
     ViewBag.Title = "Profilis";
 }
@@ -24,7 +24,7 @@
                             <div class="col-md-1">@order.ID</div>
                             <div class="col-md-3">@order.Created_at</div>
                             <div class="col-md-4">@Model.GetStatus(order.Status)</div>
-                            <div class="col-md-4 text-right">@Model.GetStatus(order.Status)</div>
+                            <div class="col-md-4 text-right">@order.Payment.Amount</div>
                         </a>
                     }
                 </ul>

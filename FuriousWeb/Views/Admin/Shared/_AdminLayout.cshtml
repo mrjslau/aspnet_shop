@@ -9,8 +9,8 @@
     @Styles.Render("~/Content/Styles/bootstrap.min.css")
     @Styles.Render("~/Content/Styles/font-awesome.min.css")
     @Styles.Render("~/Content/Styles/adminstyle.css")
-    @Scripts.Render("~/Scripts/jquery-1.10.2.min.js")
-    @Scripts.Render("~/Scripts/bootstrap.min.js")
+    @Scripts.Render("~/Scripts/jquery/jquery-1.10.2.min.js")
+    @Scripts.Render("~/Scripts/Design/bootstrap.min.js")
 </head>
 
 <body>
@@ -31,17 +31,9 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-3">
-                    <div class="list-group">
-                        <a href="@Url.Action("Index", "Admin", null)" class="list-group-item active main-color-bg">
-                            <span class="fa fa-cogs"></span>
-                            Admin panelė
-                        </a>
-                        <a href="@Url.Action("GetProductsListForAdmin", "Products", routeValues: new { isPartial = "false" })" class="list-group-item">
-                            <span class="fa fa-shopping-cart"></span> Prekės <span class="badge">102</span>
-                        </a>
-                        <a href="#" class="list-group-item"><span class="fa fa-users"></span> Vartotojai <span class="badge">4</span></a>
-                        <a href="#" class="list-group-item"><span class="fa fa-truck"></span> Užsakymai <span class="badge">15</span></a>
-                    </div>
+                    
+                    @Html.Partial("_AdminLeftSideBarPartial")
+
                 </div>
 
                 <div class="col-md-9">
@@ -112,22 +104,22 @@
 
 
     @*
-            <body>
-                <div id="page">
+<body>
+    <div id="page">
 
-                    <div id="side-bar-left">
-                        @Html.Partial("_AdminLeftSideBarPartial")
-                    </div>
+        <div id="side-bar-left">
+            @Html.Partial("_AdminLeftSideBarPartial")
+        </div>
 
-                    <div class="right-side">
+        <div class="right-side">
 
-                        <div class="top-bar">
-                            @Html.Partial("_AdminHeaderBarPartial")
-                        </div>
+            <div class="top-bar">
+                @Html.Partial("_AdminHeaderBarPartial")
+            </div>
 
-                        <div class="main-content">
-                            @RenderBody() @*Home/Index
-                    </div>
+            <div class="main-content">
+                @RenderBody() @*Home/Index
+        </div>
 
         <div class="footer">
             <div class="copy">
@@ -138,18 +130,18 @@
             </div>
         </div>
 
-                </div>
+    </div>
 
-            </div>
+</div>
     *@
     <script src="~/libs/jquery/dist/jquery.min.js" type="text/javascript"></script>
     <script src="~/libs/fancybox/source/jquery.fancybox.pack.js" type="text/javascript"></script>
     <script src="~/libs/TurnWheel/jReject/js/jquery.reject.js" type="text/javascript"></script>
     <script src="~/libs/Swiper/dist/js/swiper.jquery.min.js" type="text/javascript"></script>
-    <script src="~/Scripts/modernizr.js" type="text/javascript"></script>
-    <script src="~/Scripts/buildmobile.js" type="text/javascript"></script>
-    <script src="~/Scripts/general.js" type="text/javascript"></script>
-    <script src="~/Scripts/common.js" language="javascript" type="text/javascript"></script>
+    <script src="~/Scripts/Design/modernizr.js" type="text/javascript"></script>
+    <script src="~/Scripts/Design/buildmobile.js" type="text/javascript"></script>
+    <script src="~/Scripts/System/general.js" type="text/javascript"></script>
+    <script src="~/Scripts/System/common.js" language="javascript" type="text/javascript"></script>
     @RenderSection("scripts", required: false)
 </body>
 

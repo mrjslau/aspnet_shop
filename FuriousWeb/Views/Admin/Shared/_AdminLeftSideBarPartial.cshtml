@@ -1,13 +1,11 @@
-﻿<div class="logo-holder">
-    <a href="#" class="logo">
-        <img src="~/Content/Images/icecream.png" alt="">
+﻿<div class="list-group">
+    <a href="@Url.Action("Index", "Admin", null)" class="list-group-item active main-color-bg">
+        <span class="fa fa-cogs"></span>
+        Admin panelė
     </a>
-</div>
-<div class="main-menu">
-    <ul class="menu">
-        <li> <a href="@Url.Action("Index", "Admin", null)"><i class="fa fa-home"></i>Pagrindinis</a> </li>
-        <li> <a href="@Url.Action("GetProductsListForAdmin", "Products", routeValues: new { isPartial = "false" })"><i class="fa fa-product-hunt"></i>Prekės</a> </li>
-        <li> <a href="#"><i class="fa fa-users"></i>Vartotojai</a> </li>
-        <li> <a href="#"><i class="fa fa-shopping-cart"></i>Užsakymai</a> </li>
-    </ul>
+    <a href="@Url.Action("GetProductsListForAdmin", "Products", routeValues: new { isPartial = "false", query = "", currentPage = 1 })" class="list-group-item">
+        <span class="fa fa-shopping-cart"></span> Prekės <span class="badge">102</span>
+    </a>
+    <a href="#" class="list-group-item"><span class="fa fa-users"></span> Vartotojai <span class="badge">4</span></a>
+    <a href="#" class="list-group-item"><span class="fa fa-truck"></span> Užsakymai <span class="badge">15</span></a>
 </div>
