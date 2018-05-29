@@ -145,9 +145,55 @@ function getProductsCount(queryString) {
     return count;
 }
 
+function getUsersCount(queryString) {
+    var count = 0;
+    $.ajax({
+        type: "GET",
+        url: '/Admin/GetUsersCount',
+        contentType: "application/json; charset=utf-8",
+        dataType: "html",
+        async: false,
+        data: {
+            query: queryString
+        },
+        error: function (xhr, status, errorThrown) {
+            var errorMsg = "Status: " + status + " " + errorThrown;
+            console.log(errorMsg);
+        },
+        success: function (data) {
+            count = parseInt(data);
+        }
+    })
+    return count;
+}
+
+function getOrdersCount(queryString) {
+    var count = 0;
+    $.ajax({
+        type: "GET",
+        url: '/Admin/GetOrdersCount',
+        contentType: "application/json; charset=utf-8",
+        dataType: "html",
+        async: false,
+        data: {
+            query: queryString
+        },
+        error: function (xhr, status, errorThrown) {
+            var errorMsg = "Status: " + status + " " + errorThrown;
+            console.log(errorMsg);
+        },
+        success: function (data) {
+            count = parseInt(data);
+        }
+    })
+    return count;
+}
+
 function getProducts(queryString, adminAccess, page, isPartial) {
     var actionName = adminAccess ? "GetProductsListForAdmin" : "GetProductsListForUser";
     var actionLocation = adminAccess ? "#partial-body" : ".products";
+    var queryInput = adminAccess ? "#search-query" : "#user-product-search";
+    debugger;
     $.ajax({
         type: "GET",
         url: '/Products/' + actionName,
@@ -162,17 +208,29 @@ function getProducts(queryString, adminAccess, page, isPartial) {
         error: function (xhr, status, errorThrown) {
             var errorMsg = "Status: " + status + " " + errorThrown;
             console.log(errorMsg);
-            alert(errorMsg);
         },
         success: function (data) {
             $(actionLocation).html(data);
-            console.log(data);
+            setTimeout(function () {
+                var count = getProductsCount(queryString);
+                pages = Math.ceil(count / 12);
+                $('.products-pagination').html('');
+                $('.products-pagination').append('<li class="active" data-value="1">' + 1 + '</li>');
+                for (i = 1; i < pages; i++) {
+                    $('.products-pagination').append('<li data-value="' + (i + 1) + '">' + (i + 1) + '</li>');
+                }
+                $(".products-pagination li").removeClass('active');
+                $(".products-pagination").find("[data-value='" + page + "']").addClass('active');
+            }, 100);
+            $(queryInput).val(queryString);
         }
     })
 }
 
 function getOrders(queryString, adminAccess, page) {
     var actionName = adminAccess ? "GetOrderListForAdmin" : "GetOrderListForUser";
+    var queryInput = adminAccess ? "#search-query" : "#user-product-search";
+    debugger;
     $.ajax({
         type: "GET",
         url: '/Admin/' + actionName,
@@ -186,17 +244,30 @@ function getOrders(queryString, adminAccess, page) {
         },
         error: function (xhr, status, errorThrown) {
             var errorMsg = "Status: " + status + " " + errorThrown;
-            console.log(errorMsg);
-            alert(errorMsg);
         },
         success: function (data) {
+            debugger;
             $("#partial-body").html(data);
+            setTimeout(function () {
+                debugger;
+                var count = getOrdersCount(queryString);
+                pages = Math.ceil(count / 12);
+                $('.orders-pagination').html('');
+                $('.orders-pagination').append('<li class="active" data-value="1">' + 1 + '</li>');
+                for (i = 1; i < pages; i++) {
+                    $('.orders-pagination').append('<li data-value="' + (i + 1) + '">' + (i + 1) + '</li>');
+                }
+                $(".orders-pagination li").removeClass('active');
+                $(".orders-pagination").find("[data-value='" + page + "']").addClass('active');
+            }, 100);
+            $(queryInput).val(queryString);
         }
     })
 }
 
 function getUsers(queryString, adminAccess, page) {
     var actionName = adminAccess ? "GetUsersListForAdmin" : "GetUsersListForUser";
+    var queryInput = adminAccess ? "#search-query" : "#user-product-search";
     $.ajax({
         type: "GET",
         url: '/Admin/' + actionName,
@@ -210,12 +281,22 @@ function getUsers(queryString, adminAccess, page) {
         },
         error: function (xhr, status, errorThrown) {
             var errorMsg = "Status: " + status + " " + errorThrown;
-            console.log(errorMsg);
-            alert(errorMsg);
         },
         success: function (data) {
             $("#partial-body").html(data);
-            console.log(data);
+            setTimeout(function () {
+                debugger;
+                var count = getUsersCount(queryString);
+                pages = Math.ceil(count / 12);
+                $('.users-pagination').html('');
+                $('.users-pagination').append('<li class="active" data-value="1">' + 1 + '</li>');
+                for (i = 1; i < pages; i++) {
+                    $('.users-pagination').append('<li data-value="' + (i + 1) + '">' + (i + 1) + '</li>');
+                }
+                $(".users-pagination li").removeClass('active');
+                $(".users-pagination").find("[data-value='" + page + "']").addClass('active');
+            }, 100);
+            $(queryInput).val(queryString);
         }
     })
 }
@@ -235,3 +316,60 @@ function search(adminAccess, entity) {
     if (entity == 'users')
         getUsers($("#search-query").val(), adminAccess, 1);
 }
+
+
+$(document).ready(function () {
+    if ($('#products').length) {
+        //getProducts("", true, 1, true);
+        debugger;
+        setTimeout(function () {
+            var count = getProductsCount('');
+            pages = Math.ceil(count / 12);
+            $('.admin.products-pagination').html('');
+            $('.admin.products-pagination').append('<li class="active" data-value="1">' + 1 + '</li>');
+            for (i = 1; i < pages; i++) {
+                $('.admin.products-pagination').append('<li data-value="' + (i + 1) + '">' + (i + 1) + '</li>');
+            }
+        }, 100);
+        $('body').on('click', '.admin.products-pagination li', function () {
+            debugger;
+            var page = $(this).data('value');
+            getProducts($("#search-query").val(), true, page, true);
+        });
+    }
+    if ($('#users').length) {
+        //getUsers("", true, 1);
+        setTimeout(function () {
+            var count = getUsersCount('');
+            pages = Math.ceil(count / 12);
+            $('.users-pagination').html('');
+            $('.users-pagination').append('<li class="active" data-value="1">' + 1 + '</li>');
+            for (i = 1; i < pages; i++) {
+                $('.users-pagination').append('<li data-value="' + (i + 1) + '">' + (i + 1) + '</li>');
+            }
+        }, 100);
+        $('body').on('click', '.users-pagination li', function () {
+            var page = $(this).data('value');
+            getUsers($("#search-query").val(), true, page);
+        });
+    }
+    if ($('#orders').length) {
+        //debugger;
+        //getOrders("", true, 1);
+        setTimeout(function () {
+            debugger;
+            var count = getOrdersCount('');
+            pages = Math.ceil(count / 12);
+            $('.orders-pagination').html('');
+            $('.orders-pagination').append('<li class="active" data-value="1">' + 1 + '</li>');
+            for (i = 1; i < pages; i++) {
+                $('.orders-pagination').append('<li data-value="' + (i + 1) + '">' + (i + 1) + '</li>');
+            }
+        }, 100);
+        $('body').on('click', '.orders-pagination li', function () {
+            var page = $(this).data('value');
+            getOrders($("#search-query").val(), true, page);
+        });
+    }
+    
+});

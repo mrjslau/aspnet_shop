@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<FuriousWeb.Models.Product>
 
-<div class="panel panel-default">
+<div class="panel panel-default" id="products">
     <div class="panel-heading main-color-bg">
         <h3 class="panel-title">Prekės </h3>
     </div>
@@ -83,22 +83,7 @@
 
                 <div class="text-center">
                     <nav aria-label="Page navigation">
-                        <ul class="pagination">
-                            <li>
-                                <a href="#" aria-label="Previous" id="prod-page-prev">
-                                    <span aria-hidden="true">&laquo;</span>
-                                </a>
-                            </li>
-                            <li><a href="#">1</a></li>
-                            <li><a href="#">2</a></li>
-                            <li><a href="#">3</a></li>
-                            <li><a href="#">4</a></li>
-                            <li><a href="#">5</a></li>
-                            <li>
-                                <a href="#" aria-label="Next" id="prod-page-next">
-                                    <span aria-hidden="true">&raquo;</span>
-                                </a>
-                            </li>
+                        <ul class="products-pagination pagination admin">
                         </ul>
                     </nav>
                 </div>

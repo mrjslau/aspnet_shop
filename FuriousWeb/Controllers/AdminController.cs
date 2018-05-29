@@ -23,6 +23,36 @@ namespace FuriousWeb.Controllers
             return View("DashboardForAdmin");
         }
 
+        public int GetUsersCount(string query)
+        {
+            var users = db.Users.ToList();
+            if (!string.IsNullOrWhiteSpace(query))
+            {
+                users = users.Where(x => x.Email.ToLower().Contains(query.ToLower())).ToList();
+            }
+            else
+            {
+                users = db.Users.ToList();
+            }
+            int count = users.Count();
+            return count;
+        }
+
+        public int GetOrdersCount(string query)
+        {
+            var orders = db.Orders.ToList();
+            if (!string.IsNullOrWhiteSpace(query))
+            {
+                orders = orders.Where(order => order.User.Email.ToLower().Contains(query.ToLower()) || order.ID.Equals(query)).ToList();
+            }
+            else
+            {
+                orders = db.Orders.ToList();
+            }
+            int count = orders.Count();
+            return count;
+        }
+
         public ActionResult GetUsersListForAdmin(bool isPartial, string query, int currentPage)
         {
             int skip = (currentPage - 1) * 12;

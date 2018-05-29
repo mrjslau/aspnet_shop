@@ -2055,7 +2055,7 @@ h2.title {
 }
 
 .pagination-area 
-.pagination li a {
+.pagination li {
   background:#F0F0E9;
   border: 0 none;
   border-radius: 0;
@@ -2065,7 +2065,7 @@ h2.title {
 }
 
 .pagination-area 
-.pagination li a:hover,
+.pagination li:hover,
 .pagination-area 
 .pagination li .active {
   background:#FE980F;
