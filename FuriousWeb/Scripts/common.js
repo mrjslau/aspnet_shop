@@ -72,9 +72,30 @@ function onBtnEditCartItemQuantityClick(btnEditCartItemQuantity, productId, refr
 }
 
 
-function getProducts(queryString, adminAccess) {
-    var actionName = adminAccess ? "GetProductsListForAdmin" : "GetProductsListForUser";
+function getProductsCount(queryString) {
+    var count = 0;
+    $.ajax({
+        type: "GET",
+        url: '/Products/GetProductCount',
+        contentType: "application/json; charset=utf-8",
+        dataType: "html",
+        async: false,
+        data: {
+            query: queryString
+        },
+        error: function (xhr, status, errorThrown) {
+            var errorMsg = "Status: " + status + " " + errorThrown;
+            console.log(errorMsg);
+        },
+        success: function (data) {
+            count = parseInt(data);
+        }
+    })
+    return count;
+}
 
+function getProducts(queryString, adminAccess, page) {
+    var actionName = adminAccess ? "GetProductsListForAdmin" : "GetProductsListForUser";
     $.ajax({
         type: "GET",
         url: '/Products/' + actionName,
@@ -82,7 +103,8 @@ function getProducts(queryString, adminAccess) {
         dataType: "html",
         async: true,
         data: {
-            query: queryString
+            query: queryString,
+            page: page
         },
         error: function (xhr, status, errorThrown) {
             var errorMsg = "Status: " + status + " " + errorThrown;

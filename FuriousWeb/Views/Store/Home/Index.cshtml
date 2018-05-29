@@ -191,7 +191,38 @@
 @section Scripts {
     <script type="text/javascript">
         $(document).ready(function () {
-            getProducts("", false);
+            getProducts("", false, 1);
+
+            $('body').on('click', '.products-pagination li', function () {
+                var page = $(this).data('value');
+                getProducts("", false, page);
+
+                setTimeout(function () {
+                    var count = getProductsCount('');
+                    pages = Math.ceil(count / 12);
+                    console.log($('.products-pagination'));
+
+                    for (i = 1; i < pages; i++) {
+                        $('.products-pagination').append('<li data-value="' + (i + 1) + '">' + (i + 1) + '</li>');
+                        console.log(i + 1);
+                    }
+                    $(".products-pagination li").removeClass('active');
+                    $(".products-pagination").find("[data-value='" + page + "']").addClass('active'); 
+                }, 100);
+            });
+
+            setTimeout(function () {
+                var count = getProductsCount('');
+                pages = Math.ceil(count / 12);
+                console.log($('.products-pagination'));
+
+                for (i = 1; i < pages; i++) {
+                    $('.products-pagination').append('<li data-value="' + (i + 1) + '">' + (i + 1) + '</li>');
+                    console.log(i + 1);
+                }
+
+
+            }, 100);
         });
     </script>
 }

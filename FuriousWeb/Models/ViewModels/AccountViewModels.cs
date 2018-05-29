@@ -15,7 +15,7 @@ namespace FuriousWeb.Models.ViewModels
     {
         [Required(ErrorMessage = "Būtina įvesti pašto adresą")]
         [Display(Name = "E-paštas")]
-        [EmailAddress(ErrorMessage = "Nekorėktiškas pašto adresas")]
+        [EmailAddress(ErrorMessage = "Nekorektiškas pašto adresas")]
         public string Email { get; set; }
 
         [Required(ErrorMessage = "Būtina įvesti slaptažodį")]
@@ -49,7 +49,7 @@ namespace FuriousWeb.Models.ViewModels
     public class RegisterViewModel
     {
         [Required(ErrorMessage = "Būtina įvesti pašto adresą")]
-        [EmailAddress(ErrorMessage = "Nekorėktiškas pašto adresas")]
+        [EmailAddress(ErrorMessage = "Nekorektiškas pašto adresas")]
         [Display(Name = "E-paštas")]
         public string Email { get; set; }
 
