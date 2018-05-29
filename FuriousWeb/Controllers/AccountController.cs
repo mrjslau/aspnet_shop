@@ -64,7 +64,7 @@ namespace FuriousWeb.Controllers
                 ProfileViewModel profile = new ProfileViewModel();
                 profile.User = user;
                 var orders = db.Orders
-                   .Where(b => b.UserID == user);
+                   .Where(b => b.UserID == user).ToList();
                 profile.Orders = orders;
                 return View("../Store/Account/Home", profile);
             }
@@ -90,7 +90,7 @@ namespace FuriousWeb.Controllers
                 {
                     var order = db.Orders.Where(b => b.UserID == user && b.ID == id).First();
                     profile.Order = order;
-                    var orderDetails = db.OrderDetails.Where(b => b.OrderID == id);
+                    var orderDetails = db.OrderDetails.Where(b => b.OrderID == id).ToList();
                     profile.OrderDetails = orderDetails;
                     if (orderDetails == null)
                     {

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace FuriousWeb.Models.ViewModels
@@ -30,9 +31,9 @@ namespace FuriousWeb.Models.ViewModels
     public class ProfileViewModel
     {
         public string User;
-        public System.Linq.IQueryable<Order> Orders;
+        public List<Order> Orders;
         public Order Order;
-        public System.Linq.IQueryable<OrderDetails> OrderDetails;
+        public List<OrderDetail> OrderDetails;
         public enum OrderStatus
         {
             Apdorojama = 0,
@@ -43,6 +44,11 @@ namespace FuriousWeb.Models.ViewModels
         public string GetStatus(int status)
         {
             return ((OrderStatus)status).ToString();
+        }
+
+        public double GetSum(double price, long quantity)
+        {
+            return price * quantity;
         }
     }
 

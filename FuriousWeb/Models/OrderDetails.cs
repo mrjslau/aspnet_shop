@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FuriousWeb.Models
 {
-    public class OrderDetails
+    public class OrderDetail
     {
         [Key]
         public int ID { get; set; }
@@ -12,6 +12,8 @@ namespace FuriousWeb.Models
         public long Quantity { get; set; }
 
         [ForeignKey("OrderID")]
-        public Order Order { get; set; }
+        public virtual Order Order { get; set; }
+        [ForeignKey("ProductID")]
+        public virtual Product Product { get; set; }
     }
 }
