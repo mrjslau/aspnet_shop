@@ -32,6 +32,14 @@
             delete PRODUCT_QUANTITY_TO_ADD;
         }
     })
+
+    btnAddToCart.classList.add("added_to_cart");
+    btnAddToCart.innerHTML = "<i class='fa fa-check'></i> Prekė pridėta";
+    btnAddToCart.disabled = true;
+    setTimeout(function () {
+        btnAddToCart.disabled = false;
+        btnAddToCart.innerHTML = "<i class='fa fa-shopping-cart'></i> Įdėti į krėpšelį";
+    }, 5000);
 }
 
 $(".cart_quantity_up").click(function () {
@@ -85,6 +93,8 @@ function superSafeParseFloat(val) {
     }
     return parseFloat(val)
 }
+
+
 
 function onBtnEditCartItemQuantityClick(btnEditCartItemQuantity, productId, refreshCart, quantity) {
     //define as global vars because we need to persist these values after ajax call.

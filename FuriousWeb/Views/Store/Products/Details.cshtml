@@ -155,12 +155,12 @@
                                 <h2>@Model.Name</h2>
                                 <p>Prekės ID: @Model.Id</p>
                                 <span>
-                                    <span>@Model.Price €</span>
+                                    <span>€ @Model.Price</span>
                                     <label>Kiekis:</label>
                                     <input type="text" value="1" />
                                     <button type="button" class="btn btn-fefault cart" onclick="onBtnAddToCartClick(this, @Model.Id, false)">
                                         <i class="fa fa-shopping-cart"></i>
-                                        Į krepšelį
+                                        Įdėti į krėpšelį
                                     </button>
                                 </span>
                                 <!--<p><b>Prekė sandelyje</b></p>
@@ -181,7 +181,7 @@
                         </ul>
                     </div>
                     <div class="tab-content">
-                        <div class="tab-pane fade" id="details">
+                        <div class="tab-pane active" id="details">
                             <p>  @Html.DisplayFor(model => model.Description) </p>
                         </div>
                         @*
