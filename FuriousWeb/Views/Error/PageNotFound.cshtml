@@ -1,0 +1,41 @@
+﻿@{ 
+    Layout = null;
+}
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <title>
+        @{ViewBag.Title = "404 Puslapis nerastas";}
+    </title>
+    @Styles.Render("~/Content/Styles/bootstrap.min.css")
+    @Styles.Render("~/Content/Styles/font-awesome.min.css")
+    @Scripts.Render("~/Scripts/jquery/jquery-1.10.2.min.js")
+    @Scripts.Render("~/Scripts/Design/bootstrap.min.js")
+</head>
+
+<body>
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-8 text-center">
+                <h1> 404 Jūsų ieškomas puslapis nerastas </h1>
+                <a href="@Url.Action("Index", "Home")">Eiti į pagrindinį puslapį</a>
+            </div>
+        </div>
+    </div>
+
+
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }
+
+</body>
+</html>
