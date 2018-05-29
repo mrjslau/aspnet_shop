@@ -1,69 +1,108 @@
 ﻿@model IEnumerable<FuriousWeb.Models.Product>
 
-<div class="title">Prekės</div>
-
-<div class="product-list">
-    <div class='button-list'>
-        <div class="createButton">
-            @Html.ActionLink("Sukurti naują prekę", "Create", "Products", null, new { @class = "add-button" })
-        </div>
+<div class="panel panel-default">
+    <div class="panel-heading main-color-bg">
+        <h3 class="panel-title">Prekės </h3>
     </div>
-    <div class="mass-action">
-        <span>Masinis veiksmas: </span>
-        <select>
-            <option default>Pasirinkti...</option>
-            <option>Trinti</option>
-        </select>
-        <button class="mass-action">Vykdyti</button>
-    </div>
-    <div class="info">
-        <div class="text">
-            Iš viso prekių: <span>200</span>
-        </div>
-        <div class="search-bar">
-            <input type="text" placeholder="Ieškoti..." class="search" id="search-query">
-            <button class="search-button" id="search-button" onclick="search(true);">Ieškoti</button>
-        </div>
-    </div>
-
-    <div class="list">
-        <div class="list-titles">
-            <div class="check-box"> <input id="checkBox" type="checkbox"> </div>
-            <div class="name"> Kodas </div>
-            <div class="name"> Pavadinimas </div>
-            <div class="category"> Kategorija </div>
-            <div class="category"> Kaina </div>
-            <div class="actions">
-            </div>
-        </div>
-
-        @foreach (var product in Model)
-        {
-            <div class="list-item">
-                <div class="check-box">
-                    <input id="checkBox" type="checkbox">
+    <div class="panel-body">
+        <div class="product-list">
+            <span> Iš viso prekių: <span>200</span></span>
+            <div class="row creation-row">
+                <div class="col-md-4"></div>
+                <div class="col-md-4">
+                    <div class='button-list'>
+                        <div class="createButton pull-right">
+                            @Html.ActionLink("Sukurti naują prekę", "Create", "Products", null, new { @class = "btn product-btn" })
+                        </div>
+                    </div>
                 </div>
-                <div class="name">@product.Code</div>
-                <div class="name">@product.Name</div>
-                <div class="category">not yet implemented</div>
-                <div class="category">@product.Price</div>
-                @* Siuos stulpelius reikėtu visai paslėpti, nes dabar juos galima pamatyt per browser'io page source *@
-                <div class="id" style="display:none;"> @product.Id </div>
-                <div class="actions">
-                    <a href="@Url.Action("Edit", "Products", routeValues: new { id = product.Id })"><i class="edit fa fa-edit"></i></a>
-                    <a href="@Url.Action("Delete", "Products", routeValues: new { id = product.Id })"><i class="delete fa fa-trash"></i></a>
+            </div>
+            <hr />
+            <div class="row">
+                <div class="col-md-1"></div>
+                <div class="col-md-2">
+                    <strong>Masinis veiksmas: </strong>
+                </div>
+                <div class="col-md-5">
+                    <select class="form-control">
+                        <option default>Pasirinkti...</option>
+                        <option>Trinti</option>
+                    </select>
+                </div>
+                <div class="col-md-1">
+                    <button class="btn product-btn">Vykdyti</button>
+                </div>
+                <div class="col-md-3"></div>
+            </div>
+            <hr />
+            <div class="row search-row">
+                <div class="col-md-1"></div>
+                <div class="col-md-2">
+                    <strong>Paieška: </strong>
+                </div>
+                <div class="col-md-6">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Ieškoti..." id="search-query">
+                        <span class="input-group-btn">
+                            <button class="btn product-btn" id="search-button" type="button" onclick="search(true);">Ieškoti</button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="list">
+                <div class="list-titles">
+                    <div class="check-box"></div>
+                    <div class="name"> Kodas </div>
+                    <div class="name"> Pavadinimas </div>
+                    <div class="category"> Kategorija </div>
+                    <div class="category"> Kaina </div>
+                    <div class="actions">
+                    </div>
                 </div>
 
-            </div>
-        }
+                @foreach (var product in Model)
+                {
+                <div class="list-item">
+                    <div class="check-box">
+                        <input id="checkBox" type="checkbox">
+                    </div>
+                    <div class="name">@product.Code</div>
+                    <div class="name">@product.Name</div>
+                    <div class="category">not yet implemented</div>
+                    <div class="category">@product.Price</div>
+                    @* Siuos stulpelius reikėtu visai paslėpti, nes dabar juos galima pamatyt per browser'io page source *@
+                    <div class="id" style="display:none;"> @product.Id </div>
+                    <div class="actions">
+                        <a href="@Url.Action("Edit", "Products", routeValues: new { id = product.Id })"><i class="edit fa fa-edit"></i></a>
+                        <a href="@Url.Action("Delete", "Products", routeValues: new { id = product.Id })"><i class="delete fa fa-trash"></i></a>
+                    </div>
 
-        <div class="paging">
-            <div class="prev"><a href="#" class="prev">Ankstesnis</a></div>
-            <div class="numbered"><a href="" class="numbered current">1</a></div>
-            <div class="numbered"><a href="" class="numbered">2</a></div>
-            <div class="numbered"><a href="" class="numbered">3</a></div>
-            <div class="numbered"><a href="" class="numbered">4</a></div>
-            <div class="next"><a href="#" class="next">Sekantis</a></div>
+                </div>
+                 }
+
+                <div class="text-center">
+                    <nav aria-label="Page navigation">
+                        <ul class="pagination">
+                            <li>
+                                <a href="#" aria-label="Previous" id="prod-page-prev">
+                                    <span aria-hidden="true">&laquo;</span>
+                                </a>
+                            </li>
+                            <li><a href="#">1</a></li>
+                            <li><a href="#">2</a></li>
+                            <li><a href="#">3</a></li>
+                            <li><a href="#">4</a></li>
+                            <li><a href="#">5</a></li>
+                            <li>
+                                <a href="#" aria-label="Next" id="prod-page-next">
+                                    <span aria-hidden="true">&raquo;</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
         </div>
     </div>
 </div>

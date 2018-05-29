@@ -11,16 +11,10 @@
         Naujo vartotojo registracija
     </div>
     @Html.ValidationSummary("", new { @class = "text-danger" })
-    @*<div class="form-group">
-        @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
-        </div>
-    </div>*@
     <div class="form-group">
-        @*Html.LabelFor(m => m.Username, new { @class = "col-md-4 control-label" })*@
+        @*@Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })*@
         <div class="col-md-4">
-            @Html.TextBoxFor(m => m.Username, new { @class = "form-control", @placeholder = "Vartotojo vardas" })
+            @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @placeholder = "E-pašto adresas" })
         </div>
     </div>
     <div class="form-group">

@@ -34,7 +34,25 @@
 }
 else
 {
-    <h3>Pirkimų istorija yra tuščia</h3>
+    <section>
+        <div class="container">
+            <div class="breadcrumbs">
+                <ol class="breadcrumb">
+                    <li><a href="#">Pagrindinis</a></li>
+                    <li class="active">Profilis</li>
+                </ol>
+            </div>
+            <div class="empty-cart">
+                <p>Pirkimų istorija yra tuščia</p>
+            </div>
+            <div class="come-back">
+                <div>
+                    <img src="~/Content/Images/logo.png">
+                </div>
+                <p>Grįžti į <a href="@Url.Action("Index", "Home")">pagrindinį puslapį</a></p>
+            </div>
+        </div>
+    </section>
 
 }
 

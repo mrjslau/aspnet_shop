@@ -31,14 +31,14 @@ namespace FuriousWeb
 
                         var simpleUserRole = new IdentityRole() { Name = "User" };
                         roleManager.Create(simpleUserRole);
-                        
+
                         //creating users
-                        var adminUser = new User() { UserName = "ADMIN." };
-                        userManager.Create(adminUser, "ADMIN.");
+                        var adminUser = new User { UserName = "admin@gmail.com", Email = "admin@gmail.com"};  
+                        userManager.Create(adminUser, "Password!");
                         userManager.AddToRole(adminUser.Id, adminRole.Name);
 
-                        var simpleUser = new User() { UserName = "USER." };
-                        userManager.Create(simpleUser, "USER.");
+                        var simpleUser = new User() { UserName = "user@gmail.com", Email = "user@gmail.com" };
+                        userManager.Create(simpleUser, "Password!");
                         userManager.AddToRole(simpleUser.Id, simpleUserRole.Name);
                     }
                 }

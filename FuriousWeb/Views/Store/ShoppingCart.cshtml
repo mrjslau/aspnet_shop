@@ -43,7 +43,7 @@
                     </li>*@
 
 
-                            <tr>
+                            <tr class="to_count">
                                 <td class="cart_product">
                                     <a href=""><img src="images/cart/one.png" alt=""></a>
                                 </td>
@@ -56,13 +56,13 @@
                                 </td>
                                 <td class="cart_quantity">
                                     <div class="cart_quantity_button">
-                                        <a class="cart_quantity_up" href=""> + </a>
-                                        <input class="cart_quantity_input" type="text" name="quantity" min="1" value=">@cartItem.Quantity" autocomplete="off" size="2" onchange="onProductQuantityChange(this)">
-                                        <a class="cart_quantity_down" href=""> - </a>
+                                        <a class="cart_quantity_up" href="#"> + </a>
+                                        <input class="cart_quantity_input" type="text" name="quantity" min="1" value="@cartItem.Quantity" autocomplete="off" size="2" onchange="onProductQuantityChange(this)">
+                                        <a class="cart_quantity_down" href="#"> - </a>
                                     </div>
                                 </td>
                                 <td class="cart_total">
-                                    <p class="cart_total_price">$59</p>
+                                    <p class="cart_total_price"></p>
                                 </td>
                                 <td class="cart_delete">
                                     <a class="cart_quantity_delete" href="@Url.Action("DeleteItem", "ShoppingCart", routeValues: new { productId = cartItem.Product.Id })"><i class="fa fa-times"></i></a>
@@ -73,9 +73,9 @@
                             <td></td>
                             <td></td>
                             <td></td>
-                            <td></td>
                             <td>Iš viso:</td>
-                            <td> 59 eur.</td>
+                            <td id="display_total">test</td>
+                            <td></td>
                         </tr>
                     </tbody>
                 </table>
@@ -86,8 +86,6 @@
             </div>
         </div>
     </section> <!--/#cart_items-->
-
-
 
 
 
