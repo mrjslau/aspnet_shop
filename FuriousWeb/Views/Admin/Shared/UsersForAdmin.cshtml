@@ -1,6 +1,10 @@
 ﻿@model IEnumerable<FuriousWeb.Models.User>
 
-<div class="panel panel-default" id="users">
+@{
+    ViewBag.Title = "Vartotojai";
+}
+
+<div class="panel panel-default">
     <div class="panel-heading main-color-bg">
         <h3 class="panel-title">Vartotojai </h3>
     </div>
@@ -44,18 +48,12 @@
                         <div class="col-md-3  ">
                             <div>Vartotojo vardas</div>
                         </div>
-                        <div class="col-md-2  ">
-                            <div>Veiksmai</div>
-                        </div>
                     </div>
 
                     @foreach (var user in Model)
                     {
                         <div class="row admin-list-row">
-                            <div class="col-md-4 ">
-                                <span class="check-box">
-                                    <input id="checkBox" type="checkbox">
-                                </span>
+                            <div class="col-md-4">
                                 @user.Id
                             </div>
                             <div class="col-md-3  ">
@@ -69,7 +67,7 @@
                                     <a href="#"><i class="edit fa fa-edit"></i></a>
                                     <a href="#"><i class="delete fa fa-ban"></i></a>
                                 </div>
-                            </div> 
+                            </div>
                         </div>
                     }
 

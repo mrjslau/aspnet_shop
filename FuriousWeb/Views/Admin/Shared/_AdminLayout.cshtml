@@ -21,8 +21,8 @@
     <section id="breadcrumb">
         <div class="container">
             <ol class="breadcrumb">
-                <li><a href="index.html">Dashboard</a></li>
-                <li class="active">Pages</li>
+                <li><a href="@Url.Action("Index", "Admin", null)">Dashboard</a></li>
+                <li class="active">@ViewBag.Title</li>
             </ol>
         </div>
     </section>

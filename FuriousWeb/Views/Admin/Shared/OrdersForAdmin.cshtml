@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewBag.Title = "OrdersForAdmin";
+    ViewBag.Title = "Užsakymai";
 }
 
 <div class="panel panel-default" id="orders">
@@ -30,24 +30,47 @@
             <div class="container">
                 <div class="list">
                     <div class="row admin-list-row admin-list-headrow">
-                        <div class="col-md-5  ">
+                        <div class="col-md-1  ">
                             <div>ID</div>
                         </div>
                         <div class="col-md-3  ">
-                            <div>El. Paštas</div>
+                            <div>Pirkėjas</div>
                         </div>
-                        <div class="col-md-3  ">
-                            <div>Vartotojo vardas</div>
+                        <div class="col-md-2  ">
+                            <div>Mokėjimo ID</div>
                         </div>
-                        <div class="col-md-1  ">
-                            <div>Veiksmai</div>
+                        <div class="col-md-2  ">
+                            <div>Statusas</div>
+                        </div>
+                        <div class="col-md-2  ">
+                            <div>Sukurta</div>
                         </div>
                     </div>
 
                     @foreach (var order in Model)
-                    {
-                        @order.User.Email
-                        <br/>
+                    {   
+                    <div class="row admin-list-row">
+                        <div class="col-md-1">
+                            @order.ID
+                        </div>
+                        <div class="col-md-3">
+                            @order.User.Email
+                        </div>
+                        <div class="col-md-2">
+                            @order.PaymentID
+                        </div>
+                        <div class="col-md-2">
+                            @order.Status
+                        </div>
+                        <div class="col-md-2">
+                            @order.Created_at
+                        </div>
+                        <div class="col-md-2">
+                            <div class="actions">
+                                <a href="#"><i class="edit fa fa-edit"></i></a>
+                            </div>
+                        </div>
+                    </div>
                     }
 
                     <div class="text-center">
