@@ -191,7 +191,7 @@
 @section Scripts {
     <script type="text/javascript">
         $(document).ready(function () {
-            getProducts("", false, 1);
+            getProducts("", false, 1, true);
 
             $('body').on('click', '.products-pagination li', function () {
                 var page = $(this).data('value');

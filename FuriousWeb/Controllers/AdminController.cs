@@ -38,5 +38,20 @@ namespace FuriousWeb.Controllers
             else
                 return View("UsersForAdmin", users);
         }
+
+        public ActionResult GetOrderListForAdmin(bool isPartial, string query, int currentPage)
+        {
+            int skip = (currentPage - 1) * 12;
+            int take = 12;
+            var orders = db.Orders.ToList();
+            if (!string.IsNullOrWhiteSpace(query))
+                orders = orders.Where(order => order.User.Email.ToLower().Contains(query.ToLower()) || order.ID.Equals(query)).Skip(skip).Take(take).ToList();
+            else
+                orders = db.Orders.OrderBy(o => o.ID).Skip(skip).Take(take).ToList();
+            if (isPartial)
+                return PartialView("OrdersForAdmin", orders);
+            else
+                return View("OrdersForAdmin", orders);
+        }
     }
 }

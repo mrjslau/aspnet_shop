@@ -155,8 +155,9 @@ function getProductsCount(queryString) {
     return count;
 }
 
-function getProducts(queryString, adminAccess, page) {
+function getProducts(queryString, adminAccess, page, isPartial) {
     var actionName = adminAccess ? "GetProductsListForAdmin" : "GetProductsListForUser";
+    var actionLocation = adminAccess ? "#partial-body" : ".products";
     $.ajax({
         type: "GET",
         url: '/Products/' + actionName,
@@ -165,7 +166,8 @@ function getProducts(queryString, adminAccess, page) {
         async: true,
         data: {
             query: queryString,
-            page: page
+            currentPage: page,
+            isPartial: isPartial
         },
         error: function (xhr, status, errorThrown) {
             var errorMsg = "Status: " + status + " " + errorThrown;
@@ -173,7 +175,57 @@ function getProducts(queryString, adminAccess, page) {
             alert(errorMsg);
         },
         success: function (data) {
-            $(".products").html(data);
+            $(actionLocation).html(data);
+            console.log(data);
+        }
+    })
+}
+
+function getOrders(queryString, adminAccess, page) {
+    var actionName = adminAccess ? "GetOrderListForAdmin" : "GetOrderListForUser";
+    $.ajax({
+        type: "GET",
+        url: '/Admin/' + actionName,
+        contentType: "application/json; charset=utf-8",
+        dataType: "html",
+        async: true,
+        data: {
+            query: queryString,
+            currentPage: page,
+            isPartial:true
+        },
+        error: function (xhr, status, errorThrown) {
+            var errorMsg = "Status: " + status + " " + errorThrown;
+            console.log(errorMsg);
+            alert(errorMsg);
+        },
+        success: function (data) {
+            $("#partial-body").html(data);
+        }
+    })
+}
+
+function getUsers(queryString, adminAccess, page) {
+    var actionName = adminAccess ? "GetUsersListForAdmin" : "GetUsersListForUser";
+    $.ajax({
+        type: "GET",
+        url: '/Admin/' + actionName,
+        contentType: "application/json; charset=utf-8",
+        dataType: "html",
+        async: true,
+        data: {
+            query: queryString,
+            currentPage: page,
+            isPartial: true
+        },
+        error: function (xhr, status, errorThrown) {
+            var errorMsg = "Status: " + status + " " + errorThrown;
+            console.log(errorMsg);
+            alert(errorMsg);
+        },
+        success: function (data) {
+            $("#partial-body").html(data);
+            console.log(data);
         }
     })
 }
@@ -184,6 +236,12 @@ function onProductQuantityChange(element) {
         $(element).val(1);
 }
 
-function search(adminAccess) {
-    getProducts($("#search-query").val(), adminAccess);
+function search(adminAccess, entity) {
+    console.log(entity);
+    if(entity == 'products')
+        getProducts($("#search-query").val(), adminAccess, 1, true);
+    if (entity == 'orders')
+        getOrders($("#search-query").val(), adminAccess, 1);
+    if (entity == 'users')
+        getUsers($("#search-query").val(), adminAccess, 1);
 }

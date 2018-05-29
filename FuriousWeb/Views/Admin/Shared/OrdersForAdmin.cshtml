@@ -21,7 +21,7 @@
                     <div class="input-group">
                         <input type="text" class="form-control" placeholder="Ieškoti..." id="search-query">
                         <span class="input-group-btn">
-                            <button class="btn product-btn" id="search-button" type="button" onclick="search(true);">Ieškoti</button>
+                            <button class="btn product-btn" id="search-button" type="button" onclick="search(true, 'orders');">Ieškoti</button>
                         </span>
                     </div>
                 </div>
@@ -46,6 +46,8 @@
 
                     @foreach (var order in Model)
                     {
+                        @order.User.Email
+                        <br/>
                     }
 
                     <div class="text-center">

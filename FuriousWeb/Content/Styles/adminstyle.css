@@ -245,6 +245,7 @@ body {
 
     .admin-list .actions .edit,
     .admin-list .actions .delete {
+        padding-right: 10px;
         color: #fe980f;
     }
 

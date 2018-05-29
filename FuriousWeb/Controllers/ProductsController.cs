@@ -27,9 +27,9 @@ namespace FuriousWeb.Controllers
             return count;
         }
 
-        public ActionResult GetProductsListForUser(string query, int page)
+        public ActionResult GetProductsListForUser(string query, int currentPage, bool isPartial)
         {
-            int skip = (page - 1)*12;
+            int skip = (currentPage - 1)*12;
             int take = 12;
             var products = db.Products.ToList();
             if (!string.IsNullOrWhiteSpace(query))
@@ -40,28 +40,31 @@ namespace FuriousWeb.Controllers
             {
                 products = db.Products.OrderBy(p => p.Id).Skip(skip).Take(take).ToList();
             }
-            return PartialView("ProductsForUser", products);
+            if (isPartial)
+            {
+                return PartialView("ProductsForUser", products);
+            }
+            else
+            {
+                return View("ProductsForUser", products);
+            }
         }
 
-        public ActionResult GetProductsListForAdmin(bool isPartial, string query, int currentPage)
+        public ActionResult GetProductsListForAdmin(string query, int currentPage, bool  isPartial)
         {
             int skip = (currentPage - 1) * 12;
             int take = 12;
             var products = db.Products.ToList();
             if (!string.IsNullOrWhiteSpace(query))
-            {
                 products = products.Where(x => x.Name.ToLower().Contains(query.ToLower()) || x.Code.ToLower().Contains(query.ToLower())).Skip(skip).Take(take).ToList();
-            }
             else
-            {
                 products = db.Products.OrderBy(p => p.Id).Skip(skip).Take(take).ToList();
-            }
-
             if (isPartial)
                 return PartialView("ProductsForAdmin", products);
             else
                 return View("ProductsForAdmin", products);
         }
+        
 
         public ActionResult Details(int? id)
         {
