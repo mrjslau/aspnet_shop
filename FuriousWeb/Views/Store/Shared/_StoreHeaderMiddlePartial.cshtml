@@ -10,7 +10,9 @@
             </div>
         </div>
         <div class="col-sm-8">
-            <div class="shop-menu pull-right">
+            @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+            {
+                <div class="shop-menu pull-right">
                 <ul class="nav navbar-nav">
                     <li>
                         <a href="@Url.Action("Index", "Home", routeValues: null)">
@@ -27,21 +29,33 @@
                             <span class="shoppingCartLinkLabel">Krėpšelis</span>
                         </a>
                     </li>
-                    <li>
-                        <a href="@Url.Action("Register", "Account", routeValues: null)">
-                            <i class="fa fa-home"></i>
-                            <span class="registerLinkLabel">Užsiregistruoti</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="@Url.Action("Login", "Account", routeValues: null)">
-                            <i class="fa fa-lock"></i>
-                            <span class="loginLinkLabel">Prisijungti</span>
-                        </a>
-                    </li>
-                    @*<li><a href="login.html"><i class="fa fa-lock"></i> Prisijungti</a></li>*@
+                    @if (Request.IsAuthenticated)
+                    {
+                        <li>
+                            <a href="javascript:document.getElementById('logoutForm').submit()">
+                            <i class="fa fa-sign-out"></i>
+                                <span class="logOffLinkLabel">Atsijungti</span>
+                            </a>
+                        </li>
+                    }
+                    else
+                    {
+                        <li>
+                            <a href="@Url.Action("Register", "Account", routeValues: null)">
+                                <i class="fa fa-home"></i>
+                                <span class="registerLinkLabel">Užsiregistruoti</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("Login", "Account", routeValues: null)">
+                                <i class="fa fa-lock"></i>
+                                <span class="loginLinkLabel">Prisijungti</span>
+                            </a>
+                        </li>
+                    }
                 </ul>
             </div>
+            }
         </div>
     </div>
 </div>
