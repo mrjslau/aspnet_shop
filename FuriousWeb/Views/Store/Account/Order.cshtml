@@ -1,0 +1,42 @@
+﻿@model FuriousWeb.Models.ViewModels.HomeViewModel
+@{
+    ViewBag.Title = "Profilis";
+}
+
+
+@if (Model.OrderDetails.Count() > 0)
+{
+
+    <h3>Pirkimų istorija</h3>
+    <div class="row">
+        <div class="panel">
+            <div class="panel-heading">Užsakymo numeris #@ViewBag.Order.ID sukurtas: @ViewBag.Order.Created_at</div>
+            <div class="panel-body">
+                <ul class="list-group clearfix">
+                    <li class="list-group-item clearfix">
+                        <div class="col-md-2"></div>
+                        <div class="col-md-6">Prekė</div>
+                        <div class="col-md-2">Kiekis</div>
+                        <div class="col-md-2 text-right">Suma</div>
+                    </li>
+                    @foreach (var orderDetail in Model.OrderDetails)
+                    {
+                        <li class="list-group-item clearfix">
+                            <div class="col-md-2">@*orderDetail.Photo*@</div>
+                            <div class="col-md-6">@orderDetail.ProductID</div>
+                            <div class="col-md-2">@orderDetail.Quantity</div>
+                            <div class="col-md-2 text-right">Suma</div>
+                        </li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <h3> Pirkimų istorija yra tuščia </h3>
+}
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

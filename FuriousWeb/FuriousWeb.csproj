@@ -811,6 +811,8 @@
     <Content Include="Views\Admin\_ViewStart.cshtml" />
     <Content Include="Views\Store\_ViewStart.cshtml" />
     <Content Include="Views\Store\Account\Home.cshtml" />
+    <Content Include="Views\Store\Account\404.cshtml" />
+    <Content Include="Views\Store\Account\Order.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

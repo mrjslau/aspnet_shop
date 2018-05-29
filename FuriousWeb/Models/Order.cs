@@ -10,5 +10,6 @@ namespace FuriousWeb.Models
         public string UserID { get; set; }
         public int PaymentID { get; set; }
         public int Status { get; set; }
+        public string Created_at { get; set; }
     }
 }

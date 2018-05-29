@@ -70,7 +70,19 @@ namespace FuriousWeb.Models.ViewModels
     {
         public string User;
         public System.Linq.IQueryable<Order> Orders;
-        public List<OrderDetails> OrderDetails;
+        public Order Order;
+        public System.Linq.IQueryable<OrderDetails> OrderDetails;
+        public enum OrderStatus
+        {
+            Apdorojama = 0,
+            Įvykdyta = 1,
+            Atšaukta = 2
+        }
+
+        public string GetStatus(int status)
+        {
+            return ((OrderStatus)status).ToString();
+        }
     }
 
     public class RegisterViewModel

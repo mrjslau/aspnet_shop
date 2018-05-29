@@ -7,27 +7,28 @@
 @if (Model.Orders.Count() > 0)
 {
     <h3>Pirkimų istorija</h3>
-    <div class="panel">
-        <div class="panel-heading"></div>
-        <div class="panel-body">
-            <ul class="list-group clearfix">
-                <li class="list-group-item clearfix">
-                    <div class="col-md-2">ID</div>
-                    <div class="col-md-4">Laikas</div>
-                    <div class="col-md-6 text-md-right">Suma</div>
-                </li>
-                @foreach (var order in Model.Orders)
-                {
+    <div class="row">
+        <div class="panel">
+            <div class="panel-heading"></div>
+            <div class="panel-body">
+                <ul class="list-group clearfix">
                     <li class="list-group-item clearfix">
-                        <div class="col-md-2">@order.ID</div>
-                        <div class="col-md-4">Laikas</div>
-                        <div class="col-md-6 text-md-right">Kaina</div>
+                        <div class="col-md-1">ID</div>
+                        <div class="col-md-3">Laikas</div>
+                        <div class="col-md-4">Būsena</div>
+                        <div class="col-md-4 text-md-right">Suma</div>
                     </li>
-                }
-            </ul>
-        </div>
-        <div class="panel-footer">
-            <button type="button" onclick="location.href='@Url.Action("openCheckout", "Checkout")'" class="btn-primary">Apmokėti</button>
+                    @foreach (var order in Model.Orders)
+                {
+                        <a href="@Url.Action("Order", "Account", new { id = order.ID})" class="list-group-item clearfix">
+                            <div class="col-md-1">@order.ID</div>
+                            <div class="col-md-3">@order.Created_at</div>
+                            <div class="col-md-4">@Model.GetStatus(order.Status)</div>
+                            <div class="col-md-4 text-right">@Model.GetStatus(order.Status)</div>
+                        </a>
+                    }
+                </ul>
+            </div>
         </div>
     </div>
 }
