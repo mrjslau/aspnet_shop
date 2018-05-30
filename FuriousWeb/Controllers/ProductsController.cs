@@ -5,6 +5,7 @@ using FuriousWeb.Data;
 using FuriousWeb.Models;
 using FuriousWeb.Models.ViewModels;
 using System.Linq;
+using System;
 
 namespace FuriousWeb.Controllers
 {
@@ -116,9 +117,14 @@ namespace FuriousWeb.Controllers
                 {
                     db.SaveChanges();
                 }
-                catch (System.Data.Entity.Infrastructure.DbUpdateException ex)
+                catch (System.Data.Entity.Infrastructure.DbUpdateException)
                 {
                     ModelState.AddModelError("Error", "Prekė su tokiu kodu jau egzistuoja.");
+                    return View(viewModel);
+                }
+                catch (Exception ex)
+                {
+                    ModelState.AddModelError("Error", ex);
                     return View(viewModel);
                 }
 
@@ -161,6 +167,11 @@ namespace FuriousWeb.Controllers
                 }
                 catch(System.Data.Entity.Infrastructure.DbUpdateException ex){
                     ModelState.AddModelError("Error", "Prekė su tokiu kodu jau egzistuoja.");
+                    return View(viewModel);
+                }
+                catch (Exception ex)
+                {
+                    ModelState.AddModelError("Error", ex);
                     return View(viewModel);
                 }
                 return RedirectToAction("GetProductsListForAdmin", "Products", new { isPartial = false, query = "", currentPage = 1 });
