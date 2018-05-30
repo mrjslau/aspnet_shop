@@ -8,6 +8,7 @@ using FuriousWeb.Data;
 using FuriousWeb.Models;
 using FuriousWeb.Models.ViewModels;
 using System.Web.Security;
+using System.Data.Entity;
 
 namespace FuriousWeb.Controllers
 {
@@ -98,7 +99,31 @@ namespace FuriousWeb.Controllers
 
             EditOrderViewModel viewModel = new EditOrderViewModel(order);
             
-            return View("EditOrder", viewModel);
+            return View("Orders/EditOrder", viewModel);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditOrder(EditOrderViewModel viewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                Order order = db.Orders.Find(viewModel.Id);
+                order.Status = viewModel.Status;
+
+                db.Entry(order).State = EntityState.Modified;
+                try
+                {
+                    db.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    ModelState.AddModelError("Error", ex);
+                    return View(viewModel);
+                }
+                return RedirectToAction("GetOrderListForAdmin", "Admin", new { isPartial = false, query = "", currentPage = 1 });
+            }
+            return View("Orders/EditOrder", viewModel);
         }
     }
 }
