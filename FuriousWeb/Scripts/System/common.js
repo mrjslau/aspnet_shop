@@ -201,7 +201,6 @@ function getProducts(queryString, adminAccess, page, isPartial) {
     var actionName = adminAccess ? "GetProductsListForAdmin" : "GetProductsListForUser";
     var actionLocation = adminAccess ? "#partial-body" : ".products";
     var queryInput = adminAccess ? "#search-query" : "#user-product-search";
-    debugger;
     $.ajax({
         type: "GET",
         url: '/Products/' + actionName,
@@ -238,7 +237,6 @@ function getProducts(queryString, adminAccess, page, isPartial) {
 function getOrders(queryString, adminAccess, page) {
     var actionName = adminAccess ? "GetOrderListForAdmin" : "GetOrderListForUser";
     var queryInput = adminAccess ? "#search-query" : "#user-product-search";
-    debugger;
     $.ajax({
         type: "GET",
         url: '/Admin/' + actionName,
@@ -254,10 +252,8 @@ function getOrders(queryString, adminAccess, page) {
             var errorMsg = "Status: " + status + " " + errorThrown;
         },
         success: function (data) {
-            debugger;
             $("#partial-body").html(data);
             setTimeout(function () {
-                debugger;
                 var count = getOrdersCount(queryString);
                 pages = Math.ceil(count / 12);
                 $('.orders-pagination').html('');
@@ -293,7 +289,6 @@ function getUsers(queryString, adminAccess, page) {
         success: function (data) {
             $("#partial-body").html(data);
             setTimeout(function () {
-                debugger;
                 var count = getUsersCount(queryString);
                 pages = Math.ceil(count / 12);
                 $('.users-pagination').html('');
@@ -329,7 +324,6 @@ function search(adminAccess, entity) {
 $(document).ready(function () {
     if ($('#products').length) {
         //getProducts("", true, 1, true);
-        debugger;
         setTimeout(function () {
             var count = getProductsCount('');
             pages = Math.ceil(count / 12);
@@ -340,7 +334,6 @@ $(document).ready(function () {
             }
         }, 100);
         $('body').on('click', '.admin.products-pagination li', function () {
-            debugger;
             var page = $(this).data('value');
             getProducts($("#search-query").val(), true, page, true);
         });
@@ -365,7 +358,7 @@ $(document).ready(function () {
         //debugger;
         //getOrders("", true, 1);
         setTimeout(function () {
-            debugger;
+             
             var count = getOrdersCount('');
             pages = Math.ceil(count / 12);
             $('.orders-pagination').html('');

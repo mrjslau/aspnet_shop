@@ -9,6 +9,7 @@ using FuriousWeb.Models.ViewModels;
 
 namespace FuriousWeb.Controllers
 {
+    [Authorize(Roles="Admin")]
     public class AdminController : Controller
     {
         private DatabaseContext db = new DatabaseContext();
