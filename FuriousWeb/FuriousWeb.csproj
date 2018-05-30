@@ -208,6 +208,7 @@
     <Compile Include="Models\ShoppingCart.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\User.cs" />
+    <Compile Include="Models\ViewModels\OrdersViewModels.cs" />
     <Compile Include="Models\ViewModels\ProductsViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -827,10 +828,10 @@
     <Content Include="Views\Error\PageNotFound.cshtml" />
     <Content Include="Views\Store\Account\OrderHistory.cshtml" />
     <Content Include="Views\Store\Account\EditProfile.cshtml" />
+    <Content Include="Views\Admin\Orders\EditOrder.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Admin\Orders\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
