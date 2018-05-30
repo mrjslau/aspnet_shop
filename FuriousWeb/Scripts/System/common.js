@@ -219,6 +219,7 @@ function getProducts(queryString, adminAccess, page, isPartial) {
     var actionName = adminAccess ? "GetProductsListForAdmin" : "GetProductsListForUser";
     var actionLocation = adminAccess ? "#partial-body" : ".products";
     var queryInput = adminAccess ? "#search-query" : "#user-product-search";
+    
     $.ajax({
         type: "GET",
         url: '/Products/' + actionName,
@@ -236,6 +237,7 @@ function getProducts(queryString, adminAccess, page, isPartial) {
         },
         success: function (data) {
             $(actionLocation).html(data);
+            
             setTimeout(function () {
                 var count = getProductsCount(queryString);
                 pages = Math.ceil(count / 12);
@@ -373,7 +375,7 @@ $(document).ready(function () {
         });
     }
     if ($('#orders').length) {
-        //debugger;
+        //
         //getOrders("", true, 1);
         setTimeout(function () {
              

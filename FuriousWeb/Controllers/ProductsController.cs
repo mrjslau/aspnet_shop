@@ -41,7 +41,7 @@ namespace FuriousWeb.Controllers
             }
             else
             {
-                products = db.Products.OrderByDescending(p => p.Created_at).Skip(skip).Take(take).ToList();
+                products = db.Products.OrderBy(p => p.Id).Skip(skip).Take(take).ToList();
             }
             if (isPartial)
             {
@@ -62,7 +62,7 @@ namespace FuriousWeb.Controllers
             if (!string.IsNullOrWhiteSpace(query))
                 products = products.Where(x => x.Name.ToLower().Contains(query.ToLower()) || x.Code.ToLower().Contains(query.ToLower())).Skip(skip).Take(take).ToList();
             else
-                products = db.Products.OrderByDescending(p => p.Created_at).Skip(skip).Take(take).ToList();
+                products = db.Products.OrderBy(p => p.Id).Skip(skip).Take(take).ToList();
             if (isPartial)
                 return PartialView("ProductsForAdmin", products);
             else
