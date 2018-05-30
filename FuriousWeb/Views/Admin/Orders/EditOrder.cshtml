@@ -14,13 +14,25 @@
         <div class="col-md-6">
             <div class="error">@Html.ValidationMessage("Error")</div>
             <div class="form-horizontal">
-                
+
+                <dl class="dl-horizontal">
+
+                    <dt> @Html.DisplayNameFor(model => model.User) </dt>
+                    <dd> @Html.DisplayFor(model => model.User) </dd>
+
+                    <dt> @Html.DisplayNameFor(model => model.PaymentID)</dt>
+                    <dd> @Html.DisplayFor(model => model.PaymentID) </dd>
+
+                    <dt> @Html.DisplayNameFor(model => model.Created_at) </dt>
+                    <dd> @Html.DisplayFor(model => model.Created_at) </dd>
+                </dl>
+
 
                 <div class="form-group">
-                    @Html.LabelFor(m => m.Status, htmlAttributes: new { @class = "control-label col-md-4" })
+                    @Html.LabelFor(model => model.Status, htmlAttributes: new { @class = "control-label col-md-4" })
                     <div class="col-md-6">
-                        @Html.EditorFor(m => m.Status, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(m => m.Status, "", new { @class = "text-danger" })
+                        @Html.DropDownListFor(model => model.Status, new SelectList(new[] {0, 1, 2}), htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
                     </div>
                 </div>
 

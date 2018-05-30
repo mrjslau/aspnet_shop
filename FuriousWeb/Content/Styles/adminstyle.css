@@ -325,6 +325,15 @@ body {
         padding-right: 10px;
         color: #fe980f;
     }
+    .admin-list .actions .ban{
+        padding-right: 10px;
+        color: #c20e0e;
+    }
+
+    .admin-list .actions .unblock {
+        padding-right: 10px;
+        color: #53c140;
+    }
 
     /* Edit/Create products */
     .prod-img-container{

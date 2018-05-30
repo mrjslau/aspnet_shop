@@ -2748,4 +2748,10 @@ h2.title {
     .personal_info .info > div > div{
         display:block;
     }
+    .left-sidebar .shipping{
+        display:none;
+    }
+    .history li > div{
+        text-align:center;
+    }
 }
