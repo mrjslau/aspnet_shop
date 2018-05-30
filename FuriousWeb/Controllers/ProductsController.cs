@@ -50,6 +50,7 @@ namespace FuriousWeb.Controllers
             }
         }
 
+        [Authorize(Roles = "Admin")]
         public ActionResult GetProductsListForAdmin(string query, int currentPage, bool  isPartial)
         {
             int skip = (currentPage - 1) * 12;
@@ -110,8 +111,16 @@ namespace FuriousWeb.Controllers
                 product.Name = viewModel.Name;
                 product.Description = viewModel.Description;
                 product.Price = viewModel.Price;
-                db.Products.Add(product);         
-                db.SaveChanges();
+                db.Products.Add(product);
+                try
+                {
+                    db.SaveChanges();
+                }
+                catch (System.Data.Entity.Infrastructure.DbUpdateException ex)
+                {
+                    ModelState.AddModelError("Error", "Prekė su tokiu kodu jau egzistuoja.");
+                    return View(viewModel);
+                }
 
                 return RedirectToAction("GetProductsListForAdmin", new { isPartial = false, query = "", currentPage = 1});
             }
@@ -146,8 +155,15 @@ namespace FuriousWeb.Controllers
                 product.Price = viewModel.Price;
 
                 db.Entry(product).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("GetProductsListForAdmin", new { isPartial = false });
+                try
+                {
+                    db.SaveChanges();
+                }
+                catch(System.Data.Entity.Infrastructure.DbUpdateException ex){
+                    ModelState.AddModelError("Error", "Prekė su tokiu kodu jau egzistuoja.");
+                    return View(viewModel);
+                }
+                return RedirectToAction("GetProductsListForAdmin", "Products", new { isPartial = false, query = "", currentPage = 1 });
             }
             return View(viewModel);
         }
@@ -177,7 +193,7 @@ namespace FuriousWeb.Controllers
             Product product = db.Products.Find(id);
             db.Products.Remove(product);
             db.SaveChanges();
-            return RedirectToAction("GetProductsListForAdmin", new { isPartial = false });
+            return RedirectToAction("GetProductsListForAdmin", "Products", new { isPartial = false, query = "", currentPage = 1 });
         }
 
         protected override void Dispose(bool disposing)

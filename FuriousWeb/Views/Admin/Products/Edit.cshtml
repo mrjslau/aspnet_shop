@@ -12,6 +12,7 @@
     
     <div class="row">
         <div class="col-md-6">
+            <div class="error">@Html.ValidationMessage("Error")</div>
             <div class="form-horizontal">
                 <hr />
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
@@ -61,6 +62,11 @@
         </div>
         <div class="col-md-6">
             <div class="prod-img-container">
+                <div class="prod-img-main">
+                    <span class="close">&times;</span>
+                    <img src="~/Content/Images/icecream.png">
+                </div>
+
                 <div class="prod-img-thumbnail">
                     <span class="close">&times;</span>
                     <img src="~/Content/Images/icecream.png">
