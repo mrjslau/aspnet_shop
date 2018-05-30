@@ -4,7 +4,7 @@
     ViewBag.Title = "Vartotojai";
 }
 
-<div class="panel panel-default">
+<div class="panel panel-default" id="users">
     <div class="panel-heading main-color-bg">
         <h3 class="panel-title">Vartotojai </h3>
     </div>
@@ -39,7 +39,7 @@
             <div class="container">
                 <div class="list">
                     <div class="row admin-list-row admin-list-headrow">
-                        <div class="col-md-4  ">
+                        <div class="col-md-2  ">
                             <div>ID</div>
                         </div>
                         <div class="col-md-3  ">
@@ -53,7 +53,7 @@
                     @foreach (var user in Model)
                     {
                         <div class="row admin-list-row">
-                            <div class="col-md-4">
+                            <div class="col-md-2">
                                 @user.Id
                             </div>
                             <div class="col-md-3  ">
@@ -62,10 +62,21 @@
                             <div class="col-md-3  ">
                                 @user.UserName
                             </div>
-                            <div class="col-md-2  ">
+                            <div class="col-md-1">
                                 <div class="actions">
                                     <a href="#"><i class="edit fa fa-edit"></i></a>
-                                    <a href="#"><i class="delete fa fa-ban"></i></a>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="actions">
+                                    @if (user.LockoutEndDateUtc > ViewBag.Date && user.LockoutEnabled == true)
+                                    {
+                                        <span>Unblock user: </span><a href="#" onclick="location.href='@Url.Action("BanUser", "Account", routeValues: new { id = user.Id, ban = "false" })'" id="unblock-user"><i class="unblock fa fa-ban"></i></a>
+                                    }
+                                    else
+                                    {
+                                        <span><strong>Ban user: </strong></span><a href="#" onclick="location.href='@Url.Action("BanUser", "Account", routeValues: new { id = user.Id, ban = "true" })'" id="ban-user"><i class="ban fa fa-ban"></i></a>
+                                    }
                                 </div>
                             </div>
                         </div>

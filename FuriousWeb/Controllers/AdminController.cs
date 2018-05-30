@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using FuriousWeb.Data;
 using FuriousWeb.Models;
 using FuriousWeb.Models.ViewModels;
+using System.Web.Security;
+using System.Data.Entity;
 
 namespace FuriousWeb.Controllers
 {
@@ -63,7 +66,7 @@ namespace FuriousWeb.Controllers
             {
                 users = users.Where(x => x.Email.ToLower().Contains(query.ToLower())).Skip(skip).Take(take).ToList();
             }
-
+            ViewBag.date = DateTime.Now;
             if (isPartial)
                 return PartialView("UsersForAdmin", users);
             else
@@ -83,6 +86,44 @@ namespace FuriousWeb.Controllers
                 return PartialView("OrdersForAdmin", orders);
             else
                 return View("OrdersForAdmin", orders);
+        }
+
+        public ActionResult EditOrder(int? id)
+        {
+            if (id == null)
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+
+            Order order = db.Orders.Find(id);
+            if (order == null)
+                return HttpNotFound();
+
+            EditOrderViewModel viewModel = new EditOrderViewModel(order);
+            
+            return View("Orders/EditOrder", viewModel);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditOrder(EditOrderViewModel viewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                Order order = db.Orders.Find(viewModel.Id);
+                order.Status = viewModel.Status;
+
+                db.Entry(order).State = EntityState.Modified;
+                try
+                {
+                    db.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    ModelState.AddModelError("Error", ex);
+                    return View(viewModel);
+                }
+                return RedirectToAction("GetOrderListForAdmin", "Admin", new { isPartial = false, query = "", currentPage = 1 });
+            }
+            return View("Orders/EditOrder", viewModel);
         }
     }
 }

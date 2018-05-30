@@ -42,6 +42,24 @@
     }, 5000);
 }
 
+$(document).ready(function () {
+    validatePersonalInfo();
+    $('.personal_info #name, .personal_info #lastname, .personal_info #email, .personal_info #phone, .personal_info #address').change(validatePersonalInfo);
+});
+
+function validatePersonalInfo() {
+    if ($('.personal_info #name').val().length > 0 &&
+        $('.personal_info #lastname').val().length > 0 &&
+        $('.personal_info #email').val().length > 0 &&
+        $('.personal_info #phone').val().length > 0 &&
+        $('.personal_info #address').val().length > 0 ) {
+        $(".billing_info .do_action #pay-now").prop("disabled", false);
+    }
+    else {
+        $(".billing_info .do_action #pay-now").prop("disabled", true);
+    }
+}
+
 $(".cart_quantity_up").click(function () {
     event.preventDefault();
     var value = parseInt($(this).next("input").val());

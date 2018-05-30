@@ -2641,11 +2641,13 @@ h2.title {
     color: #fff;
 }
 
-.billing_info{
+.billing_info,
+.personal_info{
     margin-bottom:20px;
 }
 
-.billing_info .title {
+.billing_info .title,
+.personal_info .title{
     font-size: 20px;
     font-weight: bold;
     text-align: center;
@@ -2653,24 +2655,46 @@ h2.title {
 }
 
 .billing_info .info,
-.billing_info .do_action{
+.billing_info .do_action,
+.personal_info .info{
     display:flex;
     justify-content:center;
 }
 
 .billing_info .info > div,
-.billing_info .do_action > div{
-    max-width: 400px;
+.billing_info .do_action > div,
+.personal_info .info > div{
+    width: 400px;
 }
 
 .billing_info .do_action button{
     margin-top:16px;
 }
 
-.billing_info .info > div > div{
+.billing_info .info > div > div,
+.personal_info .info > div > div{
     display:flex;
 }
 
-.billing_info .info input {
+.billing_info .info input,
+.personal_info .info input{
     margin: 5px;
+}
+
+@media (max-width: 767px) {
+    .billing_info .info > div,
+    .billing_info .do_action > div,
+    .personal_info .info > div {
+        width: 100%;
+    }
+    .billing_info .info > div > div,
+    .personal_info .info > div > div{
+        display:block;
+    }
+    .left-sidebar .shipping{
+        display:none;
+    }
+    .history li > div{
+        text-align:center;
+    }
 }

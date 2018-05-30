@@ -13,22 +13,34 @@
     <title>
         @{ViewBag.Title = "404 Puslapis nerastas";}
     </title>
-    @Styles.Render("~/Content/Styles/bootstrap.min.css")
+    @Styles.Render("~/Content/Styles/shop")
+    @*Styles.Render("~/Content/Styles/bootstrap.min.css")
     @Styles.Render("~/Content/Styles/font-awesome.min.css")
     @Scripts.Render("~/Scripts/jquery/jquery-1.10.2.min.js")
-    @Scripts.Render("~/Scripts/Design/bootstrap.min.js")
+    @Scripts.Render("~/Scripts/Design/bootstrap.min.js")*@
 </head>
 
 <body>
 
 
-    <div class="container">
+    @*<div class="container">
         <div class="row">
             <div class="col-md-1"></div>
             <div class="col-md-8 text-center">
                 <h1> 404 Jūsų ieškomas puslapis nerastas </h1>
                 <a href="@Url.Action("Index", "Home")">Eiti į pagrindinį puslapį</a>
             </div>
+        </div>
+    </div>*@
+
+    <div class="container text-center">
+        <div class="logo-404">
+            <a href="@Url.Action("Index", "Home")"><img src="~/Content/Images/logo.png" alt="" /></a>
+        </div>
+        <div class="content-404">
+            <h1><b>UPPS!</b> Puslapis nerastas</h1>
+            <p>Panašu, kad toks puslapis neegzistuoja...</p>
+            <h2><a href="@Url.Action("Index", "Home")">Eiti į pagrindinį puslapį</a></h2>
         </div>
     </div>
 

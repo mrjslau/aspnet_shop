@@ -41,7 +41,7 @@ namespace FuriousWeb.Controllers
             }
             else
             {
-                products = db.Products.OrderBy(p => p.Id).Skip(skip).Take(take).ToList();
+                products = db.Products.OrderByDescending(p => p.Created_at).Skip(skip).Take(take).ToList();
             }
             if (isPartial)
             {
@@ -62,7 +62,7 @@ namespace FuriousWeb.Controllers
             if (!string.IsNullOrWhiteSpace(query))
                 products = products.Where(x => x.Name.ToLower().Contains(query.ToLower()) || x.Code.ToLower().Contains(query.ToLower())).Skip(skip).Take(take).ToList();
             else
-                products = db.Products.OrderBy(p => p.Id).Skip(skip).Take(take).ToList();
+                products = db.Products.OrderByDescending(p => p.Created_at).Skip(skip).Take(take).ToList();
             if (isPartial)
                 return PartialView("ProductsForAdmin", products);
             else
@@ -120,6 +120,7 @@ namespace FuriousWeb.Controllers
                 product.Name = viewModel.Name;
                 product.Description = viewModel.Description;
                 product.Price = viewModel.Price;
+                product.Created_at = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
                 
                 db.Products.Add(product);
 
@@ -166,18 +167,19 @@ namespace FuriousWeb.Controllers
                 try
                 { 
                     db.SaveChanges();
-
-                    return RedirectToAction("GetProductsListForAdmin", new { isPartial = false, query = "", currentPage = 1 });
                 }
-
                 catch (System.Data.Entity.Infrastructure.DbUpdateException)
                 {
                     ModelState.AddModelError("Error", "Prekė su tokiu kodu jau egzistuoja.");
+                    return View(viewModel);
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-                    ModelState.AddModelError("Error", "Nežinoma klaida");
+                    ModelState.AddModelError("Error", ex);
+                    return View(viewModel);
                 }
+
+                return RedirectToAction("GetProductsListForAdmin", new { isPartial = false, query = "", currentPage = 1});
             }
 
             return View(viewModel);
@@ -219,6 +221,11 @@ namespace FuriousWeb.Controllers
                 }
                 catch(System.Data.Entity.Infrastructure.DbUpdateException ex){
                     ModelState.AddModelError("Error", "Prekė su tokiu kodu jau egzistuoja.");
+                    return View(viewModel);
+                }
+                catch (Exception ex)
+                {
+                    ModelState.AddModelError("Error", ex);
                     return View(viewModel);
                 }
                 return RedirectToAction("GetProductsListForAdmin", "Products", new { isPartial = false, query = "", currentPage = 1 });

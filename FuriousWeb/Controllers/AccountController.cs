@@ -66,11 +66,47 @@ namespace FuriousWeb.Controllers
                 var orders = db.Orders
                    .Where(b => b.UserID == user).ToList();
                 profile.Orders = orders;
-                return View("../Store/Account/Home", profile);
+                return View("../Store/Account/OrderHistory", profile);
             }
             else
             {
                 var url = this.Url.Action("Profile", "Account");
+                TempData["redirectTo"] = url;
+                return RedirectToAction("login", "Account");
+            }
+        }
+
+
+        [AllowAnonymous]
+        public ActionResult Home()
+        {
+            bool loggedIn = (System.Web.HttpContext.Current.User != null) && System.Web.HttpContext.Current.User.Identity.IsAuthenticated;
+            if (loggedIn)
+            {
+                return View("../Store/Account/Home");
+            }
+            else
+            {
+                var url = this.Url.Action("Home", "Account");
+                TempData["redirectTo"] = url;
+                return RedirectToAction("login", "Account");
+            }
+        }
+
+        [AllowAnonymous]
+        public ActionResult EditProfile()
+        {
+            bool loggedIn = (System.Web.HttpContext.Current.User != null) && System.Web.HttpContext.Current.User.Identity.IsAuthenticated;
+            if (loggedIn)
+            {
+                var user = System.Web.HttpContext.Current.User.Identity.GetUserId();
+                ProfileViewModel profile = new ProfileViewModel();
+                profile.User = user;
+                return View("../Store/Account/EditProfile", profile);
+            }
+            else
+            {
+                var url = this.Url.Action("EditProfile", "Account");
                 TempData["redirectTo"] = url;
                 return RedirectToAction("login", "Account");
             }
@@ -142,13 +178,14 @@ namespace FuriousWeb.Controllers
 
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
-            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: true);
             switch (result)
             {
                 case SignInStatus.Success:
                     return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
-                    return View("Lockout");
+                    ModelState.AddModelError("", "Jūsų paskyra buvo užblokuota");
+                    return View(model);
                 case SignInStatus.RequiresVerification:
                     return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
                 case SignInStatus.Failure:
@@ -171,7 +208,9 @@ namespace FuriousWeb.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new User { UserName = model.Email, Email = model.Email };
+                var user = new User { UserName = model.Email, Email = model.Email, Phone = model.Phone, Address = model.Address };
+                /*user.Address = model.Address;
+                user.Phone = model.Phone;*/
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -188,6 +227,23 @@ namespace FuriousWeb.Controllers
 
             // If we got this far, something failed, redisplay form
             return View(model);
+        }
+
+        [AllowAnonymous]
+        public ActionResult BanUser(string id, bool ban)
+        {
+            var user = UserManager.FindById(id);
+            if (ban)
+            {
+                UserManager.SetLockoutEnabled(user.Id, true);
+                UserManager.SetLockoutEndDate(user.Id, new DateTime(9999, 12, 30));
+                db.SaveChanges();
+            }
+            else
+            {
+                UserManager.SetLockoutEnabled(user.Id, false);
+            }
+            return RedirectToAction("GetUsersListForAdmin", "Admin", new { isPartial = false, query = "", currentPage = 1});
         }
 
         //
@@ -289,7 +345,7 @@ namespace FuriousWeb.Controllers
         //    return View();
         //}
 
-  
+
         [HttpPost]
         //[ValidateAntiForgeryToken]
         public ActionResult LogOff()
