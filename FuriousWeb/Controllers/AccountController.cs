@@ -66,11 +66,47 @@ namespace FuriousWeb.Controllers
                 var orders = db.Orders
                    .Where(b => b.UserID == user).ToList();
                 profile.Orders = orders;
-                return View("../Store/Account/Home", profile);
+                return View("../Store/Account/OrderHistory", profile);
             }
             else
             {
                 var url = this.Url.Action("Profile", "Account");
+                TempData["redirectTo"] = url;
+                return RedirectToAction("login", "Account");
+            }
+        }
+
+
+        [AllowAnonymous]
+        public ActionResult Home()
+        {
+            bool loggedIn = (System.Web.HttpContext.Current.User != null) && System.Web.HttpContext.Current.User.Identity.IsAuthenticated;
+            if (loggedIn)
+            {
+                return View("../Store/Account/Home");
+            }
+            else
+            {
+                var url = this.Url.Action("Home", "Account");
+                TempData["redirectTo"] = url;
+                return RedirectToAction("login", "Account");
+            }
+        }
+
+        [AllowAnonymous]
+        public ActionResult EditProfile()
+        {
+            bool loggedIn = (System.Web.HttpContext.Current.User != null) && System.Web.HttpContext.Current.User.Identity.IsAuthenticated;
+            if (loggedIn)
+            {
+                var user = System.Web.HttpContext.Current.User.Identity.GetUserId();
+                ProfileViewModel profile = new ProfileViewModel();
+                profile.User = user;
+                return View("../Store/Account/EditProfile", profile);
+            }
+            else
+            {
+                var url = this.Url.Action("EditProfile", "Account");
                 TempData["redirectTo"] = url;
                 return RedirectToAction("login", "Account");
             }

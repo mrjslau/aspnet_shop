@@ -21,7 +21,7 @@
                         </a>
                     </li>
                     <li @(ViewContext.RouteData.Values["Action"].ToString() == "Profile" ? "class=active" : "")>
-                        <a href="@Url.Action("Profile", "Account", routeValues: null)"><i class="fa fa-user"></i> Profilis</a>
+                        <a href="@Url.Action("Home", "Account", routeValues: null)"><i class="fa fa-user"></i> Profilis</a>
                     </li>
                     <li @(ViewContext.RouteData.Values["Action"].ToString() == "OpenCart" ? "class=active" : "")>
                         <a href="@Url.Action("OpenCart", "ShoppingCart", routeValues: null)">
