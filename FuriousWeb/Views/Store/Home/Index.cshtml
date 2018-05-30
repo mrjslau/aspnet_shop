@@ -205,7 +205,6 @@
             }, 100);
 
             $('body').on('click', '.products-pagination li', function () {
-                
                 var page = $(this).data('value');
                 getProducts($("#user-product-search").val(), false, page, true);
             });

@@ -18,7 +18,7 @@
                 </div>
             </div>
             <hr />
-            <div class="row">
+           @* <div class="row">
                 <div class="col-md-1"></div>
                 <div class="col-md-2">
                     <strong>Masinis veiksmas: </strong>
@@ -33,7 +33,7 @@
                     <button class="btn product-btn">Vykdyti</button>
                 </div>
                 <div class="col-md-3"></div>
-            </div>
+            </div>*@
             <hr />
             <div class="row search-row">
                 <div class="col-md-1"></div>
@@ -50,44 +50,57 @@
                 </div>
             </div>
 
-            <div class="list">
-                <div class="list-titles">
-                    <div class="check-box"></div>
-                    <div class="name"> Kodas </div>
-                    <div class="name"> Pavadinimas </div>
-                    <div class="category"> Kategorija </div>
-                    <div class="category"> Kaina </div>
-                    <div class="actions">
+            <div class="container">
+                <div class="list">
+                    <div class="row admin-list-row admin-list-headrow">
+                        <div class="col-md-offset-1 col-md-1  ">
+                            <div>Kodas</div>
+                        </div>
+                        <div class="col-md-3  ">
+                            <div>Pavadinimas</div>
+                        </div>
+                        <div class="col-md-2  ">
+                            <div>Kategorija</div>
+                        </div>
+                        <div class="col-md-2  ">
+                            <div>Kaina</div>
+                        </div>
+                        <div class="col-md-2  ">
+                            <div></div>
+                        </div>
+                    </div>
+
+                    @foreach (var product in Model)
+                    {
+                    <div class="row admin-list-row">
+                        <div class="col-md-offset-1 col-md-1">
+                            @product.Code
+                        </div>
+                        <div class="col-md-3">
+                            @product.Name
+                        </div>
+                        <div class="col-md-2">
+                            n/a
+                        </div>
+                        <div class="col-md-2">
+                            @product.Price
+                        </div>
+                        <div class="col-md-2">
+                            <div class="actions">
+                                <a href="@Url.Action("Edit", "Products", routeValues: new { id = product.Id })"><i class="edit fa fa-edit"></i></a>
+                                <a href="@Url.Action("Delete", "Products", routeValues: new { id = product.Id })"><i class="delete fa fa-trash"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    }
+
+                    <div class="text-center">
+                        <nav aria-label="Page navigation">
+                            <ul class="products-pagination pagination admin"></ul>
+                        </nav>
                     </div>
                 </div>
-
-                @foreach (var product in Model)
-                {
-                    <div class="list-item">
-                        <div class="check-box">
-                            <input id="checkBox" type="checkbox">
-                        </div>
-                        <div class="name">@product.Code</div>
-                        <div class="name">@product.Name</div>
-                        <div class="category">not yet implemented</div>
-                        <div class="category">@product.Price</div>
-                        @* Siuos stulpelius reikėtu visai paslėpti, nes dabar juos galima pamatyt per browser'io page source *@
-                        <div class="id" style="display:none;"> @product.Id </div>
-                        <div class="actions">
-                            <a href="@Url.Action("Edit", "Products", routeValues: new { id = product.Id })"><i class="edit fa fa-edit"></i></a>
-                            <a href="@Url.Action("Delete", "Products", routeValues: new { id = product.Id })"><i class="delete fa fa-trash"></i></a>
-                        </div>
-
-                    </div>
-                }
-
-                <div class="text-center">
-                    <nav aria-label="Page navigation">
-                        <ul class="products-pagination pagination admin">
-                        </ul>
-                    </nav>
-                </div>
-            </div>
+            </div><!--Container end-->
         </div>
     </div>
 </div>

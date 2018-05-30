@@ -13,34 +13,44 @@
             @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
             {
                 <div class="shop-menu pull-right">
-                <ul class="nav navbar-nav">
-                    <li @(ViewContext.RouteData.Values["Action"].ToString() == "Index" ? "class=active" : "")>
-                        <a href="@Url.Action("Index", "Home", routeValues: null)">
-                            <i class="fa fa-home"></i>
-                            <span class="homeLinkLabel">Pagrindinis puslapis</span>
-                        </a>
-                    </li>
-                    <li @(ViewContext.RouteData.Values["Action"].ToString() == "Profile" ? "class=active" : "")>
-                        <a href="@Url.Action("Home", "Account", routeValues: null)"><i class="fa fa-user"></i> Profilis</a>
-                    </li>
-                    <li @(ViewContext.RouteData.Values["Action"].ToString() == "OpenCart" ? "class=active" : "")>
-                        <a href="@Url.Action("OpenCart", "ShoppingCart", routeValues: null)">
-                            <i class="fa fa-shopping-basket"></i>
-                            [<span id="shoppingCartItemsCount">@shoppingCartItemsCount</span>]
-                            <span class="shoppingCartLinkLabel">Krėpšelis</span>
-                        </a>
-                    </li>
-                    @if (Request.IsAuthenticated)
-                    {
+                    <ul class="nav navbar-nav">
+                        @if (Request.IsAuthenticated && User.IsInRole("Admin"))
+                        {
+                        <li @(ViewContext.RouteData.Values["Action"].ToString() == "Index" ? "class=active" : "")>
+                            <a href="@Url.Action("Index", "Admin", null)">
+                                <i class="fa fa-cogs"></i>
+                                <strong><span class="homeLinkLabel">ADMIN</span></strong>
+                            </a>
+                        </li>
+                        }
+
+                        <li @(ViewContext.RouteData.Values["Action"].ToString() == "Index" ? "class=active" : "")>
+                            <a href="@Url.Action("Index", "Home", routeValues: null)">
+                                <i class="fa fa-home"></i>
+                                <span class="homeLinkLabel">Pagrindinis puslapis</span>
+                            </a>
+                        </li>
+                        <li @(ViewContext.RouteData.Values["Action"].ToString() == "Profile" ? "class=active" : "")>
+                            <a href="@Url.Action("Home", "Account", routeValues: null)"><i class="fa fa-user"></i> Profilis</a>
+                        </li>
+                        <li @(ViewContext.RouteData.Values["Action"].ToString() == "OpenCart" ? "class=active" : "")>
+                            <a href="@Url.Action("OpenCart", "ShoppingCart", routeValues: null)">
+                                <i class="fa fa-shopping-basket"></i>
+                                [<span id="shoppingCartItemsCount">@shoppingCartItemsCount</span>]
+                                <span class="shoppingCartLinkLabel">Krėpšelis</span>
+                            </a>
+                        </li>
+                        @if (Request.IsAuthenticated)
+                        {
                         <li>
                             <a href="javascript:document.getElementById('logoutForm').submit()">
-                            <i class="fa fa-sign-out"></i>
+                                <i class="fa fa-sign-out"></i>
                                 <span class="logOffLinkLabel">Atsijungti</span>
                             </a>
                         </li>
-                    }
-                    else
-                    {
+                        }
+                        else
+                        {
                         <li @(ViewContext.RouteData.Values["Action"].ToString() == "Register" ? "class=active" : "")>
                             <a href="@Url.Action("Register", "Account", routeValues: null)">
                                 <i class="fa fa-home"></i>
@@ -53,8 +63,8 @@
                                 <span class="loginLinkLabel">Prisijungti</span>
                             </a>
                         </li>
-                    }
-                </ul>
+                        }
+                    </ul>
             </div>
             }
         </div>
