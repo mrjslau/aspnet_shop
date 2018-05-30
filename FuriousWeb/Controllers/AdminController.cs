@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using FuriousWeb.Data;
 using FuriousWeb.Models;
 using FuriousWeb.Models.ViewModels;
+using System.Web.Security;
 
 namespace FuriousWeb.Controllers
 {
@@ -64,7 +65,7 @@ namespace FuriousWeb.Controllers
             {
                 users = users.Where(x => x.Email.ToLower().Contains(query.ToLower())).Skip(skip).Take(take).ToList();
             }
-
+            ViewBag.date = DateTime.Now;
             if (isPartial)
                 return PartialView("UsersForAdmin", users);
             else

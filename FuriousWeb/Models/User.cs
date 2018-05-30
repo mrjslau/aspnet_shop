@@ -11,6 +11,10 @@ namespace FuriousWeb.Models
     {
         public static object Identity { get; internal set; }
 
+        public string Phone { get; set; }
+
+        public string Address { get; set; }
+
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<User> manager)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
