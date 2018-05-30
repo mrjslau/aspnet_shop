@@ -152,6 +152,10 @@ a#scrollUp i{
 	padding-right:0;
 }
 
+.row{
+    margin-bottom:20px;
+}
+
 .usa {
   border-radius: 0;
   color: #B4B1AB;
@@ -213,6 +217,37 @@ a#scrollUp i{
 	margin-right:3px;
 }
 
+.profile-page{
+    display:block;
+    width:100%;
+    position:relative;
+    margin-bottom:50px;
+    margin-top:30px;
+}
+
+.profile-page .profile-button{
+    display:block;
+    width:46%;
+    height:200px;
+}
+
+.profile-page .profile-button a:hover{
+    color:#fdb45e;
+}
+
+.profile-page .profile-button a{
+    height:200px;
+    font-size:28px;
+    background:#f0f0e9;
+    color:#333;
+    text-transform:uppercase;
+    font-weight:100;
+}
+
+.profile-page .profile-button:first-of-type{
+    margin-right:8%;
+}
+
 
 .shop-menu ul li a:hover {
 	color:#fe980f;
@@ -223,9 +258,10 @@ a#scrollUp i{
 	color:#fe980f;
 	background:#fff;
 }
-
+.container > .row{
+    margin-bottom:0;
+}
 .header-bottom {
-  padding-bottom: 30px;
   padding-top: 30px;
 }
 
@@ -2519,6 +2555,15 @@ h2.title {
     margin-bottom:20px;
 }
 
+.success-msg {
+    background-color: #4CAF50;
+    border-radius: 5px;
+    padding: 5px;
+    padding-left: 30px;
+    position: relative;
+    margin-bottom: 20px;
+}
+
 .empty-cart {
     background-color: #FE980F;
     border-radius: 5px;
@@ -2547,6 +2592,16 @@ h2.title {
     font-size: 16px;
 }
 
+.success-msg:before {
+    content: '\f00d';
+    font-family: 'FontAwesome';
+    position: absolute;
+    top: 4px;
+    left: 5px;
+    color: #fff;
+    font-size: 16px;
+}
+
 .empty-cart:before {
     content: '\f0e7';
     font-family: 'FontAwesome';
@@ -2559,12 +2614,14 @@ h2.title {
 
 .thankyou p,
 .message p,
+.success-msg p,
 .empty-cart p {
     color: #fff;
     font-size: 16px;
 }
 
 .message p,
+.success-msg p,
 .empty-cart p {
     margin-bottom: 0px;
 }

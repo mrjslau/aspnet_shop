@@ -4,6 +4,63 @@
 }
 
 
+@if (@ViewBag.Message != null)
+{
+    <!--Model.paymentErr.Message-->
+
+    <div class="success-msg">
+        <p>@ViewBag.Message</p>
+    </div>
+}
+
+<form method="post" action="SubmitEditProfile" runat="server">
+
+    <div class="personal_info">
+        <div class="title">
+            Jūsų kontaktiniai duomenys
+        </div>
+        <div class="profile-data">
+            <div class="row">
+                <div class="col-md-4 text-right">Vardas</div>
+                <div class="col-md-4">
+                    <input class="form-control" type="text" id="name" name="name" placeholder="Vardas*" required value="@Model.User.Name" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 text-right">Pavardė</div>
+                <div class="col-md-4">
+                    <input class="form-control" type="text" id="lastname" name="lastname" placeholder="Pavardė*" required value="@Model.User.Lastname"/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 text-right">El. paštas</div>
+                <div class="col-md-4">
+                    <input class="form-control" type="email" id="email" name="email" placeholder="El. pašto adresas*" required value="@Model.User.Email"/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 text-right">Telefono nr.</div>
+                <div class="col-md-4">
+                    <input class="form-control" type="text" id="phone" name="phone" placeholder="Telefono numeris*" required value="@Model.User.Phone"/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 text-right">Adresas</div>
+                <div class="col-md-4">
+                    <input class="form-control" type="text" id="address" name="address" placeholder="Adresas*" required value="@Model.User.Address" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-8 text-right">
+                    <button type="submit" id="pay-now" class="btn btn-primary add-to-cart">Išsaugoti</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</form>
+
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

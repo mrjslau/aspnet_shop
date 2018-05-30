@@ -22,11 +22,12 @@ namespace FuriousWeb.Models
         public int Exp_year { get; set; }
         public int Exp_month { get; set; }
         public string Card_cvv { get; set; }
-        public string User { get; set; }
+        public string UserID { get; set; }
 
         public ShoppingCart Cart;
         public PaymentInfo paymentInfo;
         public PaymentError paymentErr;
+        public User User;
         private string response;
 
         public bool InitPayment(ShoppingCart shoppingCart)

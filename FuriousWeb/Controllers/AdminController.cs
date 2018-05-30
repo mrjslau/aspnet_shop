@@ -98,7 +98,7 @@ namespace FuriousWeb.Controllers
 
             EditOrderViewModel viewModel = new EditOrderViewModel(order);
             
-            return View("EditOrder", viewModel);
+            return View("../Orders/EditOrder");
         }
     }
 }

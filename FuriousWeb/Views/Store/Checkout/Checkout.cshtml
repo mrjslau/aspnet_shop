@@ -20,15 +20,15 @@
         <div class="info">
             <div>
                 <div>
-                    <input class="form-control" type="text" id="name" name="name" placeholder="Vardas*" required />
-                    <input class="form-control" type="text" id="lastname" name="lastname" placeholder="Pavardė*" required />
+                    <input class="form-control" type="text" id="name" name="name" placeholder="Vardas*" required value="@Model.User.Name"/>
+                    <input class="form-control" type="text" id="lastname" name="lastname" placeholder="Pavardė*" required  value="@Model.User.Lastname"/>
                 </div>
                 <div>
-                    <input class="form-control" type="email" id="email" name="email" placeholder="El. pašto adresas*" required />
-                    <input class="form-control" type="text" id="phone" name="phone" placeholder="Telefono numeris*" required />
+                    <input class="form-control" type="email" id="email" name="email" placeholder="El. pašto adresas*" required  value="@Model.User.Email"/>
+                    <input class="form-control" type="text" id="phone" name="phone" placeholder="Telefono numeris*" required  value="@Model.User.Phone"/>
                 </div>
                 <div>
-                    <input class="form-control" type="text" id="address" name="address" placeholder="Adresas*" required />
+                    <input class="form-control" type="text" id="address" name="address" placeholder="Adresas*" required  value="@Model.User.Address"/>
                 </div>
             </div>
         </div>

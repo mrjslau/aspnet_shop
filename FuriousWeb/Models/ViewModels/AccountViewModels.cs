@@ -30,10 +30,11 @@ namespace FuriousWeb.Models.ViewModels
 
     public class ProfileViewModel
     {
-        public string User;
+        public string UserID;
         public List<Order> Orders;
         public Order Order;
         public List<OrderDetail> OrderDetails;
+        public User User;
         public enum OrderStatus
         {
             Apdorojama = 0,
@@ -78,6 +79,14 @@ namespace FuriousWeb.Models.ViewModels
         [Required(ErrorMessage = "Būtina įvesti adresą")]
         [Display(Name = "Adresas")]
         public string Address { get; set; }
+
+        [Required(ErrorMessage = "Būtina įvesti vardą")]
+        [Display(Name = "Vardas")]
+        public string Name { get; set; }
+
+        [Required(ErrorMessage = "Būtina įvesti pavardę")]
+        [Display(Name = "Pavardė")]
+        public string Lastname { get; set; }
     }
 
     public class ResetPasswordViewModel

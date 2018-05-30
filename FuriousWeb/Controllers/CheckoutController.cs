@@ -18,7 +18,8 @@ namespace FuriousWeb.Controllers
             if (loggedIn)
             {
                 var user = System.Web.HttpContext.Current.User.Identity.GetUserId();
-                checkout.User = user;
+                checkout.UserID = user;
+                checkout.User = db.Users.Find(user);
                 return View("Checkout", checkout);
             }
             else
@@ -40,7 +41,7 @@ namespace FuriousWeb.Controllers
                 Card_holder = user,
                 Card_cvv = Request.Form["card_cvv"],
 
-                User = User.Identity.GetUserId(),
+                UserID = User.Identity.GetUserId(),
             };
             
             if (checkout.InitPayment((ShoppingCart)HttpContext.Session["shoppingCart"]))
@@ -55,7 +56,7 @@ namespace FuriousWeb.Controllers
                 //save order
                 var order = new Order();
                 order.PaymentID = payment.ID;
-                order.UserID = checkout.User;
+                order.UserID = checkout.UserID;
                 var date = DateTime.Parse(checkout.paymentInfo.Created_at);
                 order.Created_at = date.ToString("yyyy-MM-dd");
                 order.Status = 1;

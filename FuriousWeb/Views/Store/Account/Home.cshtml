@@ -4,14 +4,12 @@
 }
 
 <h3>Vartotojo profilis</h3>
-<div class="row">
-    <div class="btn-group btn-group-justified profile-page" role="group" aria-label="...">
-        <div class="btn-group profile-button" role="group">
-            <a href="@Url.Action("Profile", "Account", routeValues: null)" class="btn btn-default">Užsakymai</a>
-        </div>
-        <div class="btn-group profile-button" role="group">
-            <a href="@Url.Action("EditProfile", "Account", routeValues: null)" class="btn btn-default">Redaguoti profilį</a>
-        </div>
+<div class="btn-group btn-group-justified profile-page clearfix" role="group" aria-label="...">
+    <div class="btn-group profile-button" role="group">
+        <a href="@Url.Action("Profile", "Account", routeValues: null)" class="btn btn-default">Užsakymai</a>
+    </div>
+    <div class="btn-group profile-button" role="group">
+        <a href="@Url.Action("EditProfileView", "Account", routeValues: null)" class="btn btn-default">Redaguoti profilį</a>
     </div>
 </div>
 

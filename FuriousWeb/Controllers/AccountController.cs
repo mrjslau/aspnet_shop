@@ -10,6 +10,7 @@ using FuriousWeb.Data;
 using System.Linq;
 using System;
 using System.Data.SqlClient;
+using System.Data.Entity;
 
 namespace FuriousWeb.Controllers
 {
@@ -62,7 +63,7 @@ namespace FuriousWeb.Controllers
             {
                 var user = System.Web.HttpContext.Current.User.Identity.GetUserId();
                 ProfileViewModel profile = new ProfileViewModel();
-                profile.User = user;
+                profile.UserID = user;
                 var orders = db.Orders
                    .Where(b => b.UserID == user).ToList();
                 profile.Orders = orders;
@@ -94,22 +95,60 @@ namespace FuriousWeb.Controllers
         }
 
         [AllowAnonymous]
-        public ActionResult EditProfile()
+        public ActionResult EditProfileView(string message)
         {
             bool loggedIn = (System.Web.HttpContext.Current.User != null) && System.Web.HttpContext.Current.User.Identity.IsAuthenticated;
             if (loggedIn)
             {
                 var user = System.Web.HttpContext.Current.User.Identity.GetUserId();
                 ProfileViewModel profile = new ProfileViewModel();
-                profile.User = user;
+                profile.UserID = user;
+                profile.User = db.Users.Find(user);
+                if (message != null)
+                    ViewBag.Message = message;
                 return View("../Store/Account/EditProfile", profile);
             }
             else
             {
-                var url = this.Url.Action("EditProfile", "Account");
+                var url = this.Url.Action("EditProfileView", "Account");
                 TempData["redirectTo"] = url;
                 return RedirectToAction("login", "Account");
             }
+        }
+
+        [AllowAnonymous]
+        public ActionResult SubmitEditProfile()
+        {
+            var userID = System.Web.HttpContext.Current.User.Identity.GetUserId();
+            User user = db.Users.Find(userID);
+
+            user.Name = Request.Form["name"];
+            user.Lastname = Request.Form["lastname"];
+            user.Email = Request.Form["email"];
+            user.Phone = Request.Form["phone"];
+            user.Address = Request.Form["address"];
+
+            db.Entry(user).State = EntityState.Modified;
+            try
+            {
+                db.SaveChanges();
+            }
+            catch (System.Data.Entity.Infrastructure.DbUpdateException ex)
+            {
+                ViewBag.Error = "Ši paskyra yra redaguojama.";
+                //return View("EditProfile");
+                return RedirectToAction("EditProfileView", "Account", new { message = "Ši paskyra yra redaguojama." });
+            }
+            catch (Exception ex)
+            {
+                ViewBag.Error = ex;
+                return RedirectToAction("EditProfileView", "Account", new { message = ex });
+                //return View("EditProfile");
+            }
+            ViewBag.Success = "Profilis atnaujintas";
+            ViewBag.Error = null;
+            return RedirectToAction("EditProfileView", "Account", new { message = "Profilis atnaujintas" });
+            //return View("EditProfile");
         }
 
         [AllowAnonymous]
@@ -121,7 +160,7 @@ namespace FuriousWeb.Controllers
             {
                 var user = System.Web.HttpContext.Current.User.Identity.GetUserId();
                 ProfileViewModel profile = new ProfileViewModel();
-                profile.User = user;
+                profile.UserID = user;
                 try
                 {
                     var order = db.Orders.Where(b => b.UserID == user && b.ID == id).First();
@@ -208,7 +247,7 @@ namespace FuriousWeb.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new User { UserName = model.Email, Email = model.Email, Phone = model.Phone, Address = model.Address };
+                var user = new User { UserName = model.Email, Email = model.Email, Phone = model.Phone, Address = model.Address, Name = model.Name, Lastname = model.Lastname };
                 /*user.Address = model.Address;
                 user.Phone = model.Phone;*/
                 var result = await UserManager.CreateAsync(user, model.Password);

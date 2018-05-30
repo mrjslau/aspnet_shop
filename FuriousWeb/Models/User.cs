@@ -15,6 +15,10 @@ namespace FuriousWeb.Models
 
         public string Address { get; set; }
 
+        public string Name { get; set; }
+
+        public string Lastname { get; set; }
+
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<User> manager)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
