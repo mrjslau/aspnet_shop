@@ -182,6 +182,9 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Common\Factories.cs" />
+    <Compile Include="Common\CustomExceptions.cs" />
+    <Compile Include="Common\Helper.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\CheckoutController.cs" />
@@ -193,11 +196,14 @@
     <Compile Include="App_Start\CustomViewLocationRazorViewEngine.cs" />
     <Compile Include="Data\DatabaseContext.cs" />
     <Compile Include="Data\Migrations\Configuration.cs" />
+    <Compile Include="Common\FileWorker.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Common\Globals.cs" />
     <Compile Include="Models\OrderDetails.cs" />
     <Compile Include="Models\Order.cs" />
+    <Compile Include="Models\ProductImage.cs" />
     <Compile Include="Models\ThankYou.cs" />
     <Compile Include="Models\Checkout.cs" />
     <Compile Include="Models\Payment.cs" />

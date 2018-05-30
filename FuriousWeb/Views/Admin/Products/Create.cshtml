@@ -7,7 +7,7 @@
 
 <h3>Nauja prekė</h3>
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Create", "Products", FormMethod.Post, new { id = "createProductForm", enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
 
@@ -50,6 +50,18 @@
                         @Html.ValidationMessageFor(m => m.Price, "", new { @class = "text-danger" })
                     </div>
                 </div>
+                
+                <div class="form-group">
+                    <div class="col-md-6">
+                        <input type='file' name="mainImage" onchange="loadMainImage(this)" class="form-control" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-6 file_inputs">
+                        <input type='file' name="images" onchange="loadImage(this)" class="form-control"/>
+                    </div>
+                </div>
 
                 <div class="form-group">
                     <div class="col-md-offset-4 col-md-6">
@@ -59,52 +71,13 @@
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="prod-img-container">
-                <div class="prod-img-main">
-                    <span class="close">&times;</span>
-                    <img src="~/Content/Images/icecream.png">
-                </div>
 
-                <div class="prod-img-thumbnail">
-                    <span class="close">&times;</span>
-                    <img src="~/Content/Images/icecream.png">
-                </div>
-                <div class="prod-img-thumbnail">
-                    <span class="close">&times;</span>
-                    <img src="~/Content/Images/icecream.png">
-                </div>
-                <div class="prod-img-thumbnail">
-                    <span class="close">&times;</span>
-                    <img src="~/Content/Images/icecream.png">
-                </div>
-                <div class="prod-img-thumbnail">
-                    <span class="close">&times;</span>
-                    <img src="~/Content/Images/icecream.png">
-                </div>
-                <div class="prod-img-thumbnail">
-                    <span class="close">&times;</span>
-                    <img src="~/Content/Images/icecream.png">
-                </div>
-                <div class="prod-img-thumbnail">
-                    <span class="close">&times;</span>
-                    <img src="~/Content/Images/icecream.png">
-                </div>
-                <div class="prod-img-thumbnail">
-                    <span class="close">&times;</span>
-                    <img src="~/Content/Images/icecream.png">
-                </div>
-                <div class="prod-img-thumbnail">
-                    <span class="close">&times;</span>
-                    <img src="~/Content/Images/icecream.png">
-                </div>
-                <div class="prod-img-thumbnail">
-                    <span class="close">&times;</span>
-                    <img src="~/Content/Images/icecream.png">
-                </div>
-            </div>
+            </div> @* form-horizontal *@ 
+        </div> @* col-md-6 *@
+
+        <div class="col-md-6">
+            <div class="prod-img-container"/>
         </div>
-    </div>
-}
+
+    </div> @*row*@
+} @* end of form *@

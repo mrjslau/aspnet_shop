@@ -5,6 +5,9 @@ using FuriousWeb.Data;
 using FuriousWeb.Models;
 using FuriousWeb.Models.ViewModels;
 using System.Linq;
+using System.Collections.Generic;
+using System.Web;
+using System;
 
 namespace FuriousWeb.Controllers
 {
@@ -92,7 +95,13 @@ namespace FuriousWeb.Controllers
             {
                 return HttpNotFound();
             }
-            return View("../Store/Products/Details", product);
+
+            var viewModel = new DetailsViewModel();
+            viewModel.Product = product;
+            viewModel.ProductSecondaryImages = db.ProductImages.Where(x => x.ProductId == id && !x.IsMainImage).ToList();
+            viewModel.ProductMainImage = db.ProductImages.SingleOrDefault(x => x.ProductId == id && x.IsMainImage);
+
+            return View("../Store/Products/Details", viewModel);
         }
 
         public ActionResult Create()
@@ -102,7 +111,7 @@ namespace FuriousWeb.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(CreateProductViewModel viewModel)
+        public ActionResult Create(CreateProductViewModel viewModel, HttpPostedFileBase mainImage, IEnumerable<HttpPostedFileBase> images)
         {
             if (ModelState.IsValid)
             {
@@ -111,18 +120,64 @@ namespace FuriousWeb.Controllers
                 product.Name = viewModel.Name;
                 product.Description = viewModel.Description;
                 product.Price = viewModel.Price;
+                
                 db.Products.Add(product);
+
+                var imagesToDownload = new List<HttpPostedFileBase>();
+
+                if (mainImage != null)
+                {
+                    string relativePathToImage = Helper.GetRelativePathForResource(mainImage.FileName);
+                    ProductImage productMainImage = Factories.ProductImageFactory.Create(product.Id, relativePathToImage, true);
+                    db.ProductImages.Add(productMainImage);
+                    imagesToDownload.Add(mainImage);
+                }
+           
+                foreach (var image in images.Where(x => x != null))
+                {
+                    string relativePathToImage = Helper.GetRelativePathForResource(image.FileName);
+                    ProductImage productImage = Factories.ProductImageFactory.Create(product.Id, relativePathToImage, false);
+                    db.ProductImages.Add(productImage);
+                    imagesToDownload.Add(image);
+                }
+
+                //sukuriam dar viena sarasa, kad klaidos atveju zinotume, kokias nuotraukas reikia istrint
+                var downloadedImages = new List<HttpPostedFileBase>();
                 try
                 {
-                    db.SaveChanges();
+                    foreach (var img in imagesToDownload)
+                    {
+                        FileWorker.DownloadImage(img);
+                        downloadedImages.Add(img);
+                    }
                 }
-                catch (System.Data.Entity.Infrastructure.DbUpdateException ex)
+                catch (FileDownloadException)
                 {
-                    ModelState.AddModelError("Error", "Prekė su tokiu kodu jau egzistuoja.");
+                    foreach (var img in downloadedImages)
+                    {
+                        string relativePathToImage = Helper.GetRelativePathForResource(img.FileName);
+                        FileWorker.DeleteFile(relativePathToImage);
+                    }
+
+                    ModelState.AddModelError("Error", "Klaida išsaugant paveikslėlį.");
                     return View(viewModel);
                 }
 
-                return RedirectToAction("GetProductsListForAdmin", new { isPartial = false, query = "", currentPage = 1});
+                try
+                { 
+                    db.SaveChanges();
+
+                    return RedirectToAction("GetProductsListForAdmin", new { isPartial = false, query = "", currentPage = 1 });
+                }
+
+                catch (System.Data.Entity.Infrastructure.DbUpdateException)
+                {
+                    ModelState.AddModelError("Error", "Prekė su tokiu kodu jau egzistuoja.");
+                }
+                catch (Exception)
+                {
+                    ModelState.AddModelError("Error", "Nežinoma klaida");
+                }
             }
 
             return View(viewModel);
@@ -137,7 +192,10 @@ namespace FuriousWeb.Controllers
             if (product == null)
                 return HttpNotFound();
 
-            EditProductViewModel viewModel = new EditProductViewModel(product);
+            List<ProductImage> secondaryImages = db.ProductImages.Where(x => x.ProductId == id && !x.IsMainImage).ToList();
+            ProductImage mainImage = db.ProductImages.SingleOrDefault(x => x.ProductId == id && x.IsMainImage);
+
+            EditProductViewModel viewModel = new EditProductViewModel(product, mainImage, secondaryImages);
 
             return View(viewModel);
         }
@@ -191,8 +249,16 @@ namespace FuriousWeb.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Product product = db.Products.Find(id);
+
+            var productImages = db.ProductImages.Where(img => img.ProductId == product.Id).ToList();
+            foreach(var img in productImages)
+            {
+                FileWorker.DeleteFile(img.RelativePath);
+            }
+
             db.Products.Remove(product);
             db.SaveChanges();
+
             return RedirectToAction("GetProductsListForAdmin", "Products", new { isPartial = false, query = "", currentPage = 1 });
         }
 
