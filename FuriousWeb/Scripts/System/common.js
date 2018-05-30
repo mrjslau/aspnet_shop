@@ -383,3 +383,31 @@ $(document).ready(function () {
     }
     
 });
+
+
+
+function addProductImage(){
+    $.ajax({
+        type: "GET",
+        url: '/File/AddFile',
+        contentType: "application/json; charset=utf-8",
+        dataType: "html",
+        async: true,
+        data: {
+            query: queryString,
+            currentPage: page,
+            isPartial: true
+        },
+        error: function (xhr, status, errorThrown) {
+            var errorMsg = "Status: " + status + " " + errorThrown;
+            alert(errorMsg);
+        },
+        succes: function(){
+            alert("success");
+        }
+    });
+}
+
+function removeProductImage() {
+
+}
