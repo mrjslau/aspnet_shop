@@ -4,7 +4,7 @@
     ViewBag.Title = "Vartotojai";
 }
 
-<div class="panel panel-default">
+<div class="panel panel-default" id="users">
     <div class="panel-heading main-color-bg">
         <h3 class="panel-title">Vartotojai </h3>
     </div>
@@ -65,7 +65,14 @@
                             <div class="col-md-2  ">
                                 <div class="actions">
                                     <a href="#"><i class="edit fa fa-edit"></i></a>
-                                    <a href="#"><i class="delete fa fa-ban"></i></a>
+                                    @if (user.LockoutEndDateUtc > ViewBag.Date && user.LockoutEnabled == true)
+                                    {
+                                        <a href="#" onclick="location.href='@Url.Action("BanUser", "Account", routeValues: new { id = user.Id, ban = "false" })'" id="unblock-user"><i class="unblock fa fa-unblock"></i></a>
+                                    }
+                                    else
+                                    {
+                                        <a href="#" onclick="location.href='@Url.Action("BanUser", "Account", routeValues: new { id = user.Id, ban = "true" })'" id="ban-user"><i class="ban fa fa-ban"></i></a>
+                                    }
                                 </div>
                             </div>
                         </div>
