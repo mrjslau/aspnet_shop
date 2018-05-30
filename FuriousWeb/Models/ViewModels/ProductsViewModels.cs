@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 
 namespace FuriousWeb.Models.ViewModels
 {
@@ -25,16 +26,29 @@ namespace FuriousWeb.Models.ViewModels
     {
         public int Id { get; set; } //product Id, will be hidden
 
-        public EditProductViewModel(Product product)
+        public List<ProductImage> SecondaryImages { get; set; }
+        public ProductImage MainImage { get; set; }
+
+        public EditProductViewModel(Product product, ProductImage mainImg, List<ProductImage> secondaryImages)
         {
             Id = product.Id;
             Code = product.Code;
             Name = product.Name;
             Description = product.Description;
             Price = product.Price;
+
+            SecondaryImages = secondaryImages;
+            MainImage = mainImg;
         }
 
         public EditProductViewModel() { }
+    }
+
+    public class DetailsViewModel
+    {
+        public Product Product { get; set; }
+        public ProductImage ProductMainImage { get; set; }
+        public List<ProductImage> ProductSecondaryImages { get; set; }
     }
 
     public class DeleteConfirmProductViewModel

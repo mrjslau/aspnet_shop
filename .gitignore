@@ -244,3 +244,4 @@ ModelManifest.xml
 # FAKE - F# Make
 .fake/
 /FuriousWeb/Data/Migrations
+/FuriousWeb/Views/File/Uploader.cshtml

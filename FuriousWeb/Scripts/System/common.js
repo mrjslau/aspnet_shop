@@ -392,3 +392,72 @@ $(document).ready(function () {
     }
     
 });
+
+
+
+function addProductImage(){
+    $.ajax({
+        type: "GET",
+        url: '/File/AddFile',
+        contentType: "application/json; charset=utf-8",
+        dataType: "html",
+        async: true,
+        data: {
+            query: queryString,
+            currentPage: page,
+            isPartial: true
+        },
+        error: function (xhr, status, errorThrown) {
+            var errorMsg = "Status: " + status + " " + errorThrown;
+            alert(errorMsg);
+        },
+        succes: function(){
+            alert("success");
+        }
+    });
+}
+
+function loadImage(inputFile) {
+    $(inputFile).hide();
+
+    if (inputFile.files && inputFile.files[0]) {
+        var new_input_img = "<input type='file' class='form-control' name='images' onchange='loadImage(this)'/>";
+        $NEW_INPUT_IMG = $(new_input_img);
+
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+            var imgElement = "<img src='#' alt='your image' name='product_image' />"
+            $imgElement = $(imgElement);
+            $imgElement.attr('src', e.target.result);
+
+            var imageContainer = "<div class='prod-img-thumbnail'><span class='close' onclick='removeImage(this)'>&times;</span>" + $imgElement.prop('outerHTML') + "</div>"
+
+            $('.prod-img-container').append(imageContainer);
+            $('.file_inputs').append($NEW_INPUT_IMG);
+
+            delete $NEW_INPUT_IMG;
+        }
+        reader.readAsDataURL(inputFile.files[0]);
+    }
+}
+
+function loadMainImage(inputFile) {
+    if (inputFile.files && inputFile.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+
+            var imgElement = "<img src='#' alt='your image' name='image' />"
+            $imgElement = $(imgElement);
+            $imgElement.attr('src', e.target.result);
+
+            var imageContainer = "<div class='prod-img-main'><span class='close' onclick='removeImage(this)'>&times;</span>" + $imgElement.prop('outerHTML') + "</div>"
+
+            $('.prod-img-main').remove();
+  
+            $('.prod-img-container').append(imageContainer);
+        }
+
+        reader.readAsDataURL(inputFile.files[0]);
+    }
+}

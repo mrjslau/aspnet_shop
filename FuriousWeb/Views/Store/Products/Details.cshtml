@@ -1,4 +1,4 @@
-﻿@model FuriousWeb.Models.Product
+﻿@model FuriousWeb.Models.ViewModels.DetailsViewModel
 
 @{
     ViewBag.Title = "Details";
@@ -121,22 +121,32 @@
                         <!--product-details-->
                         <div class="col-sm-5">
                             <div class="view-product">
-                                <img src="~/Content/Images/Products/wallet.jpeg" alt="" />
+                                @if (Model.ProductMainImage != null)
+                                {
+                                    <img src="@Url.Content(Model.ProductMainImage.RelativePath)" alt="" />
+                                }
                             </div>
                             <div id="similar-product" class="carousel slide" data-ride="carousel">
 
                                 <!-- Wrapper for slides -->
                                 <div class="carousel-inner">
+
                                     <div class="item active">
-                                        <a href=""><img src="~/Content/Images/Products/adidas.jpg" alt=""></a>
-                                        <a href=""><img src="~/Content/Images/Products/bag.jpeg" alt=""></a>
-                                        <a href=""><img src="~/Content/Images/Products/cap.jpeg" alt=""></a>
+                                        @for (int i = 0; i < Model.ProductSecondaryImages.Count && i < 3; i++)
+                                        {
+                                            <a href=""><img src="@Url.Content(Model.ProductSecondaryImages[i].RelativePath)" alt=""></a>
+                                        }
                                     </div>
                                     <div class="item">
-                                        <a href=""><img src="~/Content/Images/Products/nike.jpg" alt=""></a>
-                                        <a href=""><img src="~/Content/Images/Products/pants.jpg" alt=""></a>
-                                        <a href=""><img src="~/Content/Images/Products/reebok.jpg" alt=""></a>
+                                        @if (Model.ProductSecondaryImages.Count > 3)
+                                        {
+                                            for (int i = 3; i < Model.ProductSecondaryImages.Count; i++)
+                                            {
+                                                <a href=""><img src="@Url.Content(Model.ProductSecondaryImages[i].RelativePath)" alt=""></a>
+                                            }
+                                        }
                                     </div>
+                                    
                                 </div>
 
                                 <!-- Controls -->
@@ -152,15 +162,13 @@
                         <div class="col-sm-7">
                             <div class="product-information">
                                 <!--/product-information-->
-                                <h2>@Model.Name</h2>
-                                <p>SKU kodas: @Model.Id</p>
+                                <h2>@Model.Product.Name</h2>
+                                <p>Prekės ID: @Model.Product.Id</p>
                                 <span>
-                                    <span>€ @Model.Price</span>
-                                    @*
-        <label>Kiekis:</label>
-        <input data-product="@Model.Id" type="text" name="quantity" min="1" value="1" autocomplete="off" size="2" onchange="onProductQuantityChange(this)">
-                                    *@
-                                    <button type="button" class="btn btn-fefault cart" onclick="onBtnAddToCartClick(this, @Model.Id, false)">
+                                    <span>€ @Model.Product.Price</span>
+                                    <label>Kiekis:</label>
+                                    <input type="text" value="1" />
+                                    <button type="button" class="btn btn-fefault cart" onclick="onBtnAddToCartClick(this, @Model.Product.Id, false)">
                                         <i class="fa fa-shopping-cart"></i>
                                         Įdėti į krėpšelį
                                     </button>
@@ -184,7 +192,7 @@
                     </div>
                     <div class="tab-content">
                         <div class="tab-pane active" id="details">
-                            <p>  @Html.DisplayFor(model => model.Description) </p>
+                            <p>  @Html.DisplayFor(model => model.Product.Description) </p>
                         </div>
                         @*
                             <div class="tab-pane fade" id="companyprofile">
