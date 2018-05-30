@@ -172,7 +172,9 @@ namespace FuriousWeb.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new User { UserName = model.Email, Email = model.Email };
+                var user = new User { UserName = model.Email, Email = model.Email, Phone = model.Phone, Address = model.Address };
+                /*user.Address = model.Address;
+                user.Phone = model.Phone;*/
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {

@@ -69,6 +69,15 @@ namespace FuriousWeb.Models.ViewModels
         [Display(Name = "Pakartoti slaptažodį")]
         [Compare("Password", ErrorMessage = "Slaptažodžiai nesutampa.")]
         public string ConfirmPassword { get; set; }
+
+        [Required(ErrorMessage = "Būtina įvesti telefono numerį")]
+        [Phone]
+        [Display(Name = "Telefono numeris")]
+        public string Phone { get; set; }
+
+        [Required(ErrorMessage = "Būtina įvesti adresą")]
+        [Display(Name = "Adresas")]
+        public string Address { get; set; }
     }
 
     public class ResetPasswordViewModel

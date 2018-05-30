@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using FuriousWeb.Data;
@@ -86,6 +87,18 @@ namespace FuriousWeb.Controllers
                 return View("OrdersForAdmin", orders);
         }
 
-        
+        public ActionResult EditOrder(int? id)
+        {
+            if (id == null)
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+
+            Order order = db.Orders.Find(id);
+            if (order == null)
+                return HttpNotFound();
+
+            EditOrderViewModel viewModel = new EditOrderViewModel(order);
+            
+            return View("EditOrder", viewModel);
+        }
     }
 }
