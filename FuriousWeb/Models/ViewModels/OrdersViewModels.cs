@@ -9,11 +9,9 @@ namespace FuriousWeb.Models.ViewModels
 {
     public class EditOrderViewModel
     {
-        [Required]
         [Display(Name = "Vartotojas")]
         public string User { get; set; }
-
-        [Required]
+        
         [Display(Name = "Mokėjimo ID")]
         public int PaymentID { get; set; }
 
@@ -34,5 +32,8 @@ namespace FuriousWeb.Models.ViewModels
             Status = order.Status;
             Created_at = order.Created_at;
         }
+        
+
+        public EditOrderViewModel() { }
     }
 }

@@ -13,7 +13,7 @@ namespace FuriousWeb
     {
         public void Configuration(IAppBuilder app)
         {
-            ConfigureAuth(app);      
+            ConfigureAuth(app);
         }
 
         public static void CreateDefaultRolesAndUsers()
@@ -23,7 +23,7 @@ namespace FuriousWeb
             {
                 if (!roleManager.RoleExists("Admin"))
                 {
-                    using (var userManager = new ApplicationUserManager(new UserStore<User>(db)) { PasswordValidator = new MinimumLengthValidator (0) })
+                    using (var userManager = new ApplicationUserManager(new UserStore<User>(db)) { PasswordValidator = new MinimumLengthValidator(0) })
                     {
                         //creating roles
                         var adminRole = new IdentityRole() { Name = "Admin" };
@@ -33,11 +33,11 @@ namespace FuriousWeb
                         roleManager.Create(simpleUserRole);
 
                         //creating users
-                        var adminUser = new User { UserName = "admin@gmail.com", Email = "admin@gmail.com", Phone = "888888888", Address = "address" };  
+                        var adminUser = new User { UserName = "admin@gmail.com", Email = "admin@gmail.com", Id = "1", Phone = "888888888", Address = "address" };
                         userManager.Create(adminUser, "Password!");
                         userManager.AddToRole(adminUser.Id, adminRole.Name);
 
-                        var simpleUser = new User() { UserName = "user@gmail.com", Email = "user@gmail.com", Phone = "888888888", Address = "address" };
+                        var simpleUser = new User() { UserName = "user@gmail.com", Email = "user@gmail.com", Id = "2", Phone = "888888888", Address = "address" };
                         userManager.Create(simpleUser, "Password!");
                         userManager.AddToRole(simpleUser.Id, simpleUserRole.Name);
 
@@ -105,7 +105,7 @@ namespace FuriousWeb
                         userManager.Create(simpleUser16, "Password!");
                         userManager.AddToRole(simpleUser16.Id, simpleUserRole.Name);
 
-                   }
+                    }
                 }
             }
         }
