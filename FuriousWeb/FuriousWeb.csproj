@@ -826,6 +826,8 @@
     <Content Include="Views\Admin\Manage\AdminLogin.cshtml" />
     <Content Include="Views\Admin\Shared\OrdersForAdmin.cshtml" />
     <Content Include="Views\Error\PageNotFound.cshtml" />
+    <Content Include="Views\Store\Account\OrderHistory.cshtml" />
+    <Content Include="Views\Store\Account\EditProfile.cshtml" />
     <Content Include="Views\Admin\Orders\EditOrder.cshtml" />
   </ItemGroup>
   <ItemGroup>

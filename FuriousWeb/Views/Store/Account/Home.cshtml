@@ -3,59 +3,17 @@
     ViewBag.Title = "Profilis";
 }
 
-
-@if (Model.Orders.Count() > 0)
-{
-    <h3>Pirkimų istorija</h3>
-    <div class="row">
-        <div class="panel">
-            <div class="panel-heading"></div>
-            <div class="panel-body">
-                <ul class="list-group clearfix">
-                    <li class="list-group-item clearfix">
-                        <div class="col-md-1">ID</div>
-                        <div class="col-md-3">Laikas</div>
-                        <div class="col-md-4">Būsena</div>
-                        <div class="col-md-4 text-right">Suma</div>
-                    </li>
-                    @foreach (var order in Model.Orders)
-                {
-                        <a href="@Url.Action("Order", "Account", new { id = order.ID})" class="list-group-item clearfix">
-                            <div class="col-md-1">@order.ID</div>
-                            <div class="col-md-3">@order.Created_at</div>
-                            <div class="col-md-4">@Model.GetStatus(order.Status)</div>
-                            <div class="col-md-4 text-right">€ @Math.Round((order.Payment.Amount / 100), 2)</div>
-                        </a>
-                    }
-                </ul>
-            </div>
+<h3>Vartotojo profilis</h3>
+<div class="row">
+    <div class="btn-group btn-group-justified profile-page" role="group" aria-label="...">
+        <div class="btn-group profile-button" role="group">
+            <a href="@Url.Action("Profile", "Account", routeValues: null)" class="btn btn-default">Užsakymai</a>
+        </div>
+        <div class="btn-group profile-button" role="group">
+            <a href="@Url.Action("EditProfile", "Account", routeValues: null)" class="btn btn-default">Redaguoti profilį</a>
         </div>
     </div>
-}
-else
-{
-    <section>
-        <div class="container">
-            <div class="breadcrumbs">
-                <ol class="breadcrumb">
-                    <li><a href="#">Pagrindinis</a></li>
-                    <li class="active">Profilis</li>
-                </ol>
-            </div>
-            <div class="empty-cart">
-                <p>Pirkimų istorija yra tuščia</p>
-            </div>
-            <div class="come-back">
-                <div>
-                    <img src="~/Content/Images/logo.png">
-                </div>
-                <p>Grįžti į <a href="@Url.Action("Index", "Home")">pagrindinį puslapį</a></p>
-            </div>
-        </div>
-    </section>
-
-}
-
+</div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
