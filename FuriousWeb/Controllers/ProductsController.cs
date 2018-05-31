@@ -274,14 +274,12 @@ namespace FuriousWeb.Controllers
         {
             Product product = db.Products.Find(id);
 
-            var productImages = db.ProductImages.Where(img => img.ProductId == product.Id).ToList();
-            foreach(var img in productImages)
+            try
             {
-                FileWorker.DeleteFile(img.RelativePath);
+                db.Products.Remove(product);
+                db.SaveChanges();
             }
-
-            db.Products.Remove(product);
-            db.SaveChanges();
+            catch(Exception) { }
 
             return RedirectToAction("GetProductsListForAdmin", "Products", new { isPartial = false, query = "", currentPage = 1 });
         }

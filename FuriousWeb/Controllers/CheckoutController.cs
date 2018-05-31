@@ -71,8 +71,15 @@ namespace FuriousWeb.Controllers
                     orderDetail.Quantity = item.Quantity;
                     db.OrderDetails.Add(orderDetail);
                 }
-                db.SaveChanges();
-
+                try
+                {
+                    db.SaveChanges();
+                }
+                catch(Exception ex)
+                {
+                    ModelState.AddModelError("Error", ex.Message);
+                    return View("Checkout", checkout);
+                }
                 HttpContext.Session["shoppingCartItemsCount"] = 0;
                 HttpContext.Session["shoppingCart"] = new ShoppingCart();
 
