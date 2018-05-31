@@ -917,6 +917,13 @@ h2.title {
   color: #696763;
 }
 
+.productinfo a{
+    overflow:hidden;
+    display:block;
+}
+
+.productinfo img {
+    width: 100%;
 .productinfo img,
 .product-details .view-product img {
     width: 100%;

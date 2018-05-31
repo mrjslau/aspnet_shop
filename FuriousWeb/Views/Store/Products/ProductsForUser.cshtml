@@ -8,21 +8,24 @@
             <div class="product-image-wrapper">
                 <div class="single-products">
                     <div class="productinfo text-center">
-                        <a href="@Url.Action("DetailsForUsers", "Products", routeValues: new { id = product.Id })">
+                        <div id="image-holder">
+                            <a  href="@Url.Action("DetailsForUsers", "Products", routeValues: new { id = product.Id })">
 
-                            @{
-                                var image = "";
-                                if (product.Images.FirstOrDefault() == null)
+                                @{
+                                    var image = "";
+                                    if (product.Images.FirstOrDefault() == null)
                                     {
-                                    image = @Url.Content("~/Content/Images/Products/no-image.png");
+                                        image = @Url.Content("~/Content/Images/Products/no-image.png");
+                                    }
+                                    else
+                                    {
+                                        image = @Url.Content(product.Images.FirstOrDefault().RelativePath);
+                                    }
                                 }
-                                else
-                                {
-                                    image = @Url.Content(product.Images.FirstOrDefault().RelativePath);
-                                }
-                            }
 
-                        <img src="@image" alt="" /></a>
+                                <img src="@image" alt="" />
+                            </a>
+                        </div>
                         <h2>€ @product.Price</h2>
                         <p>@product.Name</p>
                         <button id="add-to-cart" type="button" class="btn btn-default btnAddToCart add-to-cart" onclick="onBtnAddToCartClick(this, @product.Id, false)"><i class="fa fa-shopping-cart"></i> Įdėti į krėpšelį</button>

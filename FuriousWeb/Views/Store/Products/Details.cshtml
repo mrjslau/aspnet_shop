@@ -43,15 +43,16 @@
                                             <a href=""><img src="@Url.Content(Model.ProductSecondaryImages[i].RelativePath)" alt=""></a>
                                         }
                                     </div>
-                                    <div class="item">
+                                    
                                         @if (Model.ProductSecondaryImages.Count > 3)
-                                        {
-                                            for (int i = 3; i < Model.ProductSecondaryImages.Count; i++)
+                                        {<div class="item">
+                                            @for (int i = 3; i < Model.ProductSecondaryImages.Count; i++)
                                             {
                                                 <a href=""><img src="@Url.Content(Model.ProductSecondaryImages[i].RelativePath)" alt=""></a>
                                             }
+                                        </div>
                                         }
-                                    </div>
+                                    
                                     
                                 </div>
 
