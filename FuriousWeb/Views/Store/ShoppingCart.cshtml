@@ -44,13 +44,32 @@
 
 
                             <tr class="to_count">
-                                <td class="cart_product">
-                                    <a href=""><img src="images/cart/one.png" alt=""></a>
-                                </td>
+                                @*<td class="cart_product">
+                                    {
+                                        var image = "";
+                                        @*if (cartItem.Product.Images == null)
+                                        {
+                                            image = @Url.Content("~/Content/Images/Products/no-image.png");
+                                        }
+                                        else if (cartItem.Product.Images.FirstOrDefault() == null)
+                                        {
+                                            image = @Url.Content("~/Content/Images/Products/no-image.png");
+                                        }
+                                        else
+                                        {
+                                            image = @Url.Content(cartItem.Product.Images.FirstOrDefault().RelativePath);
+                                        }
+                                    }
+
+                                    <img src="@image" alt="" />*@
+                                    @*<a href=""><img src="images/cart/one.png" alt=""></a>
+                                </td>*@
                                 <td class="cart_description">
                                     <h4><a href="">@cartItem.Product.Name</a></h4>
                                     <p>Prekės ID: @cartItem.Product.Id</p>
                                 </td>
+                                <td class="cart_product"></td>
+
                                 <td class="cart_price">
                                     <p>€ @cartItem.Product.Price</p>
                                 </td>

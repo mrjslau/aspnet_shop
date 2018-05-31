@@ -14,16 +14,29 @@
             <div class="panel-body">
                 <ul class="list-group clearfix history">
                     <li class="list-group-item clearfix">
-                        <div class="col-sm-3"></div>
-                        <div class="col-sm-3">Prekė</div>
+                        <div class="col-sm-1"></div>
+                        <div class="col-sm-5">Prekė</div>
                         <div class="col-sm-3">Kiekis</div>
                         <div class="col-sm-3 text-right">Suma</div>
                     </li>
                     @foreach (var orderDetail in Model.OrderDetails)
                     {
-                        <li class="list-group-item clearfix">
-                            <div class="col-sm-3">@*orderDetail.Photo*@</div>
-                            <div class="col-sm-3">@orderDetail.Product.Name</div>
+                        <li class="list-group-item clearfix order-item">
+                            @{
+                                var image = "";
+                                if (orderDetail.Product.Images.FirstOrDefault() == null)
+                                {
+                                    image = @Url.Content("~/Content/Images/Products/no-image.png");
+                                }
+                                else
+                                {
+                                    image = @Url.Content(orderDetail.Product.Images.FirstOrDefault().RelativePath);
+                                }
+                            }
+
+                            
+                            <div class="col-sm-1"><img src="@image" alt="" /></div>
+                            <div class="col-sm-5">@orderDetail.Product.Name</div>
                             <div class="col-sm-3">@orderDetail.Quantity</div>
                             <div class="col-sm-3 text-right">€ @Model.GetSum(orderDetail.Product.Price, @orderDetail.Quantity)</div>
                         </li>

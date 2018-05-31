@@ -121,7 +121,10 @@ body {
     border-color: #8d5100 !important;
     color: #ffffff !important;
 }
-
+.image img{
+    width:100%;
+    display:block;
+}
 /* Header */
 #admin-header {
     background: #333333;

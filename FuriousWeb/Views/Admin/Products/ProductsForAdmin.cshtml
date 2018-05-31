@@ -6,7 +6,7 @@
     </div>
     <div class="panel-body">
         <div class="admin-list">
-            <span> Iš viso prekių: <span>200</span></span>
+            <span> Iš viso prekių: <span>@Model.Count()</span></span>
             <div class="row creation-row">
                 <div class="col-md-4"></div>
                 <div class="col-md-4">
@@ -53,14 +53,11 @@
             <div class="container">
                 <div class="list">
                     <div class="row admin-list-row admin-list-headrow">
-                        <div class="col-md-offset-1 col-md-1  ">
+                        <div class="col-md-offset-1 col-md-2  ">
                             <div>Kodas</div>
                         </div>
-                        <div class="col-md-3  ">
+                        <div class="col-md-5  ">
                             <div>Pavadinimas</div>
-                        </div>
-                        <div class="col-md-2  ">
-                            <div>Kategorija</div>
                         </div>
                         <div class="col-md-2  ">
                             <div>Kaina</div>
@@ -73,19 +70,32 @@
                     @foreach (var product in Model)
                     {
                     <div class="row admin-list-row">
-                        <div class="col-md-offset-1 col-md-1">
-                            @product.Code
-                        </div>
-                        <div class="col-md-3">
-                            @product.Name
+                        <div class="col-md-1 image">
+                            @{
+                                var image = "";
+                                if (product.Images.FirstOrDefault() == null)
+                                {
+                                    image = @Url.Content("~/Content/Images/Products/no-image.png");
+                                }
+                                else
+                                {
+                                    image = @Url.Content(product.Images.FirstOrDefault().RelativePath);
+                                }
+                            }
+
+                            <img src="@image" alt="" />
+
                         </div>
                         <div class="col-md-2">
-                            n/a
+                            @product.Code
+                        </div>
+                        <div class="col-md-5">
+                            @product.Name
                         </div>
                         <div class="col-md-2">
                             @product.Price
                         </div>
-                        <div class="col-md-2">
+                        <div class="col-md-2 text-right">
                             <div class="actions">
                                 <a href="@Url.Action("Edit", "Products", routeValues: new { id = product.Id })"><i class="edit fa fa-edit"></i></a>
                                 <a href="@Url.Action("Delete", "Products", routeValues: new { id = product.Id })"><i class="delete fa fa-trash"></i></a>

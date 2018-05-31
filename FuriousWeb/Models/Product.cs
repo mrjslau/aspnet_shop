@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FuriousWeb.Models
@@ -15,5 +16,7 @@ namespace FuriousWeb.Models
         public string Description { get; set; }
         public double Price { get; set; }
         public string Created_at { get; set; }
+
+        public virtual List<ProductImage> Images { get; set; }
     }
 }

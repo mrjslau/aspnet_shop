@@ -34,7 +34,7 @@ namespace FuriousWeb.Controllers
         {
             int skip = (currentPage - 1)*12;
             int take = 12;
-            var products = db.Products.ToList();
+            var products = db.Products.Include(y => y.Images).DefaultIfEmpty().ToList();
             if (!string.IsNullOrWhiteSpace(query))
             {
                 products = products.Where(x => x.Name.ToLower().Contains(query.ToLower()) || x.Code.ToLower().Contains(query.ToLower())).Skip(skip).Take(take).ToList();

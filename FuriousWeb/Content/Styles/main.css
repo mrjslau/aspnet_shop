@@ -1591,11 +1591,7 @@ h2.title {
 .cart_info table tr td {
   border-top: 0 none;
   vertical-align: inherit;
-}
-
-
-#cart_items .cart_info .image {
-  padding-left: 30px;
+  text-align:center;
 }
 
 
@@ -1642,6 +1638,10 @@ h2.title {
   text-align: center;
   width: 35px;
   float: left;
+}
+
+.cart_quantity_button{
+    display:inline-block;
 }
 
 
@@ -2736,6 +2736,11 @@ h2.title {
 .billing_info .info input,
 .personal_info .info input{
     margin: 5px;
+}
+
+.order-item img{
+    display:block;
+    width:100%;
 }
 
 @media (max-width: 767px) {

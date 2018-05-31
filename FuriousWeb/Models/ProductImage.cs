@@ -8,13 +8,16 @@ namespace FuriousWeb.Models
         [Key]
         public int Id { get; set; }
 
-        [ForeignKey("Product")]
+        
         public int ProductId { get; set; }
 
         public string RelativePath { get; set; }
 
         public bool IsMainImage { get; set; }
 
-        public Product Product { get; set; }
+
+        [ForeignKey("ProductId")]
+        public virtual Product Product { get; set; }
+
     }
 }
