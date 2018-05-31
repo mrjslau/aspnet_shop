@@ -8,6 +8,7 @@ using System.Linq;
 using System.Collections.Generic;
 using System.Web;
 using System;
+using System.Data.Entity.Infrastructure;
 
 namespace FuriousWeb.Controllers
 {
@@ -204,7 +205,7 @@ namespace FuriousWeb.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(EditProductViewModel viewModel)
+        public ActionResult Edit(EditProductViewModel viewModel, byte[] rowVersion)
         {
             if (ModelState.IsValid)
             {
@@ -214,22 +215,38 @@ namespace FuriousWeb.Controllers
                 product.Description = viewModel.Description;
                 product.Price = viewModel.Price;
 
-                db.Entry(product).State = EntityState.Modified;
+                bool exceptionOccured = false;           
                 try
                 {
+                    db.Entry(product).State = EntityState.Modified;
+                    db.Entry(product).OriginalValues["RowVersion"] = rowVersion;
                     db.SaveChanges();
                 }
-                catch(System.Data.Entity.Infrastructure.DbUpdateException ex){
+                catch (DbUpdateConcurrencyException)
+                {
+                    ModelState.AddModelError("Error", "Įrašas buvo redaguotas kitu naudotoju. Išeikite iš redagavimo puslapio ir bandykite iš naujo");
+                    exceptionOccured = true;
+                }
+                catch(DbUpdateException){
                     ModelState.AddModelError("Error", "Prekė su tokiu kodu jau egzistuoja.");
-                    return View(viewModel);
+                    exceptionOccured = true;
                 }
                 catch (Exception ex)
                 {
-                    ModelState.AddModelError("Error", ex);
+                    ModelState.AddModelError("Error", ex.Message);
+                    exceptionOccured = true;
+                }
+
+                if(exceptionOccured)
+                {
+                    viewModel.MainImage = db.ProductImages.SingleOrDefault(x => x.ProductId == viewModel.Id && x.IsMainImage);
+                    viewModel.SecondaryImages = db.ProductImages.Where(x => x.ProductId == viewModel.Id && !x.IsMainImage).ToList();
                     return View(viewModel);
                 }
+
                 return RedirectToAction("GetProductsListForAdmin", "Products", new { isPartial = false, query = "", currentPage = 1 });
             }
+            //!ModelState.IsValid
             return View(viewModel);
         }
 

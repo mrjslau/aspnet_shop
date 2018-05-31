@@ -17,6 +17,9 @@ namespace FuriousWeb.Models
         public double Price { get; set; }
         public string Created_at { get; set; }
 
+        [Timestamp]
+        public byte[] RowVersion { get; set; }
+
         public virtual List<ProductImage> Images { get; set; }
     }
 }
