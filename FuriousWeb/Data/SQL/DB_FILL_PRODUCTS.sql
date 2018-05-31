@@ -28,7 +28,42 @@ VALUES
 ('26', 'Prekė 26', 'Prekės 26 aprašymas', 20, '2018-05-31 12:20:08'),
 ('27', 'Prekė 27', 'Prekės 27 aprašymas', 10, '2018-05-31 12:20:08');
 
-
+INSERT INTO ProductImages(ProductId, RelativePath, IsMainImage)
+VALUES
+(1, '~/Content/Images/Products/product.JPG', 1),
+(2, '~/Content/Images/Products/product.JPG', 1),
+(3, '~/Content/Images/Products/product.JPG', 1),
+(4, '~/Content/Images/Products/product.JPG', 1),
+(5, '~/Content/Images/Products/product.JPG', 1),
+(6, '~/Content/Images/Products/product.JPG', 1),
+(7, '~/Content/Images/Products/product.JPG', 1),
+(8, '~/Content/Images/Products/product.JPG', 1),
+(9, '~/Content/Images/Products/product.JPG', 1),
+(10, '~/Content/Images/Products/product.JPG', 1),
+(11, '~/Content/Images/Products/product.JPG', 1),
+(12, '~/Content/Images/Products/product.JPG', 1),
+(13, '~/Content/Images/Products/product.JPG', 1),
+(14, '~/Content/Images/Products/product.JPG', 1),
+(15, '~/Content/Images/Products/product.JPG', 1),
+(16, '~/Content/Images/Products/product.JPG', 1),
+(17, '~/Content/Images/Products/product.JPG', 1),
+(18, '~/Content/Images/Products/product.JPG', 1),
+(19, '~/Content/Images/Products/product.JPG', 1),
+(20, '~/Content/Images/Products/product.JPG', 1),
+(21, '~/Content/Images/Products/product.JPG', 1),
+(22, '~/Content/Images/Products/product.JPG', 1),
+(23, '~/Content/Images/Products/product.JPG', 1),
+(24, '~/Content/Images/Products/product.JPG', 1),
+(25, '~/Content/Images/Products/product.JPG', 1),
+(26, '~/Content/Images/Products/product.JPG', 1),
+(27, '~/Content/Images/Products/product.JPG', 1),
+(1, '~/Content/Images/Products/product.JPG', 0),
+(2, '~/Content/Images/Products/product.JPG', 0),
+(3, '~/Content/Images/Products/product.JPG', 0),
+(4, '~/Content/Images/Products/product.JPG', 0),
+(5, '~/Content/Images/Products/product.JPG', 0),
+(6, '~/Content/Images/Products/product.JPG', 0),
+(7, '~/Content/Images/Products/product.JPG', 0);
 
 INSERT INTO Payments(Amount, Created_At, Code)
 VALUES 
