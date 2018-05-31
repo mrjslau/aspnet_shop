@@ -784,12 +784,8 @@
     </Content>
     <Content Include="Views\Web.config" />
     <Content Include="Views\Admin\Shared\Error.cshtml" />
-    <Content Include="Views\Store\Account\ForgotPassword.cshtml" />
-    <Content Include="Views\Store\Account\ForgotPasswordConfirmation.cshtml" />
     <Content Include="Views\Store\Account\Login.cshtml" />
     <Content Include="Views\Store\Account\Register.cshtml" />
-    <Content Include="Views\Store\Account\ResetPassword.cshtml" />
-    <Content Include="Views\Store\Account\ResetPasswordConfirmation.cshtml" />
     <Content Include="Views\Admin\Manage\ChangePassword.cshtml" />
     <Content Include="Views\Admin\Manage\Index.cshtml" />
     <Content Include="Views\Admin\Manage\ManageLogins.cshtml" />
