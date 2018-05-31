@@ -1,15 +1,15 @@
 ﻿<div class="list-group">
-    <a href="@Url.Action("GetDashboardForAdmin", "Admin")" class="list-group-item @(ViewContext.RouteData.Values["Action"].ToString() == "Index" || ViewContext.RouteData.Values["Action"].ToString() == "GetDashboardForAdmin" ? "active main-color-bg" : "")">
+    @*<a href="@Url.Action("GetDashboardForAdmin", "Admin")" class="list-group-item @(ViewContext.RouteData.Values["Action"].ToString() == "Index" || ViewContext.RouteData.Values["Action"].ToString() == "GetDashboardForAdmin" ? "active main-color-bg" : "")">
         <span class="fa fa-cogs"></span>
         Admin panelė
-    </a>
+    </a>*@
     <a href="@Url.Action("GetProductsListForAdmin", "Products", routeValues: new { isPartial = "false", query = "", currentPage = 1 })" class="list-group-item @(ViewContext.RouteData.Values["Action"].ToString() == "GetProductsListForAdmin" ? "active main-color-bg" : "")">
-        <span class="fa fa-shopping-cart"></span> Prekės <span class="badge">103</span>
+        <span class="fa fa-shopping-cart"></span> Prekės <span class="badge"></span>
     </a>
     <a href="@Url.Action("GetUsersListForAdmin", "Admin", routeValues: new { isPartial = "false", query = "", currentPage = 1 })" class="list-group-item @(ViewContext.RouteData.Values["Action"].ToString() == "GetUsersListForAdmin" ? "active main-color-bg" : "")">
-        <span class="fa fa-users"></span> Vartotojai <span class="badge">4</span>
+        <span class="fa fa-users"></span> Vartotojai <span class="badge"></span>
     </a>
     <a href="@Url.Action("GetOrderListForAdmin", "Admin", routeValues: new { isPartial = "false", query = "", currentPage = 1 })" class="list-group-item @(ViewContext.RouteData.Values["Action"].ToString() == "GetOrderListForAdmin" ? "active main-color-bg" : "")">
-        <span class="fa fa-truck"></span> Užsakymai <span class="badge">15</span>
+        <span class="fa fa-truck"></span> Užsakymai <span class="badge"></span>
     </a>
 </div>
