@@ -10,10 +10,10 @@ namespace FuriousWeb.Models.ViewModels
         public int Exp_year { get; set; }
         [Required(ErrorMessage = "Būtina įvesti mėnesį")]
         public int Exp_month { get; set; }
-        [Required(ErrorMessage = "Būtina įvesti mėnesį")]
+        [Required(ErrorMessage = "Būtina įvesti kortelės cvv")]
         public string Card_cvv { get; set; }
 
-        [Required(ErrorMessage = "Būtina įvesti pavardę")]
+        [Required(ErrorMessage = "Būtina įvesti vardą")]
         public string FirstName { get; set; }
         [Required(ErrorMessage = "Būtina įvesti pavardę")]
         public string LastName { get; set; }
