@@ -42,7 +42,7 @@
                         <div class="col-md-2  ">
                             <div>Statusas</div>
                         </div>
-                        <div class="col-md-2  ">
+                        <div class="col-md-3  ">
                             <div>Sukurta</div>
                         </div>
                     </div>
@@ -62,10 +62,10 @@
                         <div class="col-md-2">
                             @order.Status
                         </div>
-                        <div class="col-md-2">
+                        <div class="col-md-3">
                             @order.Created_at
                         </div>
-                        <div class="col-md-2">
+                        <div class="col-md-1 text-right">
                             <div class="actions">
                                 <a href="@Url.Action("EditOrder", "Admin", routeValues: new { id = order.ID })"><i class="edit fa fa-edit"></i></a>
                             </div>

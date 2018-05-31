@@ -42,10 +42,10 @@
                         <div class="col-md-2  ">
                             <div>ID</div>
                         </div>
-                        <div class="col-md-3  ">
+                        <div class="col-md-4  ">
                             <div>El. Paštas</div>
                         </div>
-                        <div class="col-md-3  ">
+                        <div class="col-md-4  ">
                             <div>Vartotojo vardas</div>
                         </div>
                     </div>
@@ -56,18 +56,13 @@
                             <div class="col-md-2">
                                 @user.Id
                             </div>
-                            <div class="col-md-3  ">
+                            <div class="col-md-4  ">
                                 @user.Email
                             </div>
-                            <div class="col-md-3  ">
-                                @user.UserName
+                            <div class="col-md-4  ">
+                                @user.Name @user.Lastname
                             </div>
-                            <div class="col-md-1">
-                                <div class="actions">
-                                    @*<a href="#"><i class="edit fa fa-edit"></i></a>*@
-                                </div>
-                            </div>
-                            <div class="col-md-3">
+                            <div class="col-md-2">
                                 <div class="actions">
                                     @if (user.LockoutEndDateUtc > ViewBag.Date && user.LockoutEnabled == true)
                                     {
