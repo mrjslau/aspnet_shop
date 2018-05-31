@@ -30,6 +30,11 @@ namespace FuriousWeb.Models.ViewModels
         public List<ProductImage> SecondaryImages { get; set; }
         public ProductImage MainImage { get; set; }
 
+        public EditProductViewModel()
+        {
+            SecondaryImages = new List<ProductImage>();
+        }
+
         public EditProductViewModel(Product product, ProductImage mainImg, List<ProductImage> secondaryImages)
         {
             Id = product.Id;
@@ -42,8 +47,6 @@ namespace FuriousWeb.Models.ViewModels
             SecondaryImages = secondaryImages;
             MainImage = mainImg;
         }
-
-        public EditProductViewModel() { }
     }
 
     public class DetailsViewModel
