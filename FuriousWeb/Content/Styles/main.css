@@ -8,7 +8,6 @@
 
 body {
   font-family: 'Roboto', sans-serif;
-  background:;
   position: relative;
   font-weight:400px;
 }
@@ -924,6 +923,7 @@ h2.title {
 
 .productinfo img {
     width: 100%;
+}
 .productinfo img,
 .product-details .view-product img {
     width: 100%;
@@ -2777,6 +2777,14 @@ h2.title {
 
 .error {
     color: #C70039;
+}
+
+#logo{
+    width: 180px;
+}
+
+#logo img {
+    width: 100%;
 }
 
 @media (max-width: 767px) {
