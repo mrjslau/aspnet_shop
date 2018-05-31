@@ -2748,10 +2748,12 @@ h2.title {
     width:100%;
 }
 
+.error {
+    color: #C70039;
+}
+
 @media (max-width: 767px) {
-    .billing_info .info > div,
-    .billing_info .do_action > div,
-    .personal_info .info > div {
+    .billing_info .info > div, .billing_info .do_action > div, .personal_info .info > div {
         width: 100%;
     }
     .billing_info .info > div > div,
