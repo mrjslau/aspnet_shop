@@ -49,7 +49,7 @@ namespace FuriousWeb
                         userManager.Create(simpleUser2, "Password!");
                         userManager.AddToRole(simpleUser2.Id, simpleUserRole.Name);
 
-                        var simpleUser3 = new User() { UserName = "user3@gmail.com", Email = "user3@gmail.com", Id = "5", Phone = "888888888", Address = "address", Name = "Name", Lastname = "Lastname" };
+                        /*var simpleUser3 = new User() { UserName = "user3@gmail.com", Email = "user3@gmail.com", Id = "5", Phone = "888888888", Address = "address", Name = "Name", Lastname = "Lastname" };
                         userManager.Create(simpleUser3, "Password!");
                         userManager.AddToRole(simpleUser3.Id, simpleUserRole.Name);
 
@@ -104,7 +104,7 @@ namespace FuriousWeb
                         var simpleUser16 = new User() { UserName = "user16@gmail.com", Email = "user16@gmail.com", Id = "18", Phone = "888888888", Address = "address", Name = "Name", Lastname = "Lastname" };
                         userManager.Create(simpleUser16, "Password!");
                         userManager.AddToRole(simpleUser16.Id, simpleUserRole.Name);
-
+                        */
                     }
                 }
             }
