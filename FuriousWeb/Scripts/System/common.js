@@ -220,7 +220,6 @@ function getProducts(queryString, adminAccess, page, isPartial) {
     var actionName = adminAccess ? "GetProductsListForAdmin" : "GetProductsListForUser";
     var actionLocation = adminAccess ? "#partial-body" : ".products";
     var queryInput = adminAccess ? "#search-query" : "#user-product-search";
-    debugger;
     $.ajax({
         type: "GET",
         url: '/Products/' + actionName,
@@ -240,7 +239,6 @@ function getProducts(queryString, adminAccess, page, isPartial) {
             $(actionLocation).html(data);
             setTimeout(function () {
                 var count = getProductsCount(queryString);
-                debugger;
 
                 pages = Math.ceil(count / 12);
                 $('.products-pagination').html('');
