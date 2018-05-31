@@ -8,7 +8,8 @@
 		
 /*scroll to top*/
 
-$(document).ready(function(){
+$(document).ready(function () {
+
 	$(function () {
 		$.scrollUp({
 	        scrollName: 'scrollUp', // Element ID
@@ -33,6 +34,10 @@ $(document).ready(function(){
         if (event.keyCode == 13) {
             getProducts($(this).val(), false, 1, true);
         }
+    });
+
+    $('#user-product-search-btn').on('click', function () {
+            getProducts($('#user-product-search').val(), false, 1, true);
     });
 });
 
