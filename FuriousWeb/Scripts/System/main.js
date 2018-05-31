@@ -34,6 +34,10 @@ $(document).ready(function(){
             getProducts($(this).val(), false, 1, true);
         }
     });
+
+    $('#user-product-search-btn').on('click', function () {
+            getProducts($('#user-product-search').val(), false, 1, true);
+    });
 });
 
 
