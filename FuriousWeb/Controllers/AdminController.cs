@@ -1,13 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
 using FuriousWeb.Data;
 using FuriousWeb.Models;
 using FuriousWeb.Models.ViewModels;
-using System.Web.Security;
 using System.Data.Entity;
 
 namespace FuriousWeb.Controllers

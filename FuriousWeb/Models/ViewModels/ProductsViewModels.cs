@@ -1,17 +1,16 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
 
 namespace FuriousWeb.Models.ViewModels
 {
     public class CreateProductViewModel
     {
-        [Required]
+        [Required(ErrorMessage = "Būtina įvesti prekės kodą")]
         [Display(Name = "Kodas")]
         [MaxLength(50)]
         public string Code { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Būtina įvesti prekės pavadinimą")]
         [Display(Name = "Pavadinimas")]
         public string Name { get; set; }
 
