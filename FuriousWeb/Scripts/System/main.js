@@ -8,7 +8,8 @@
 		
 /*scroll to top*/
 
-$(document).ready(function(){
+$(document).ready(function () {
+
 	$(function () {
 		$.scrollUp({
 	        scrollName: 'scrollUp', // Element ID
