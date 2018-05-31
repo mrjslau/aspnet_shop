@@ -209,6 +209,7 @@
     <Compile Include="Models\Payment.cs" />
     <Compile Include="Models\ShoppingCartItem.cs" />
     <Compile Include="Models\ViewModels\AccountViewModels.cs" />
+    <Compile Include="Models\ViewModels\CheckoutViewModel.cs" />
     <Compile Include="Models\ViewModels\ManageViewModels.cs" />
     <Compile Include="Models\ShoppingCart.cs" />
     <Compile Include="Models\Product.cs" />

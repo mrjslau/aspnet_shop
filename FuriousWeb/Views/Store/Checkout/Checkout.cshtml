@@ -1,7 +1,9 @@
-﻿@{
+﻿@model FuriousWeb.Models.ViewModels.CheckoutViewModel
+
+@{
     ViewBag.Title = "Checkout";
 }
-@model FuriousWeb.Models.Checkout
+
 @if (Model.paymentErr != null)
 {
     <!--Model.paymentErr.Message-->
@@ -13,6 +15,7 @@
 
 <form method="post" action="SubmitPayment" runat="server">
     
+    @Html.ValidationSummary("", new { @class = "text-danger" })
     <div class="personal_info">
         <div class="title">
             Jūsų kontaktiniai duomenys
@@ -20,15 +23,16 @@
         <div class="info">
             <div>
                 <div>
-                    <input class="form-control" type="text" id="name" name="name" placeholder="Vardas*" required value="@Model.User.Name"/>
-                    <input class="form-control" type="text" id="lastname" name="lastname" placeholder="Pavardė*" required  value="@Model.User.Lastname"/>
+                    @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control", @placeholder = "Vardas*" })
+                    @Html.TextBoxFor(m => m.LastName, new { @class = "form-control", @placeholder = "Pavardė*" })
                 </div>
                 <div>
-                    <input class="form-control" type="email" id="email" name="email" placeholder="El. pašto adresas*" required  value="@Model.User.Email"/>
-                    <input class="form-control" type="text" id="phone" name="phone" placeholder="Telefono numeris*" required  value="@Model.User.Phone"/>
+                    @Html.TextBoxFor(m => m.User.Email, new { @class = "form-control", @placeholder = "El. pašto adresas*" })
+                    @Html.TextBoxFor(m => m.User.Phone, new { @class = "form-control", @placeholder = "Telefono numeris*" })
                 </div>
                 <div>
-                    <input class="form-control" type="text" id="address" name="address" placeholder="Adresas*" required  value="@Model.User.Address"/>
+                    @Html.TextBoxFor(m => m.User.Address, new { @class = "form-control", @placeholder = "Adresas*" })
+                    @Html.HiddenFor(m => m.User.Id)
                 </div>
             </div>
         </div>
@@ -42,14 +46,18 @@
         <div class="info">
             <div>
                 <div>
-                    <input class="form-control" maxlength="16" type="text" id="card-number" name="card_number" placeholder="Kortelės numeris" required/>
+                    @Html.TextBoxFor(m => m.Card_number, new { @class = "form-control", @placeholder = "Kortelės numeris*", @maxlength = "16" })
+                    @*<input class="form-control" maxlength="16" type="text" id="card-number" name="card_number" placeholder="Kortelės numeris" required/>*@
                 </div>
                 <div>
-                    <input class="form-control" min="1900" max="10000" type="number" id="exp-year" name="exp_year" placeholder="Galioja iki (metai)" required/>
-                    <input class="form-control" min="1" max="12" type="number" id="exp-month" name="exp_month" placeholder="Galioja iki (mėnesis)" required/>
+                    @Html.TextBoxFor(m => m.Exp_year, new { @class = "form-control", @placeholder = "Galioja iki (metai)*", @min = "1900", @max = "10000" })
+                    @Html.TextBoxFor(m => m.Exp_month, new { @class = "form-control", @placeholder = "Galioja iki (mėnesis)*", @min = "1", @max = "12" })
+                    @*<input class="form-control" min="1900" max="10000" type="number" id="exp-year" name="exp_year" placeholder="Galioja iki (metai)" required/>
+                    <input class="form-control" min="1" max="12" type="number" id="exp-month" name="exp_month" placeholder="Galioja iki (mėnesis)" required/>*@
                 </div>
                 <div>
-                    <input class="form-control" maxlength="3" type="text" id="card-cvv" name="card_cvv" placeholder="Kortelės CVV kodas" required/>
+                    @Html.TextBoxFor(m => m.Card_cvv, new { @class = "form-control", @placeholder = "Kortelės CVV kodas*", @maxlength = "3" })
+                    @*<input class="form-control" maxlength="3" type="text" id="card-cvv" name="card_cvv" placeholder="Kortelės CVV kodas" required/>*@
                 </div>
             </div>
         </div>
