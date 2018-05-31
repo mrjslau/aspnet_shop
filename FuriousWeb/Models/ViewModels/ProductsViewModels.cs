@@ -25,9 +25,15 @@ namespace FuriousWeb.Models.ViewModels
     public class EditProductViewModel : CreateProductViewModel
     {
         public int Id { get; set; } //product Id, will be hidden
+        public byte[] RowVersion { get; set; }
 
         public List<ProductImage> SecondaryImages { get; set; }
         public ProductImage MainImage { get; set; }
+
+        public EditProductViewModel()
+        {
+            SecondaryImages = new List<ProductImage>();
+        }
 
         public EditProductViewModel(Product product, ProductImage mainImg, List<ProductImage> secondaryImages)
         {
@@ -36,12 +42,11 @@ namespace FuriousWeb.Models.ViewModels
             Name = product.Name;
             Description = product.Description;
             Price = product.Price;
+            RowVersion = product.RowVersion;
 
             SecondaryImages = secondaryImages;
             MainImage = mainImg;
         }
-
-        public EditProductViewModel() { }
     }
 
     public class DetailsViewModel
