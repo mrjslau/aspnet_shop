@@ -36,9 +36,9 @@
                     </div>
                     <div class="col-md-9" id="partial-body">
                         @if (ViewContext.RouteData.Values["Action"].ToString() == "Index")
-                    {
-                        @RenderPage("~/Views/Admin/Shared/DashboardForAdmin.cshtml")
-                }
+                        {
+                            @RenderPage("~/Views/Admin/Shared/DashboardForAdmin.cshtml")
+                        }
                         @RenderBody()
                     </div>
                 </div>

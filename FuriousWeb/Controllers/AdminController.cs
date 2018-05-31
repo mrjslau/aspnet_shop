@@ -21,6 +21,8 @@ namespace FuriousWeb.Controllers
 
         public ActionResult GetDashboardForAdmin()
         {
+           // return RedirectToAction("GetOrderListForAdmin", "Admin", new { isPartial = false, query = "", currentPage = 1 });
+
             return View("DashboardForAdmin");
         }
 
